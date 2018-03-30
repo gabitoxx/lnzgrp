@@ -1,0 +1,96 @@
+@import http://fonts.googleapis.com/css?family=Raleway;
+	/*----------------------------------------------
+	CSS Settings For HTML Div ExactCenter
+	------------------------------------------------*/
+#reloginmain {
+	/* width:960px; */
+	font-family:raleway;
+
+	/**position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    */
+    display: block;
+    margin: 0 auto;
+    
+	position: relative;
+	left: 50%;
+	width: 1000px;
+	margin-left: -300px;
+
+}
+#reloginmain span {
+	color:#E30513;
+	font-size:18px;
+}
+#reloginmain label {
+	font-size:18px;
+}
+#reloginmain h2 {
+	background-color:#FEFFED;
+	text-align:center;
+	border-radius:10px 10px 0 0;
+	margin:-10px -40px;
+	padding:15px
+}
+#relogin hr {
+	border:0;
+	border-bottom:1px solid #ccc;
+	margin:10px -40px;
+	margin-bottom:30px
+}
+#relogin {
+	width:550px;
+	float:left;
+	border-radius:10px;
+	font-family:raleway;
+	border:2px solid #ccc;
+	padding:10px 40px 25px;
+	/* margin-top:70px; */
+}
+#relogin input[type=text],input[type=password] {
+	width:99.5%;
+	padding:10px;
+	margin-top:8px;
+	border:1px solid #ccc;
+	padding-left:5px;
+	font-size:16px;
+	font-family:raleway;
+	background-color: rgb(250, 255, 189);
+}
+#relogin input[type=submit] {
+	width:50%;
+	
+	padding:10px;
+	font-size:20px;
+	cursor: pointer;
+	border-radius:5px;
+	
+
+    background-color:#E36C1C !important;
+	color:#161616;
+	border:2px solid #EE8038;
+
+	margin-left: 25%;
+}
+#profile {
+	padding:50px;
+	border:1px dashed grey;
+	font-size:20px;
+	background-color:#DCE6F7
+}
+#logout {
+	float:right;
+	padding:5px;
+	border:dashed 1px gray
+}
+#relogin a {
+	text-decoration:none;
+	color:#6495ed;
+	margin-left: 27%;
+	font-size: 18px;
+}
+i {
+	color:#6495ed
+}

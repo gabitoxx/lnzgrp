@@ -1,0 +1,233 @@
+[16-Jan-2017 19:51:07 America/Chicago] PHP Parse error:  syntax error, unexpected 'exit' (T_EXIT), expecting ',' or ';' in /home/lanuzag/public_html/index.php on line 219
+[16-Jan-2017 20:22:48 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:217) in /home/lanuzag/public_html/index.php on line 265
+[16-Jan-2017 20:24:02 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:217) in /home/lanuzag/public_html/index.php on line 265
+[16-Jan-2017 20:24:38 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:217) in /home/lanuzag/public_html/index.php on line 265
+[16-Jan-2017 20:25:47 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:217) in /home/lanuzag/public_html/index.php on line 265
+[16-Jan-2017 21:34:46 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:217) in /home/lanuzag/public_html/index.php on line 265
+[16-Jan-2017 21:37:12 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:217) in /home/lanuzag/public_html/index.php on line 265
+[16-Jan-2017 22:11:55 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:217) in /home/lanuzag/public_html/index.php on line 265
+[16-Jan-2017 22:12:58 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:217) in /home/lanuzag/public_html/index.php on line 265
+[16-Jan-2017 22:25:08 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 268
+[16-Jan-2017 23:47:55 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[16-Jan-2017 23:47:56 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[16-Jan-2017 23:47:56 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[16-Jan-2017 23:47:56 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 00:03:00 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 00:03:00 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 00:05:38 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 00:25:19 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 02:28:21 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 03:37:41 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 03:37:41 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 07:53:44 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 08:06:18 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 09:41:34 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 09:41:40 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 09:42:33 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 09:42:33 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 09:42:33 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 09:42:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 10:07:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 10:14:11 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 10:21:46 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 10:26:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 10:26:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 10:26:36 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 11:24:08 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 12:00:55 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 12:01:20 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 12:01:29 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 12:49:28 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 13:21:37 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 13:21:39 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 14:32:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 14:46:52 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 14:47:43 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 14:59:30 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 15:54:25 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 15:54:25 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 16:55:45 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 17:49:32 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 17:49:33 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 18:26:23 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 18:26:28 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 18:26:32 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 18:26:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 18:27:54 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 18:28:14 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 18:28:25 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 18:28:43 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 18:28:52 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 19:16:57 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 19:17:44 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 19:35:40 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 23:48:43 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 23:58:18 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 23:58:21 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[17-Jan-2017 23:58:22 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 00:12:52 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 02:21:31 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 02:21:31 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 02:21:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 02:21:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 03:58:02 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 03:58:02 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 05:31:01 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 07:16:29 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 07:33:14 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:01:15 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:03:11 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:20:44 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:35:36 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:35:36 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:37:50 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:38:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:38:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:38:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:38:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:38:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:39:27 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:39:27 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:39:27 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:39:27 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:39:28 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:39:30 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:39:30 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:39:30 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:39:30 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:40:53 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:40:53 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:40:53 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:40:53 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:41:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:41:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:41:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 08:41:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 16:01:49 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[18-Jan-2017 18:26:03 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[19-Jan-2017 01:13:14 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[19-Jan-2017 03:55:39 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[19-Jan-2017 03:55:40 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[19-Jan-2017 04:24:11 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[19-Jan-2017 05:36:07 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[19-Jan-2017 09:21:49 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[19-Jan-2017 09:21:49 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[19-Jan-2017 09:21:49 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[19-Jan-2017 09:22:11 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lanuzag/public_html/index.php:220) in /home/lanuzag/public_html/index.php on line 305
+[19-Jan-2017 09:30:41 America/Chicago] PHP Fatal error:  Class 'Core\App' not found in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 09:31:38 America/Chicago] PHP Fatal error:  Class 'Core\App' not found in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 09:35:06 America/Chicago] PHP Fatal error:  Class 'Core\App' not found in /home/lanuzag/public_html/index.php on line 33
+[19-Jan-2017 09:35:33 America/Chicago] PHP Fatal error:  Class 'Core\App' not found in /home/lanuzag/public_html/index.php on line 33
+[19-Jan-2017 09:37:00 America/Chicago] PHP Fatal error:  Class 'Core\App' not found in /home/lanuzag/public_html/index.php on line 33
+[19-Jan-2017 09:44:07 America/Chicago] PHP Fatal error:  Class 'Core\App' not found in /home/lanuzag/public_html/index.php on line 33
+[19-Jan-2017 09:44:34 America/Chicago] PHP Fatal error:  Class 'Core\App' not found in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 10:04:17 America/Chicago] PHP Fatal error:  Class 'Core\App' not found in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 10:06:20 America/Chicago] PHP Fatal error:  Class 'core\App' not found in /home/lanuzag/public_html/index.php on line 35
+[19-Jan-2017 10:10:21 America/Chicago] PHP Fatal error:  Class 'core\App' not found in /home/lanuzag/public_html/index.php on line 35
+[19-Jan-2017 10:10:54 America/Chicago] PHP Fatal error:  Class 'core\App' not found in /home/lanuzag/public_html/index.php on line 35
+[19-Jan-2017 10:12:16 America/Chicago] PHP Fatal error:  Class 'core\App' not found in /home/lanuzag/public_html/index.php on line 36
+[19-Jan-2017 10:12:32 America/Chicago] PHP Fatal error:  Class 'core\App' not found in /home/lanuzag/public_html/index.php on line 36
+[19-Jan-2017 10:12:38 America/Chicago] PHP Fatal error:  Class 'core\App' not found in /home/lanuzag/public_html/index.php on line 36
+[19-Jan-2017 10:13:04 America/Chicago] PHP Fatal error:  Class 'core\app' not found in /home/lanuzag/public_html/index.php on line 37
+[19-Jan-2017 10:14:09 America/Chicago] PHP Fatal error:  Class 'core\app' not found in /home/lanuzag/public_html/index.php on line 37
+[19-Jan-2017 10:14:13 America/Chicago] PHP Fatal error:  Class 'core\app' not found in /home/lanuzag/public_html/index.php on line 37
+[19-Jan-2017 10:22:35 America/Chicago] PHP Fatal error:  Class 'core\app' not found in /home/lanuzag/public_html/index.php on line 38
+[19-Jan-2017 10:23:28 America/Chicago] PHP Fatal error:  Class 'core\app' not found in /home/lanuzag/public_html/index.php on line 39
+[19-Jan-2017 10:23:54 America/Chicago] PHP Fatal error:  Class 'core\app' not found in /home/lanuzag/public_html/index.php on line 40
+[19-Jan-2017 10:24:18 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\app' not found in /home/lanuzag/public_html/index.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 41
+[19-Jan-2017 10:27:31 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 10:30:08 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'App' not found in /home/lanuzag/public_html/index.php:35
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 35
+[19-Jan-2017 10:48:35 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 10:49:07 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'App' not found in /home/lanuzag/public_html/index.php:35
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 35
+[19-Jan-2017 10:54:24 America/Chicago] PHP Fatal error:  Uncaught LogicException: Function 'autoload_classes2' not found (function 'autoload_classes2' not found or invalid function name) in /home/lanuzag/public_html/index.php:31
+Stack trace:
+#0 /home/lanuzag/public_html/index.php(31): spl_autoload_register('autoload_classe...')
+#1 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 31
+[19-Jan-2017 10:55:15 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 10:55:57 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 10:57:03 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 10:57:05 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 10:58:13 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 34
+[19-Jan-2017 10:58:53 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function render() on null in /home/lanuzag/public_html/index.php:39
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 39
+[19-Jan-2017 11:02:23 America/Chicago] PHP Fatal error:  Uncaught LogicException: Function 'autoload_classes3' not found (function 'autoload_classes3' not found or invalid function name) in /home/lanuzag/public_html/index.php:33
+Stack trace:
+#0 /home/lanuzag/public_html/index.php(33): spl_autoload_register('autoload_classe...')
+#1 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 33
+[19-Jan-2017 11:03:12 America/Chicago] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/lanuzag/public_html/index.php on line 29
+[19-Jan-2017 11:14:28 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 38
+[19-Jan-2017 11:15:18 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 38
+[19-Jan-2017 11:15:29 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 38
+[19-Jan-2017 11:16:07 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'core\App' not found in /home/lanuzag/public_html/index.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/lanuzag/public_html/index.php on line 38
+[19-Jan-2017 11:17:30 America/Chicago] PHP Warning:  include(/home/lanuzag/app/views/errors/404.php): failed to open stream: No such file or directory in /home/lanuzag/public_html/core/App.php on line 56
+[19-Jan-2017 11:17:30 America/Chicago] PHP Warning:  include(): Failed opening '/home/lanuzag/app/views/errors/404.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/lanuzag/public_html/core/App.php on line 56
+[19-Jan-2017 11:21:21 America/Chicago] PHP Warning:  include(/home/lanuzag/app/views/errors/404.php): failed to open stream: No such file or directory in /home/lanuzag/public_html/core/App.php on line 56
+[19-Jan-2017 11:21:21 America/Chicago] PHP Warning:  include(): Failed opening '/home/lanuzag/app/views/errors/404.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/lanuzag/public_html/core/App.php on line 56
+[19-Jan-2017 11:24:36 America/Chicago] PHP Warning:  include(/app/views/errors/404.php): failed to open stream: No such file or directory in /home/lanuzag/public_html/core/App.php on line 56
+[19-Jan-2017 11:24:36 America/Chicago] PHP Warning:  include(): Failed opening '/app/views/errors/404.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/lanuzag/public_html/core/App.php on line 56
+[19-Jan-2017 11:47:25 America/Chicago] PHP Fatal error:  Uncaught Exception: Exception in View.php -- Error: El archivo ../app/views/home.php no existe in /home/lanuzag/public_html/core/View.php:31
+Stack trace:
+#0 /home/lanuzag/public_html/app/controllers/Home.php(50): core\View::render('home')
+#1 [internal function]: app\controllers\Home->saludo('alieth')
+#2 /home/lanuzag/public_html/core/App.php(107): call_user_func_array(Array, Array)
+#3 /home/lanuzag/public_html/index.php(46): core\App->render()
+#4 {main}
+  thrown in /home/lanuzag/public_html/core/View.php on line 31
+[19-Jan-2017 12:01:46 America/Chicago] PHP Fatal error:  Uncaught Exception: Exception in View.php -- Error: El archivo ../app/views/home.php no existe in /home/lanuzag/public_html/core/View.php:31
+Stack trace:
+#0 /home/lanuzag/public_html/app/controllers/Home.php(50): core\View::render('home')
+#1 [internal function]: app\controllers\Home->saludo('alieth')
+#2 /home/lanuzag/public_html/core/App.php(108): call_user_func_array(Array, Array)
+#3 /home/lanuzag/public_html/index.php(46): core\App->render()
+#4 {main}
+  thrown in /home/lanuzag/public_html/core/View.php on line 31
+[19-Jan-2017 12:35:39 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home/lanuzag/public_html/app/views/users.php on line 22
+[19-Jan-2017 12:36:17 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home/lanuzag/public_html/app/views/users.php on line 22
+[19-Jan-2017 18:13:29 America/Chicago] PHP Parse error:  syntax error, unexpected '<', expecting end of file in /home/lanuzag/public_html/index.php on line 71
+[19-Jan-2017 18:15:49 America/Chicago] PHP Parse error:  syntax error, unexpected '" src='"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home/lanuzag/public_html/index.php on line 71

@@ -1,0 +1,16 @@
+# De esta forma tan sencilla, en la variable $_GET[‘url’] tendremos la url segmentada a partir de public,
+# por ejemplo, la url http://localhost:8080/php/mvc/public/home/admin/1 nos devolverá home/admin/1
+# así podremos saber el controlador, método y parámetros que debemos procesar para lanzar nuestra aplicación
+Options -Multiviews
+ 
+RewriteEngine On
+ 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+ 
+RewriteRule ^(.+)$ index.php?url=$1 [QSA]
+# Use PHP70 as default
+AddHandler application/x-httpd-php70 .php
+<IfModule mod_suphp.c>
+    suPHP_ConfigPath /opt/php70/lib
+</IfModule>
