@@ -13,7 +13,8 @@ use \core\View,
 	\app\models\InventarioScripts,
 	\app\models\Empresas,
 	\app\models\EmailManagement,
-	\app\models\Clients;
+	\app\models\Clients,
+	\app\models\cronJobs\Daemon5;
 
 class Tecnicos { 
 	
@@ -76,6 +77,10 @@ class Tecnicos {
 			View::set("no_incidencias_pendientes", "no hay incidencias pendientes");
 		}
 
+		/* @TEST prueba de Daemon desde la App: el archivo debe llamarse Daemon5.php
+		Daemon5::notificarEmailCitasDeManana();
+		*/
+
 		/**
 		 * Opcion del menu a desplegar: VER INCIDENCIAS Pendientes
 		 */
@@ -105,6 +110,29 @@ class Tecnicos {
 			} else {
 				echo "<b>NO pudimos recuperar información del Ing. de Soporte</b>" 
 					. " <i>en estos momentos.</i> Por favor intente m&aacute;s tarde.";
+			}
+		}
+	}
+	
+	/**
+	 * Llamada AJAX para llenar data en ventana Modal
+	 * Info de conexion remota
+	 */ 
+	public static function ajax_ver_datos_conexion_remota(){
+
+		if ( isset( $_POST['DataLink_incidenciaId'] ) ){
+
+			$json = Incidencias::getIncidenciaById( $_POST['DataLink_incidenciaId'] );
+
+			if ( $json != null && $json != "" ){
+
+				if ( $json[15] == NULL || $json[15] == "" ){
+					echo "<b>NO se registró</b> información de Acceso Remoto.";
+				} else {
+					echo $json[15];
+				}
+			} else {
+				echo "<b>NO se ingresó</b> información de Acceso Remoto.";
 			}
 		}
 	}
@@ -165,6 +193,33 @@ class Tecnicos {
 			 */
 			$respuestas = Incidencias::getRespuestasDeEmpresa( $empresaId, "laborEquipo" );
 			View::set("respuestas", $respuestas);
+
+			/*
+			 * JSON: para actualizar el JSON de los que no opinaron
+			 * OJO: Se debe obviar esto SI ES QUE incidenciaId es un REPORTE_VISITA
+			 */
+			if ( Incidencias::esReporteDeVisita( $incidenciaId ) == false ){
+
+				$objSinOpinar = Incidencias::getIncidenciasSinOpinar( $incidenciaId );
+				View::set("objSinOpinar", $objSinOpinar);
+				
+				if ( $objSinOpinar == NULL || $objSinOpinar->userId == NULL  || $objSinOpinar->userId == ""){
+					/*
+					 * Puede venir en NULL en caso de que haya una Incidencia NO asignada a un Equipo
+					 */
+					$transaccion = Transaccion::getUsuarioCreadorIncidencia( $incidenciaId );
+					$creador = "";
+					if ( $transaccion != NULL ){
+						if ( $transaccion->managerId != NULL ){			$creador = $transaccion->managerId;
+						} else if ( $transaccion->usuarioId != NULL ){	$creador = $transaccion->usuarioId;
+						} else {										$creador = "-1";
+						}
+					}
+					View::set("usuarioCreadorIncidencia", $creador);
+				}
+			} else {
+				View::set("es_REPORTE_VISITA", true);
+			}
 
 			/**
 			 * Opcion del menu a desplegar: resolver INCIDENCIA
@@ -428,17 +483,26 @@ class Tecnicos {
 
 					/**/
 					Transaccion::insertTransaccionIncidenciaHistorial("Incidencia_Cerrada", "Ok", $tech, $incidenciaId, 0, $incidencia_cerrada);
+					
+					$esReporteDeVisita = $_POST['es_reporte_de_visita'];
+					if ( $esReporteDeVisita == "false" || $esReporteDeVisita == false ){
+						/*
+						 * En este punto se añade esta INCIDENCIA como que falta por CERTIFICAR
+						 * por parte del Usuario afectado
+						 */
+						//legacy code SEPARATOR ** Incidencias::agregarAFaltaPorOpinar( $incidenciaId );
+
+						//JSON
+						$jsonString = $_POST['jsonIncidenciasSinOpinar'];
+						$incidenciaUserId = $_POST['incidenciaUserId'];
+
+						Incidencias::agregarAFaltaPorOpinarJSON( $incidenciaUserId, $jsonString );
+					}
 
 					/*
 					 * Notificar a los clientes: Usuarios + Partner
 					 */
 					EmailManagement::sendIncidenciaCerrada($incidenciaId, $tech, $variableEndogena, $variableExogenaTecnica, $variableExogenaHumana);
-					
-					/*
-					 * En este punto se añade esta INCIDENCIA como que falta por CERTIFICAR
-					 * por parte del Usuario afectado
-					 */
-					Incidencias::agregarAFaltaPorOpinar( $incidenciaId );
 				}
 
 			}
@@ -904,6 +968,24 @@ class Tecnicos {
 			$phone_work    = stripslashes( $_POST['phone_work'] );
 			$phone_work_ext= stripslashes( $_POST['phone_work_ext'] );
 
+			/* Cumpleaños */
+			$dia = $_POST['birth_day'];
+			if ( $dia == "none" ){
+				$dia = 1;
+			}
+
+			$mes = $_POST['birth_mes'];
+			if ( $mes == "none" ){
+				$mes = 1;
+			}
+
+			$year = $_POST['birth_year'];
+			if ( $year == "none" ){
+				$year = 1912;
+			}
+
+			$fechaCumple = Utils::crearFecha($year, $mes, $dia, 12, "AM");
+
 			/*
 			 * Primera Letra Mayúscula 
 			 * las demas en minúsculas
@@ -913,8 +995,9 @@ class Tecnicos {
 
 			/* Actualizar solo el USUARIO */
 			$count = UserAdmin::update($userId, $greetings, $givenname, $lastname, $gender,
-				$email, $dependencia, 
-				$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext);
+					$email, $dependencia, 
+					$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext,
+					$fechaCumple);
 
 			$tipoTransaccion = "Usuario_Actualizar";
 			if ( $count == 0 ){
@@ -1175,18 +1258,51 @@ class Tecnicos {
 			}
 			
 			/*
-			 * Info para crear un nuevo Equipo
+			 * Buscar Info para llenar los Combos
 			 */
-			$tipoEquipos = Equipos::getAllTipoEquipos();
-			View::set("tipoEquipos", $tipoEquipos);
+			Tecnicos::infoCombosInventarioEquipo();
 
-			$perifericos = Clients::getPerifericos();
-			View::set("perifericos", $perifericos);
 
 			/* FASE: parte del proceso */
 			View::set("procesoParte", "Usuario_Seleccionado");
 		}
 		View::render( "portal_tech_home" );
+	}
+	
+	/**
+	 * Para buscar la info para llenar los Combos en NUEVO INVENTARIO y en ACTUALIZAR
+	 */
+	public static function infoCombosInventarioEquipo(){
+
+		$tipoEquipos = Equipos::getAllTipoEquipos();
+		View::set("tipoEquipos", $tipoEquipos);
+
+		$perifericos = Clients::getPerifericos();
+		View::set("perifericos", $perifericos);
+
+		$sistemasOperativos = Clients::getSistemasOperativos();
+		View::set("sistemasOperativos", $sistemasOperativos);
+
+		$versionesSOWindows = Clients::getVersionesWindowsListado();
+		View::set("versionesSOWindows", $versionesSOWindows);
+
+		$versionesSOotros = Clients::getVersionesOtrosSOListado();
+		View::set("versionesSOotros", $versionesSOotros);
+
+		$nombresSO = Clients::getSistemasOperativosNombresListado();
+		View::set("nombresSO", $nombresSO);
+
+		$tipoLicencias = Clients::getLicenciasTipoListado();
+		View::set("tipoLicencias", $tipoLicencias);
+
+		$ofimatica = Clients::getOfimaticaSoftwareListado();
+		View::set("ofimatica", $ofimatica);
+
+		$ofimaticaSoftwareNombres = Clients::getOfimaticaSoftwareNombresListado();
+		View::set("ofimaticaSoftwareNombres", $ofimaticaSoftwareNombres);
+
+		$versionesOfimaticaSoftware = Clients::getVersionesOfimaticaSoftwareListado();
+		View::set("versionesOfimaticaSoftware", $versionesOfimaticaSoftware);
 	}
 
 	
@@ -1230,17 +1346,14 @@ class Tecnicos {
 			View::set("empresaCantidadEquipos", $_POST['seleccionarEmpresaCantEquipos']);
 
 			/*
-			 * Info para crear un nuevo Equipo
+			 * Buscar Info para llenar los Combos
 			 */
-			$tipoEquipos = Equipos::getAllTipoEquipos();
-			View::set("tipoEquipos", $tipoEquipos);
-
-			$perifericos = Clients::getPerifericos();
-			View::set("perifericos", $perifericos);
+			Tecnicos::infoCombosInventarioEquipo();
 
 			/* FASE: parte del proceso */
 			View::set("procesoParte", "Empresa_Seleccionada");
 		}
+
 		View::render( "portal_tech_home" );
 	}
 
@@ -1426,7 +1539,7 @@ public static function script(){
 				/*
 				 * 4.- Asociar INVENTARIO al EQUIPO del Usuario
 				 */
-				$count = Equipos::updateEquipoConInventario($newEquipoId, $equipoInfoId);
+				$count = Equipos::updateEquipoConInventario($newEquipoId, $equipoInfoId, NULL);
 
 				if ( $count == 1 ){
 					/*****************************************************************************************
@@ -1987,6 +2100,9 @@ public static function script(){
 			} else {
 				View::set("no_usuarios", "no_usuarios");
 			}
+
+			$estatuses = Clients::getEstatusEquipos();
+			View::set("status_de_equipos", $estatuses);
 
 			/* VISTA */
 			$opcionMenu = "equipos_de_empresa";
@@ -2775,12 +2891,19 @@ public static function script(){
 
 		if ( isset( $_POST['equipoInfoId'] ) ){
 
+			/**/
+			$equipoId = $_POST['equipoID'];
+			$generalInfo = Equipos::getById($equipoId);
+			View::set("generalInfo", $generalInfo);
+
+			/**/
 			$tipoEquipo = $_POST['tipoEquipo'];
 			View::set("tipoEquipo", $tipoEquipo);
 
-
+			/**/
 			$equipoInfoId = $_POST['equipoInfoId'];
 			
+			/**/
 			$arreglos = InventarioScripts::equipoInfoInventario( $equipoInfoId );
 
 			$error = $arreglos["errorMessage"];
@@ -3052,26 +3175,33 @@ public static function script(){
 			$equipo = Equipos::getById( $_POST['equipoId'] );
 			View::set("equipo", $equipo);
 
+			/*
+			 * Los perifericos que ya fueron creados
+			 */
 			$perifericos = Equipos::getPerifericos( $_POST['equipoId'] );
 
 			if ( $perifericos == NULL || $perifericos == "" ){
 				View::set("no_perifericos", "no_perifericos");
 			} else {
-				View::set("perifericos", $perifericos);
+				View::set("perifericos_creados", $perifericos);
 			}
-
-			$tipoEquipos = Equipos::getAllTipoEquipos();
-			View::set("tipoEquipos", $tipoEquipos);
-
-			$perifericosTodos = Clients::getPerifericos();
-			View::set("perifericosTodos", $perifericosTodos);
 
 			$empresa = $_POST['Empresa'];
 			View::set("empresaNombre", $empresa);
 
 			$usuario = trim( $_POST['Nombre'] );
 			View::set("usuarioNombre", $usuario);
+
+			/*
+			 * Buscar Info para llenar los formularios S.O. y Ofimática
+			 */
+			Tecnicos::buscarInfoRellenarFormsSOyOffice( $equipo["equipoSOInfoId"], $equipo["equipoOfimaticaInfoId"] );
 		}
+
+		/*
+		 * Buscar Info para llenar los Combos
+		 */
+		Tecnicos::infoCombosInventarioEquipo();
 
 		/* VISTA */
 		$opcionMenu = "actualizar_equipo";
@@ -3112,6 +3242,9 @@ public static function script(){
 			 */
 			if ( $_POST['cambios'] == "true" ){
 				
+				/*
+				 * Obtiene DATA del form y hace el UPDATE
+				 */
 				$data = Tecnicos::obtenerDataDelFormularioEquipo();
 
 				$count = Equipos::actualizarEquipo($equipoId, $data);
@@ -3163,14 +3296,8 @@ public static function script(){
 			if ( $perifericos == NULL || $perifericos == "" ){
 				View::set("no_perifericos", "no_perifericos");
 			} else {
-				View::set("perifericos", $perifericos);
+				View::set("perifericos_creados", $perifericos);
 			}
-
-			$tipoEquipos = Equipos::getAllTipoEquipos();
-			View::set("tipoEquipos", $tipoEquipos);
-
-			$perifericosTodos = Clients::getPerifericos();
-			View::set("perifericosTodos", $perifericosTodos);
 
 			$empresa = $_POST['empresaNombre'];
 			View::set("empresaNombre", $empresa);
@@ -3184,6 +3311,16 @@ public static function script(){
 			View::set("cambioRealizadoPerifericos", $cambioRealizadoPerifericos);
 			View::set("cambioRealizadoPerifericos_message", $message2);
 
+			/*
+			 * Buscar Info para llenar los Combos
+			 */
+			Tecnicos::infoCombosInventarioEquipo();
+			
+			/*
+			 * * Buscar Info para llenar los formularios S.O. y Ofimática
+			 */
+			Tecnicos::buscarInfoRellenarFormsSOyOffice( $equipo["equipoSOInfoId"], $equipo["equipoOfimaticaInfoId"] );
+			
 			/* VISTA */
 			$opcionMenu = "actualizar_equipo";
 			View::set("opcionMenu", $opcionMenu);
@@ -3213,20 +3350,54 @@ public static function script(){
 		$clave           = stripslashes($_POST['clave']);
 		$observaciones   = stripslashes($_POST['observaciones']);
 		$linkDeFoto      = stripslashes($_POST['link']);
+		$hdd             = $_POST['hdd'];
+
+		/* Solo de Admin */
 		$valor           = stripslashes($_POST['costo']);
 		$reposicion      = stripslashes($_POST['reposicion']);
 
+		/* Radio buttons Si/No/unknown */
 		$windows         = $_POST['windows'];
 		$office          = $_POST['office'];
-		$hdd             = $_POST['hdd'];
 
-		$SOtipo 		 = $_POST['sistemaOperativo'];
-		$SOversion 		 = stripslashes($_POST['versionSO']);
-		$SOnombre 		 = stripslashes($_POST['nombreSO']);
+		/* Formulario S.O. */
+		$sistemaOperativo = $_POST['sistemaOperativo'];
+		//otro
+		$nombreSOotro = stripslashes( $_POST['nombreSO'] ); 
+		$versionSO    = $_POST['versionSO'];
+		$nombreSO     = $_POST['nombreSistemaOperativo'];
+		$licenciaSO   = $_POST['tipoLicenciaSO'];
+		$serialSO     = stripslashes( $_POST['serialSO'] );
+
+		/* Formulario Ofimática */
+		$herrOfimatica = $_POST['herramientaOfimatica'];
+		//otra
+		$ofimaticaOtra 		= stripslashes( $_POST['nombreOfimatica'] );
+		$ofimaticaNombre 	= $_POST['nombreHerramientaOfimatica'];
+		$ofimaticaVersion 	= $_POST['versionHerramientaOfimatica'];
+		$licOfimatica 		= $_POST['tipoLicenciaOfimatica'];
+		$serialOfimatica 	= stripslashes( $_POST['serialOfimatica'] );
+
+		/* Para el semaforo */
+		$gama = $_POST['gama'];
 
 		/*
 		 * por motivos de conveniencia, se creará un objeto que albergue la data entera
 		 */
+		$soInfo[0] = $sistemaOperativo;
+		$soInfo[1] = $nombreSOotro;
+		$soInfo[2] = $versionSO;
+		$soInfo[3] = $nombreSO;
+		$soInfo[4] = $licenciaSO;
+		$soInfo[5] = $serialSO;
+
+		$officeInfo[0] = $herrOfimatica;
+		$officeInfo[1] = $ofimaticaOtra;
+		$officeInfo[2] = $ofimaticaNombre;
+		$officeInfo[3] = $ofimaticaVersion;
+		$officeInfo[4] = $licOfimatica;
+		$officeInfo[5] = $serialOfimatica;
+
 		$data[ 0] = $nombre;
 		$data[ 1] = $dependencia;
 		$data[ 2] = $marca;
@@ -3244,9 +3415,9 @@ public static function script(){
 		$data[14] = $windows;
 		$data[15] = $office;
 		$data[16] = $hdd;
-		$data[17] = $SOtipo;
-		$data[18] = $SOversion;
-		$data[19] = $SOnombre;
+		$data[17] = $soInfo;
+		$data[18] = $officeInfo;
+		$data[19] = $gama;
 
 		return $data;
 	}
@@ -3271,6 +3442,29 @@ public static function script(){
 		$perifericos[4] = $descripciones;
 
 		return $perifericos;
+	}
+
+	/**
+	 * Buscando info de la tabla EquipoSOInfo y EquipoOfimaticaInfo, si es que hay
+	 */
+	public static function buscarInfoRellenarFormsSOyOffice($equipoSOInfoId, $equipoOfimaticaInfoId){
+		/*
+		 * Buscando info de la tabla EquipoSOInfo, si es que hay
+		 */
+		if ( $equipoSOInfoId == NULL || $equipoSOInfoId == "" ){
+			View::set("sin_SO_info", "sin_SO_info");
+		} else {
+			View::set("SO_info", Equipos::getEquipoSOInfo( $equipoSOInfoId ) );
+		}
+
+		/*
+		 * Buscando info de la tabla EquipoOfimaticaInfo, si es que hay
+		 */
+		if ( $equipoOfimaticaInfoId == NULL || $equipoOfimaticaInfoId == "" ){
+			View::set("sin_Office_info", "sin_Office_info");
+		} else {
+			View::set("Office_info", Equipos::getEquipoOfimaticaInfo( $equipoOfimaticaInfoId ) );
+		}
 	}
 
 	/**
@@ -3549,10 +3743,9 @@ public static function script(){
 				/* Meter en ISMART */
 				$smart = Equipos::manualSMART( $equipoInfoId, $cantidadHDDs, $hdd_marca, $hdd_horasuso, 0 );
 
-
+				
 				/* XXX FUTURE PENDING estos datos no los trae los .CSV * /
 				$hdd_velocidad *;
-				$versionOffice * ;<--- este puede que si en el software
 				$socket; ---motherboard (opcional)
 				*/
 
@@ -3583,7 +3776,7 @@ public static function script(){
 				/*
 				 * Actualizar Equipo
 				 */
-				$count = Equipos::updateEquipoConInventario($equipoId, $equipoInfoId);
+				$count = Equipos::updateEquipoConInventario($equipoId, $equipoInfoId, $versionOffice);
 
 				if ( $count == 1 ){
 					$resumen .= "<br/>Info asociada correctamente a Equipo nuevo.";
@@ -3793,10 +3986,12 @@ public static function script(){
 
 				$mayorLegacyNumber = Utils::tomarElMayor( $mayorLegacyNumber, $LN_IOS );
 
+				
+				Equipos::updateEquipoConNumeroVersionOffice( $equipoId, $versionOffice );
+
 
 				/* XXX FUTURE PENDING estos datos no los trae los .CSV * /
 				$hdd_velocidad;
-				$versionOffice;<--- este puede que si en el software
 				$socket;         
 				*/
 
@@ -3994,5 +4189,24 @@ public static function script(){
 		$out[11]= $actualOsId;
 
 		return $out;
+	}
+
+	
+	/**
+	 * Llamada AJAX para salvar el STATUS de un Equipo
+	 * Modulo PQRS .:. Cualquier usuario
+	 */ 
+	public static function ajax_cambiar_status_equipo(){
+
+		if ( isset( $_POST['equipoId'] ) ){
+
+			$result = Equipos::updateStatusEquipo($_POST['equipoId'], $_POST['status']);
+
+			if ( $result == true ){
+				echo "El Status ha sido cambiado satisfactoriamente";
+			} else {
+				echo "El Status NO se pudo actualizar. Favor intente más tarde";
+			}
+		}
 	}
 }

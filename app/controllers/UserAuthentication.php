@@ -10,9 +10,18 @@ use \core\View,
 	\app\models\admin\user as UserAdmin,
 	\app\models\EmailManagement,
 	\app\models\admin\Company as Company,
-	\app\models\admin\Transaccion;
+	\app\models\admin\Transaccion,
+	\app\models\Utils;
 
 class UserAuthentication {
+
+	/**
+	 * @var
+	 * Variable que indica si el sitio está o no en Construcción (fuera de servicio)
+	 * EN PRODUCCIÓN deberá estar en false
+	 */
+	const EN_CONSTRUCCION = false;
+
 
 	public function __construct() {
 		
@@ -45,6 +54,11 @@ class UserAuthentication {
 	 */
 	public function login() {
 
+		if ( self::EN_CONSTRUCCION == true ){
+			View::render("construccion");
+			return;
+		}
+
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
@@ -65,7 +79,7 @@ class UserAuthentication {
 		$user_agent = $_SERVER['HTTP_USER_AGENT'];
 
 		if( isset($user->usuario) ) { /* && is_object($user->usuario)) */
-				
+			
 			/**
 			 * To access an array member you use $array['KEY'];
 			 * To access an object member you use $obj->KEY;
@@ -184,7 +198,7 @@ class UserAuthentication {
 			
 			View::set("pageTitle", "Usuario o Contraseña inválidas, favor intente nuevamente | Lanuza Group SAS ");
 
-			View::render("login_form");
+			View::render("index3");
 		}
 	}
 	
@@ -195,7 +209,7 @@ class UserAuthentication {
 		/**
 		 * Llamando a la Vista
 		 */
-		View::render("login_form");
+		View::render("index3");
 		
 	}
 
@@ -226,7 +240,7 @@ class UserAuthentication {
 			View::set("index_message_title", $index_message_title);
 			View::set("index_message", $index_message);
 
-		View::render("index");
+			View::render("index3");
 
 		} else {
 			echo "pagina de error, porq dio $ insertado:".$insertado;
@@ -247,7 +261,7 @@ class UserAuthentication {
 				<br/><br/><br/>
 				Para ingresar al Portal, debe loguarse con su Usuario o Email y Contrase&ntilde;a reci&eacute;n creada en la direcci&oacute;n:
 				<br/><br/><br/>";
-		echo '<a href="http://lanuzagroup.com">lanuzagroup.com</a>';
+		echo '<a href="https://lanuzagroup.com">lanuzagroup.com</a>';
 		
 	}
 
@@ -338,6 +352,24 @@ class UserAuthentication {
 
 		$dependencia = ucfirst($dependencia);
 
+		/* Cumpleaños */
+		$dia = $_POST['birth_day'];
+		if ( $dia == "none" ){
+			$dia = 1;
+		}
+
+		$mes = $_POST['birth_mes'];
+		if ( $mes == "none" ){
+			$mes = 1;
+		}
+
+		$year = $_POST['birth_year'];
+		if ( $year == "none" ){
+			$year = 1912;
+		}
+
+		$fechaCumple = Utils::crearFecha($year, $mes, $dia, 12, "AM");
+
 		/*
 		 * Registrando o no Empresa nueva
 		 * devolviendo su ID
@@ -379,7 +411,8 @@ class UserAuthentication {
 				$phone_home,
 				$phone_work,
 				$phone_work_ext,
-				$userType
+				$userType,
+				$fechaCumple
 		);
 		
 		/* echo "createUser(), Se supone q inserto {". $cantidad ."}"; return $cantidad; */
@@ -452,7 +485,7 @@ class UserAuthentication {
 		/**
 		 * Llamando a la Vista
 		 */
-		View::render("index");
+		View::render("index3");
 	}
 
 	
@@ -462,7 +495,8 @@ class UserAuthentication {
 	public function forget(){
 
 		/* viene Email o nombre de usuario */
-		$forgetPassword = $_POST['forgotPassword'];
+		$forgetPassword = $_POST['datamail'];
+
 		$forgetPassword = stripslashes($forgetPassword);
 
 		$user = UserAdmin::getUserByEmailOrUsername($forgetPassword);
@@ -496,7 +530,7 @@ class UserAuthentication {
 				View::set("index_message_title", $index_message_title);
 				View::set("index_message", $index_message);
 
-				View::render("index");
+				View::render("index3");
 
 			} else {
 				/* correo NO enviado */
@@ -523,20 +557,24 @@ class UserAuthentication {
 				/**/
 				Transaccion::insertTransaccionForgetPassword("Not_Ok", $user->id, $user->role, $user->email, $user->empresaId, $index_message_title);
 
-				View::render("index");
+				View::render("index3");
 			}
 
 		} else {
 			/* Usuario NO encontrado */
-			$error_message = "Email o Usuario inválido.<br/>Por favor, intente nuevamente.";
-			View::set("error_message_email", $error_message);
-			
 			View::set("pageTitle", "Email o Usuario inválido, favor intente nuevamente | Lanuza Group SAS ");
+			
+			$error_message          = "Email o Usuario inválido.<br/>Por favor, intente nuevamente.";
+			$index_message_title = "Email o Usuario inválido";
+			
+			/* SETEANDO las variables para que se vean en la vista MODAL del index  */
+			View::set("index_message_title", $index_message_title);
+			View::set("index_message", $error_message);
 
 			/**/
 			Transaccion::insertTransaccionForgetPassword("Not_Ok", "", "", $forgetPassword, 0, "");
 
-			View::render("login_form");
+			View::render("index3");
 		}
 	}
 

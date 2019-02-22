@@ -147,13 +147,26 @@ class Admin {
 	/**
 	 * seleccionada un Empresa
 	 */ 
-	public static function reporte_dashboard(){
+	public static function reporte_dashboard($anyo){
 
 		session_start();
 
 		View::set("user", $_SESSION['logged_user'] );
 
 		if ( isset( $_POST['seleccionarEmpresaID'] ) ){
+
+			/*
+			 * Redireccionar la misma data de la busqueda, por si se hace nueva consulta a través
+			 * del combo select Year
+			 */
+			View::set("seleccionarEmpresaID", $_POST['seleccionarEmpresaID'] );
+			View::set("seleccionarEmpresaNombre", $_POST['seleccionarEmpresaNombre'] );
+			View::set("seleccionarEmpresaRazonsocial", $_POST['seleccionarEmpresaRazonsocial'] );
+			View::set("seleccionarEmpresaNIT", $_POST['seleccionarEmpresaNIT'] );
+			View::set("seleccionarEmpresaDireccion", $_POST['seleccionarEmpresaDireccion'] );
+			View::set("seleccionarEmpresaCantEquipos", $_POST['seleccionarEmpresaCantEquipos'] );
+
+			View::set("reporteYear", $anyo);
 
 			$empresaId = $_POST['seleccionarEmpresaID'];
 
@@ -184,10 +197,10 @@ class Admin {
 			View::set("usuariosEquipos", $usuariosEquipos);
 
 
-			$reemplazosHardware = Reportes::reemplazosHardwareDashboard($empresaId);
+			$reemplazosHardware = Reportes::reemplazosHardwareDashboard($empresaId, $anyo);
 			View::set("reemplazosHardware", $reemplazosHardware);
 
-			$reemplazosSoftware = Reportes::reemplazosSoftwareDashboard($empresaId);
+			$reemplazosSoftware = Reportes::reemplazosSoftwareDashboard($empresaId, $anyo);
 			View::set("reemplazosSoftware", $reemplazosSoftware);
 
 
@@ -197,27 +210,27 @@ class Admin {
 			/*
 			 * III PARTE: Incidencias
 			 */
-			$estadisticasIncidencias = Reportes::estadisticasIncidenciasDashboard($empresaId);
+			$estadisticasIncidencias = Reportes::estadisticasIncidenciasDashboard($empresaId, $anyo);
 			View::set("estadisticasIncidencias", $estadisticasIncidencias);
 
 
-			$tiposIncidencias = Reportes::clasificacionIncidenciasDashboard($empresaId);
+			$tiposIncidencias = Reportes::clasificacionIncidenciasDashboard($empresaId, $anyo);
 			View::set("clasificacionIncidenciasDashboard", $tiposIncidencias);
 
 
-			$tiposProblemas = Reportes::clasificacionCausasIncidenciasDashboard($empresaId);
+			$tiposProblemas = Reportes::clasificacionCausasIncidenciasDashboard($empresaId, $anyo);
 			View::set("causalesIncidenciasDashboard", $tiposProblemas);
 
 
-			$duracionPromedio = Reportes::duracionPromedioIncidenciasDashboard($empresaId);
+			$duracionPromedio = Reportes::duracionPromedioIncidenciasDashboard($empresaId, $anyo);
 			View::set("duracionPromedio", $duracionPromedio);
 
 
-			$usuariosDeIncidencias = Reportes::usuariosDeIncidenciasDashboard($empresaId);
+			$usuariosDeIncidencias = Reportes::usuariosDeIncidenciasDashboard($empresaId, $anyo);
 			View::set("usuariosDeIncidenciasDeEsteAnyo", $usuariosDeIncidencias);
 
 
-			$tecnicos = Reportes::tecnicosEnEmpresaDashboard($empresaId);
+			$tecnicos = Reportes::tecnicosEnEmpresaDashboard($empresaId, $anyo);
 			View::set("tecnicosQueHanVisitadoLaEmpresa", $tecnicos);
 
 			/*
@@ -226,10 +239,10 @@ class Admin {
 			$citasFuturas = Reportes::agendaFuturaEnEmpresaDashboard($empresaId);
 			View::set("citasFuturas", $citasFuturas);
 
-			$citasPasadas = Reportes::agendaPasadasEnEmpresaDashboard($empresaId);
+			$citasPasadas = Reportes::agendaPasadasEnEmpresaDashboard($empresaId, $anyo);
 			View::set("citasPasadas", $citasPasadas);
 
-			$reportesVisita = Reportes::reportesDeVisita($empresaId);
+			$reportesVisita = Reportes::reportesDeVisita($empresaId, $anyo);
 			View::set("reportesVisita", $reportesVisita);
 
 			/*
@@ -241,6 +254,7 @@ class Admin {
 
 			/* VISTA */
 			$opcionMenu = "dashboard";
+			
 		} else {
 			View::set("pageTitle", "Dashboard de Empresa - NOT FOUND");
 		}
@@ -431,7 +445,7 @@ class Admin {
 	/**
 	 * 
 	 */ 
-	public static function reporte_incidencias(){
+	public static function reporte_incidencias($anyo){
 
 		session_start();
 
@@ -449,27 +463,27 @@ class Admin {
 			View::set("pageTitle", "Reporte: Incidencias" );
 
 
-			$estadisticasIncidencias = Reportes::estadisticasIncidenciasDashboard($empresaId);
+			$estadisticasIncidencias = Reportes::estadisticasIncidenciasDashboard($empresaId, $anyo);
 			View::set("estadisticasIncidencias", $estadisticasIncidencias);
 
 
-			$tiposIncidencias = Reportes::clasificacionIncidenciasDashboard($empresaId);
+			$tiposIncidencias = Reportes::clasificacionIncidenciasDashboard($empresaId, $anyo);
 			View::set("clasificacionIncidenciasDashboard", $tiposIncidencias);
 
 
-			$tiposProblemas = Reportes::clasificacionCausasIncidenciasDashboard($empresaId);
+			$tiposProblemas = Reportes::clasificacionCausasIncidenciasDashboard($empresaId, $anyo);
 			View::set("causalesIncidenciasDashboard", $tiposProblemas);
 
 
-			$duracionPromedio = Reportes::duracionPromedioIncidenciasDashboard($empresaId);
+			$duracionPromedio = Reportes::duracionPromedioIncidenciasDashboard($empresaId, $anyo);
 			View::set("duracionPromedio", $duracionPromedio);
 
 
-			$usuariosDeIncidencias = Reportes::usuariosDeIncidenciasDashboard($empresaId);
+			$usuariosDeIncidencias = Reportes::usuariosDeIncidenciasDashboard($empresaId, $anyo);
 			View::set("usuariosDeIncidenciasDeEsteAnyo", $usuariosDeIncidencias);
 
 
-			$tecnicos = Reportes::tecnicosEnEmpresaDashboard($empresaId);
+			$tecnicos = Reportes::tecnicosEnEmpresaDashboard($empresaId, $anyo);
 			View::set("tecnicosQueHanVisitadoLaEmpresa", $tecnicos);
 
 			/* VISTA */
@@ -482,7 +496,7 @@ class Admin {
 	}
 
 	/**/
-	public static function reporte_equipos(){
+	public static function reporte_equipos($anyo){
 
 		session_start();
 
@@ -519,10 +533,10 @@ class Admin {
 			View::set("usuariosEquipos", $usuariosEquipos);
 
 
-			$reemplazosHardware = Reportes::reemplazosHardwareDashboard($empresaId);
+			$reemplazosHardware = Reportes::reemplazosHardwareDashboard($empresaId, $anyo);
 			View::set("reemplazosHardware", $reemplazosHardware);
 
-			$reemplazosSoftware = Reportes::reemplazosSoftwareDashboard($empresaId);
+			$reemplazosSoftware = Reportes::reemplazosSoftwareDashboard($empresaId, $anyo);
 			View::set("reemplazosSoftware", $reemplazosSoftware);
 
 
@@ -845,6 +859,24 @@ class Admin {
 			$phone_work    = stripslashes( $_POST['phone_work'] );
 			$phone_work_ext= stripslashes( $_POST['phone_work_ext'] );
 
+			/* Cumpleaños */
+			$dia = $_POST['birth_day'];
+			if ( $dia == "none" ){
+				$dia = 1;
+			}
+
+			$mes = $_POST['birth_mes'];
+			if ( $mes == "none" ){
+				$mes = 1;
+			}
+
+			$year = $_POST['birth_year'];
+			if ( $year == "none" ){
+				$year = 1912;
+			}
+
+			$fechaCumple = Utils::crearFecha($year, $mes, $dia, 12, "AM");
+			
 			/*
 			 * Primera Letra Mayúscula 
 			 * las demas en minúsculas
@@ -854,8 +886,9 @@ class Admin {
 
 			/* Actualizar solo el USUARIO */
 			$count = UserAdmin::update($userId, $greetings, $givenname, $lastname, $gender,
-				$email, $dependencia, 
-				$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext);
+					$email, $dependencia, 
+					$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext,
+					$fechaCumple);
 
 			$tipoTransaccion = "Usuario_Actualizar";
 			if ( $count == 0 ){
@@ -1032,16 +1065,23 @@ class Admin {
 
 		if ( isset( $_POST['equipoInfoId'] ) ){
 
+			/**/
+			$equipoId = $_POST['equipoID'];
+			$generalInfo = Equipos::getById($equipoId);
+			View::set("generalInfo", $generalInfo);
+
+			/**/
 			$tipoEquipo = $_POST['tipoEquipo'];
 			View::set("tipoEquipo", $tipoEquipo);
 
+			/**/
 			$equipoInfoId = $_POST['equipoInfoId'];
 
-
+			/**/
 			$equipo = Equipos::getByEquipoInfoId( $equipoInfoId );
 			View::set("codigoBarras", $equipo->codigoBarras );
 			
-			
+			/**/
 			$arreglos = InventarioScripts::equipoInfoInventario( $equipoInfoId );
 
 			$error = $arreglos["errorMessage"];
@@ -1714,6 +1754,9 @@ class Admin {
 			} else {
 				View::set("no_usuarios", "no_usuarios");
 			}
+
+			$estatuses = Clients::getEstatusEquipos();
+			View::set("status_de_equipos", $estatuses);
 
 			/* VISTA */
 			$opcionMenu = "equipos_de_empresa";
@@ -2488,25 +2531,28 @@ public static function script(){
 			$equipo = Equipos::getById( $_POST['equipoId'] );
 			View::set("equipo", $equipo);
 
+			/*
+			 * Los perifericos que ya fueron creados
+			 */
 			$perifericos = Equipos::getPerifericos( $_POST['equipoId'] );
 
 			if ( $perifericos == NULL || $perifericos == "" ){
 				View::set("no_perifericos", "no_perifericos");
 			} else {
-				View::set("perifericos", $perifericos);
+				View::set("perifericos_creados", $perifericos);
 			}
-
-			$tipoEquipos = Equipos::getAllTipoEquipos();
-			View::set("tipoEquipos", $tipoEquipos);
-
-			$perifericosTodos = Clients::getPerifericos();
-			View::set("perifericosTodos", $perifericosTodos);
 
 			$empresa = $_POST['Empresa'];
 			View::set("empresaNombre", $empresa);
 
 			$usuario = trim( $_POST['Nombre'] );
 			View::set("usuarioNombre", $usuario);
+
+			/*
+			 * Buscar Info para llenar los formularios S.O. y Ofimática
+			 */
+			Tecnicos::buscarInfoRellenarFormsSOyOffice( $equipo["equipoSOInfoId"], $equipo["equipoOfimaticaInfoId"] );
+		
 		}
 
 		/* VISTA */
@@ -3206,6 +3252,44 @@ public static function script(){
 		View::set("opcionMenu", $opcionMenu);
 
 		View::render( "portal_tech_home" );
+	}
+
+	/**
+	 * Buscar el Historial de las cosas hechas a Equipos
+	 */
+	public static function licencias(){
+		session_start();
+
+		$user = $_SESSION['logged_user'];
+
+		View::set("user", $user);
+
+		if ( isset( $_POST['seleccionarEmpresaID'] ) ){
+
+			//
+			$empresaId = $_POST['seleccionarEmpresaID'];
+
+			$company = Empresas::getEmpresa($empresaId);
+			View::set("empresa", $company);
+
+			View::set("pageTitle", "Inventario por Licencias de " . $company->nombre );
+
+			/*
+			 * obtener Licencias para los SO's y Ofimática
+			 */
+			$SO = Reportes::licenciasSistemaOperativoPorEmpresa($empresaId);
+			View::set("licencias_sistemas_operativos", $SO);
+
+			$office = Reportes::licenciasOfimaticasPorEmpresa($empresaId);
+			View::set("licencias_sistemas_ofimatica", $office);
+
+			/* VISTA */
+			$opcionMenu = "licencias_inventario_equipos";
+		}
+
+		View::set("opcionMenu", $opcionMenu);
+		
+		View::render( "portal_admin_home" );
 	}
 
 	/*

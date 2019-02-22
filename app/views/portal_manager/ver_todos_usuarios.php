@@ -23,7 +23,18 @@
 
 	} else { 
 		/* En caso de que haya incidencias, mostrar la tabla */
+
+		echo "<script>";
+		echo " var modalAjaxURL = '" . PROJECTURLMENU . "gerentes/dar_de_baja';" ;
+		echo "</script>";
 ?>
+<form class="form-horizontal" data-toggle="validator" role="form" id="dar_de_baja_form"
+ 	method="post" enctype="multipart/form-data">
+
+ 	<input type="hidden" id="bajarUsuarioId" 		name="bajarUsuarioId" value="" />
+ 	<input type="hidden" id="bajarUsuarioNombre" 	name="bajarUsuarioNombre" value="" />
+ 	<input type="hidden" id="bajarUsuarioApellido"  name="bajarUsuarioApellido" value="" />
+</form>
 
 <div class="container">
 	<div id="no-more-tables">
@@ -107,7 +118,7 @@
 						<span class="glyphicon glyphicon-info-sign"></span></button>
 						-->
 						<button type="button" class="btn btn-warning" 
-						 onclick="javascript:darDeBaja(<?php echo $usuario["id"] ?>);"
+						 onclick="javascript:darDeBaja(<?php echo $usuario["id"] ?>, '<?= $usuario["nombre"] ?>', '<?= $usuario["apellido"] ?>');"
 						 data-toggle="tooltip" data-placement="bottom" title="Solicitar dar de Baja a este Usuario"
 						 >
 						<span class="glyphicon glyphicon-remove-circle"></span></button>
@@ -232,7 +243,108 @@
 </fieldset>
 
 <script>
-	function darDeBaja(usuarioId){
-		alert("EN CONSTRUCCION \n\nEsta opción enviará un Email al Administrador del Sistema para Solicitar formalmente que este Usuario sea eliminado del Sistema (ya sea porque dicha persona no trabaja más en su Empresa u otra razón similar).");
+	function darDeBaja(usuarioId, nombre, apellido){
+		var m = "Esta opción enviará un Email al Administrador del Sistema LanuzaSoft para Solicitar formalmente que este Usuario sea eliminado del Sistema"
+				+ " (ya sea porque dicha persona no trabaja más en su Empresa u otra razón similar)."
+				+ "\n\n¿Desea continuar?";
+		var ask = confirm(m);
+		if ( ask == true) {
+
+			var m2 = "Por favor indique la razón por la que solicita dar de baja al usuario\n\n"
+					+ nombre + " " + apellido + "..."
+					+ "\n\nAlgunos ejemplos son: 'Persona renunció a la Empresa', 'Esta persona ya no labora más con nosotros', "
+					+ "'Esta persona fue asignada a otras funciones', 'Persona se fue de esta sede de la Empresa', entre otras. "
+					+ "\n\nPor favor ingrese una razón... (o presione CANCELAR si ya no de desea enviar el correo al Administrador de LanuzaSoft)";
+			
+			var razon = prompt(m2, "Ingrese motivo...");
+			
+			if (razon == null || razon == "" || razon == "Ingrese motivo..." || razon.length < 10) {
+				alert("Por favor, ingrese una razón válida (puede fijarse en los ejemplos que le salen al pulsar el botón 'Dar de Baja')");
+			} else {
+				
+				$("#bajarUsuarioId").val( usuarioId );
+				$("#bajarUsuarioNombre").val( nombre );
+				$("#bajarUsuarioApellido").val( apellido );
+			 	
+				/* Get the snackbar DIV */
+				var x = document.getElementById("snackbar");
+
+				x.innerHTML = "Correo ya enviado al Admin de LanuzaSoft <br/>(Dar de Baja a " + nombre + " " + apellido + ")";
+
+				/* Add the "show" class to DIV */
+				x.className = "show";
+
+				/* After 5 seconds, remove the show class from DIV */
+				setTimeout(function(){ x.className = x.className.replace("show", ""); }, (5 * 1000) );
+
+				$.ajax({
+					type: "POST",
+					url: modalAjaxURL,
+					data: $("#dar_de_baja_form").serialize(),
+					success: function(message){
+						/* alert("OK__"+message); */
+					},
+					error: function(){
+						alert("Error de Base de Datos\nPor favor, intente más tarde");
+					}
+				});
+			}
+		}
 	}
 </script>
+
+<!-- ================== snackbar para avisar que el mensaje fue enviado ===================================== -->
+<style>
+	/* The snackbar - position it at the bottom and in the middle of the screen */
+	#snackbar {
+		visibility: hidden; 	/* Hidden by default. Visible on click */
+		min-width: 250px; 		/* Set a default minimum width */
+		margin-left: -125px; 	/* Divide value of min-width by 2 */
+		background-color: #333; /* Black background color */
+		color: #fff; 			/* White text color */
+		text-align: center; 	/* Centered text */
+		border-radius: 2px; 	/* Rounded borders */
+		padding: 16px; 			/* Padding */
+		position: fixed; 		/* Sit on top of the screen */
+		z-index: 1; 			/* Add a z-index if needed */
+		left: 50%; 				/* Center the snackbar */
+		bottom: 30px; 			/* 30px from the bottom */
+	}
+
+	/* Show the snackbar when clicking on a button (class added with JavaScript) */
+	#snackbar.show {
+		visibility: visible; /* Show the snackbar */
+
+		/* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+		 * However, delay the fade out process for 4.5 seconds
+		 */
+		-webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+		animation: fadein 0.5s, fadeout 0.5s 4.5s;
+	}
+
+	/* Animations to fade the snackbar in and out */
+	@-webkit-keyframes fadein {
+		from {bottom: 0; opacity: 0;} 
+		to {bottom: 30px; opacity: 1;}
+	}
+
+	@keyframes fadein {
+		from {bottom: 0; opacity: 0;}
+		to {bottom: 30px; opacity: 1;}
+	}
+
+	@-webkit-keyframes fadeout {
+		from {bottom: 30px; opacity: 1;} 
+		to {bottom: 0; opacity: 0;}
+	}
+
+	@keyframes fadeout {
+		from {bottom: 30px; opacity: 1;}
+		to {bottom: 0; opacity: 0;}
+	}
+</style>
+
+<!-- The actual snackbar -->
+<div id="snackbar">
+	El correo fue anviado al Administrador del Portal LanuzaSoft.
+</div>

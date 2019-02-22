@@ -18,7 +18,7 @@
 <!-- ============================================================================================== -->
 <h4 style="text-align:center; color:#E30513;">
 	<span class="glyphicon glyphicon-indent-left logo slideanim"></span>
-	<i>Reportes de Vista</i>
+	<i>Reportes de Visita</i>
 </h4>
 
 <?php 
@@ -78,7 +78,7 @@
 								<button type="button"
 								 <?php 
 									if ($informe["resolucionId"]==null || $informe["resolucionId"]==""){
-										echo 'class="btn btn-primary disabled"';
+										echo 'class="btn btn-primary disabled" disabled="disabled" ';
 									}else{
 										echo 'class="btn btn-primary"';
 									}
@@ -91,7 +91,7 @@
 								<button type="button"
 								 <?php 
 									if ($informe["tecnicoId"]==null || $informe["tecnicoId"]==""){
-										echo 'class="btn btn-info disabled"';
+										echo 'class="btn btn-info disabled" disabled="disabled" ';
 									}else{
 										echo 'class="btn btn-info"';
 									}

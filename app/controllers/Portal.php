@@ -86,12 +86,15 @@ class Portal {
 
 		} else if ( $_SESSION['role_user'] == "admin" ){
 			/*
-			 * Admnistradores
+			 * Admnistrador
 			 */
-			$opcionMenu = "dashboard";
+			$opcionMenu = "home";
 			View::set("opcionMenu", $opcionMenu);
 
+			View::set("pageTitle", "Admin - LanuzaSoft");
+				
 			View::render( "portal_admin_home" );
+
 		} else {
 			View::render( "404" );
 		}
@@ -168,9 +171,17 @@ class Portal {
 			$user = $_SESSION['logged_user'];
 			$userId		= $user->id;
 			$empresaId  = $user->empresaId;
-
+			
+			
+			/* 
+			 * Datos de Conexion Remota en Partner 
+			 * campos: remote, userID y password
+			 */
+			$json = $_POST['jsonDatosConexion'];
+			
+			
 			/* insertar Falla */
-			$incidenciaID = Incidencias::insert($userId, $equipoIdIncidencia, $tipoFalla, $observaciones, $empresaId);
+			$incidenciaID = Incidencias::insert($userId, $equipoIdIncidencia, $tipoFalla, $observaciones, $empresaId, $json);
 
 			if ( $incidenciaID > 1 ){
 				$incidencia_generada_correctamente = "inciencia generada correctamente";
@@ -635,13 +646,18 @@ class Portal {
 			 */
 			$flags = UserAdmin::getUsuarioEstatus( $usuarioId );
 
-			$faltanPorCerrar = $flags->incidenciasSinOpinar;
-			if ( $faltanPorCerrar == NULL || $faltanPorCerrar == "" ){
+			if ( $flags == NULL ){
 				View::set("Incidencias_que_faltan_por_opinar", "");
+
 			} else {
-				View::set("Incidencias_que_faltan_por_opinar", $faltanPorCerrar);	
+				$faltanPorCerrar = $flags->incidenciasSinOpinar;
+				
+				if ( $faltanPorCerrar == NULL || $faltanPorCerrar == "" ){
+					View::set("Incidencias_que_faltan_por_opinar", "");
+				} else {
+					View::set("Incidencias_que_faltan_por_opinar", $faltanPorCerrar);	
+				}
 			}
-			
 		} catch (Exception $e) {
 			$internalErrorCodigo  = "Exception in controllers.Portal.form_new_incidencia_gerente()";
 			$internalErrorMessage = $e -> getMessage();
@@ -692,8 +708,16 @@ class Portal {
 					$equipoId = "";
 				}
 				
+				
+				/* 
+				 * Datos de Conexion Remota en Partner 
+				 * campos: remote, userID y password
+				 */
+				$json = $_POST['jsonDatosConexion'];
+				
+				
 				/* insertar Falla */
-				$incidenciaId = Incidencias::insert($usuarioAfectadoId, $equipoId, $tipoFalla, $observaciones, $empresaId);
+				$incidenciaId = Incidencias::insert($usuarioAfectadoId, $equipoId, $tipoFalla, $observaciones, $empresaId, $json);
 
 				if ( $incidenciaId > 1 ){
 					View::set("incidencia_generada_correctamente","inciencia generada correctamente");
@@ -824,6 +848,10 @@ class Portal {
 				/**/
 				Transaccion::insertTransaccionIncidenciaHistorial("Incidencia_Usuario_Certificar", "Ok", $user, $incidenciaID, 0, "solucionId:".$solucionID);
 
+				/* JSON */
+				$objConJson = Incidencias::buscarIncidenciasSinOpinar( $incidenciaID );
+				View::set("objJsonIncidenciasSinOpinar", $objConJson);
+
 			} else {
 				$comentario="Hubo un error al Certificar la Incidencia #" . $incidenciaID . ". Por Favor, intente más tarde.";
 				View::set("certificar_opinar_incidenciaID", 0);
@@ -883,22 +911,39 @@ class Portal {
 			if ( $listo == true ){
 				Transaccion::insertTransaccionIncidenciaHistorial("Incidencia_Usuario_Opinar", "Ok", $user, $incidenciaId, 0, "solucionId:".$solucionId);
 
+				$userEstatusId = $_POST['json_userId'];
+				$json = $_POST['json_incidencias'];
+
 				/*
 				 * Una vez que se opine sobre la INCIDENCIA, se debe eliminar de las Pendientes por Opinar
 				 */
 				if ( $_SESSION['role_user'] == "client" ) {
 
-					Incidencias::incidenciaOpinada($user->id, $incidenciaId);
+					/* usando SEPARATOR
+					 * Incidencias::incidenciaOpinada($user->id, $incidenciaId);
+					 */
+
+					/* Ahora con JSON, solo hay que actualizar el string JSON en la BD */
+					Incidencias::incidenciaOpinada2($userEstatusId, $json);
+
 
 				} else if($_SESSION['role_user'] == "manager"){
 					/*
-					 * Como es el Partner, se debe buscar la COMAÑÌA_ID
+					 * Como es el Partner, se debe buscar la COMPAÑÌA_ID
 					 * con ese valor se debe buscar entre TODOS los EMPLEADOS registrados de esa compañía
 					 * alguno que tenga ESA incidenciaId por Certificar y CERRARLA
 					 *
 					 * (esto es porque el Partner puede crear Incidencia a cualquiera en su Empresa) 
 					 */
-					Incidencias::incidenciaOpinadaPartner($_SESSION['logged_user_empresaId'], $incidenciaId);
+					
+					/* usando SEPARATOR
+					 * Incidencias::incidenciaOpinadaPartner($_SESSION['logged_user_empresaId'], $incidenciaId);
+					 */
+
+					/* Ahora con JSON
+					 * solo hay que actualizar el string JSON en la BD porque trae su UsuarioEstatus.Id de la vista
+					 */
+					Incidencias::incidenciaOpinada2($userEstatusId, $json);
 				}
 
 			} else {
@@ -1423,17 +1468,36 @@ class Portal {
 			$phone_work    = stripslashes( $_POST['phone_work'] );
 			$phone_work_ext= stripslashes( $_POST['phone_work_ext'] );
 
+			/* Cumpleaños */
+			$dia = $_POST['birth_day'];
+			if ( $dia == "none" ){
+				$dia = 1;
+			}
+
+			$mes = $_POST['birth_mes'];
+			if ( $mes == "none" ){
+				$mes = 1;
+			}
+
+			$year = $_POST['birth_year'];
+			if ( $year == "none" ){
+				$year = 1912;
+			}
+
+			$fechaCumple = Utils::crearFecha($year, $mes, $dia, 12, "AM");
+			
 			/*
 			 * Primera Letra Mayúscula 
 	 		 * las demas en minúsculas
 			 */
 			$givenname = ucfirst( strtolower( $givenname ));
 			$lastname  = ucfirst( strtolower( $lastname ));
-
+			
 			/* Actualizar solo el USUARIO */
 			$count = UserAdmin::update($userId, $greetings, $givenname, $lastname, $gender,
-				$email, $dependencia, 
-				$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext);
+					$email, $dependencia, 
+					$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext,
+					$fechaCumple);
 
 			$tipoTransaccion = "Usuario_Actualizar";
 			if ( $count == 0 ){
@@ -1669,6 +1733,12 @@ class Portal {
 
 		if ( isset( $_POST['equipoInfoId'] ) ){
 
+			/**/
+			$equipoId = $_POST['equipoID'];
+			$generalInfo = Equipos::getById($equipoId);
+			View::set("generalInfo", $generalInfo);
+
+			/**/
 			$tipoEquipo   = $_POST['tipoEquipo'];
 			View::set("tipoEquipo", $tipoEquipo);
 
@@ -1680,6 +1750,7 @@ class Portal {
 			$linkImagen = $_POST['linkImagen'];
 			View::set("linkedImagen", $linkImagen);
 
+			/**/
 			$arreglos = InventarioScripts::equipoInfoInventario( $equipoInfoId );
 
 			$error = $arreglos["errorMessage"];
@@ -1812,7 +1883,9 @@ class Portal {
 		$opcionMenu = "agenda_listado";
 		View::set("opcionMenu", $opcionMenu);
 
-		View::render( "portal_manager_home" );
+		if ( $_SESSION['role_user'] == "client" ) {		View::render( "portal_client_home" );
+		} else if($_SESSION['role_user'] == "manager"){	View::render( "portal_manager_home" );
+		}
 	}
 
 

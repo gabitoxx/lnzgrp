@@ -20,7 +20,7 @@ class Daemon3 {
 		 * Credenciales
 		 */
 		$servername="localhost";
-		$username = "lanuzag_dbUser";
+		$username = "lanuzaso_dbUser";
 		$password = "mysqlC0ntr453ñ4*";
 
 		try {
@@ -35,15 +35,15 @@ class Daemon3 {
 						u.nombre, u.apellido, 
 						e.nombre AS NombreEmpresa, e.razonSocial, 
 						f.nombre AS TipoFalla 
-					FROM lanuzag_LanuzaGroupDB.Incidencias i 
-						INNER JOIN lanuzag_LanuzaGroupDB.Usuarios u ON i.usuarioId = u.id
-						INNER JOIN lanuzag_LanuzaGroupDB.Empresas e ON i.empresaId = e.empresaId
-						INNER JOIN lanuzag_LanuzaGroupDB.FallasGenerales f ON i.fallaId = f.fallaId
+					FROM lanuzaso_LanuzaGroupDB.Incidencias i 
+						INNER JOIN lanuzaso_LanuzaGroupDB.Usuarios u ON i.usuarioId = u.id
+						INNER JOIN lanuzaso_LanuzaGroupDB.Empresas e ON i.empresaId = e.empresaId
+						INNER JOIN lanuzaso_LanuzaGroupDB.FallasGenerales f ON i.fallaId = f.fallaId
 					WHERE ( i.tecnicoId IS NULL OR i.tecnicoId = '')
 						AND i.fallaId NOT IN (100, 101) 
 						AND i.fecha > (
-							SELECT c2.fecha_hora FROM lanuzag_LanuzaGroupDB.CronJobTransaccion c2 WHERE c2.id = (
-								SELECT MAX(c.id) AS ultimoId FROM lanuzag_LanuzaGroupDB.CronJobTransaccion c WHERE c.tipoCronJob = 'INCIDENCIAS_SIN_TECH'
+							SELECT c2.fecha_hora FROM lanuzaso_LanuzaGroupDB.CronJobTransaccion c2 WHERE c2.id = (
+								SELECT MAX(c.id) AS ultimoId FROM lanuzaso_LanuzaGroupDB.CronJobTransaccion c WHERE c.tipoCronJob = 'INCIDENCIAS_SIN_TECH'
 							)
 						) ";
 
@@ -105,11 +105,11 @@ class Daemon3 {
 	 */
 	public static function insertarTransaccion( $incidenciasIDs, $countRows ){
 
-		$sql = " INSERT INTO lanuzag_LanuzaGroupDB.CronJobTransaccion(tipoCronJob, resultado, incidenciasIDs_csv ) 
+		$sql = " INSERT INTO lanuzaso_LanuzaGroupDB.CronJobTransaccion(tipoCronJob, resultado, incidenciasIDs_csv ) 
 					VALUES ( 'INCIDENCIAS_SIN_TECH', ". $countRows .", '". $incidenciasIDs ."' )";
 
 		$servername="localhost";
-		$username = "lanuzag_dbUser";
+		$username = "lanuzaso_dbUser";
 		$password = "mysqlC0ntr453ñ4*";
 
 		$conn = mysqli_connect($servername, $username, $password);

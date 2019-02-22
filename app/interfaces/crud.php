@@ -16,11 +16,12 @@ interface crud
 			$email, $username, $password,
 			$empresaId, $dependencia, $cargo,
 			$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext,
-			$activo);
+			$activo, $birthdate);
 
 	public static function update($userId, $greetings, $givenname, $lastname, $gender,
 			$email, $dependencia, 
-			$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext);
+			$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext,
+			$birthdate);
 
 	public static function updatePassword($userName, $pwdActual, $pwdNuevo);
 

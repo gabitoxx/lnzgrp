@@ -718,7 +718,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-sound-5-1"></i></span>
 						<input type="text" class="form-control" id="serial" name="serial" required="required" 
-						 placeholder="Número de Serie único del Equipo, normalmente está en una etiqueta frontal o trasera">
+						 placeholder="Número de Serie (serial del Hardware) único del Equipo, normalmente está en una etiqueta frontal o trasera">
 						<span id="serial-span" class=""></span>
 					</div>
 				</div>
@@ -754,6 +754,37 @@
 				</div>
 				<div class="col-sm-1">
 					<div id="tipo_equipo-error" class="help-block">
+						&nbsp;
+					</div>
+				</div>
+			</div>
+
+			<div id="gama-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label data-toggle="tooltip" data-placement="bottom" title="GAMA: Elija uno (Semáforo) Ver descripción a la derecha">
+						<u>Gama del Equipo</u><b style="color:#E30513;font-size:18px;">*</b></label>
+				</div>
+				<div class="col-sm-2">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-blackboard"></i></span>
+						<select class="form-control" id="gama" name="gama">
+							<option value="none">-- Elija --</option>
+							<option value="Alta">Gama Alta</option>
+							<option value="Media">Gama Media</option>
+							<option value="Baja">Gama Baja</option>
+						</select>
+						<span id="gama-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<b>Gama Alta:</b> Equipos de alto poder de cómputo. Ej: Octacore o Quadcore de >8 GB de RAM.
+					<br/>
+					<b>Gama Media:</b> Equipos de precio moderado con buenas características. Ej: equipo con 4GB de RAM.
+					<br/>
+					<b>Gama Baja:</b> Equipo barato de pocas prestaciones. Ej: Pentium III o inferior.
+				</div>
+				<div class="col-sm-1">
+					<div id="gama-error" class="help-block">
 						&nbsp;
 					</div>
 				</div>
@@ -901,7 +932,7 @@
 			<div id="link-div" class="row form-group">
 				<div class="col-sm-3" align="right">
 					<label data-toggle="tooltip" data-placement="bottom" title="Enlace URL Completo, solo acepta formatos .JPG, .JPEG, .GIF o .PNG"
-					 onclick="javascript:$('#imgurModal').modal('show'); ;"
+					 onclick="javascript:$('#imgurModal').modal('show');"
 					 onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'">
 						<u>Imagen de Equipo</u>
 						<br/>
@@ -918,129 +949,6 @@
 				</div>
 				<div class="col-sm-1">
 					<div id="link-error" class="help-block">
-						&nbsp;
-					</div>
-				</div>
-			</div>
-
-			<div id="windows-div" class="form-group">
-				<div class="col-sm-3" align="right">
-					<label>Windows con Licencia<b style="color:#E30513;font-size:18px;">*</b></label>
-				</div>
-				<div class="col-sm-3">
-					<div class="input-group">
-						<label class="radio-inline">
-						  <input type="radio" name="windows" id="windows" value="Si">
-							S&iacute;
-						</label>
-						&nbsp;&nbsp;&nbsp;
-						<label class="radio-inline">
-						  <input type="radio" name="windows" id="windows" value="No">
-							No
-						</label>
-						&nbsp;&nbsp;&nbsp;
-						<label class="radio-inline">
-						  <input type="radio" name="windows" id="windows" value="Desconocido">
-							Desconocido
-						</label>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div id="windows-error" class="help-block">
-						&nbsp;
-					</div>
-				</div>
-			</div>
-
-			<div id="office-div" class="form-group">
-				<div class="col-sm-3" align="right">
-					<label>Office con Licencia<b style="color:#E30513;font-size:18px;">*</b></label>
-				</div>
-				<div class="col-sm-3">
-					<div class="input-group">
-						<label class="radio-inline">
-						  <input type="radio" name="office" id="office" value="Si">
-							S&iacute;
-						</label>
-						&nbsp;&nbsp;&nbsp;
-						<label class="radio-inline">
-						  <input type="radio" name="office" id="office" value="No">
-							No
-						</label>
-						&nbsp;&nbsp;&nbsp;
-						<label class="radio-inline">
-						  <input type="radio" name="office" id="office" value="Desconocido">
-							Desconocido
-						</label>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div id="office-error" class="help-block">
-						&nbsp;
-					</div>
-				</div>
-			</div>
-
-
-			<div id="sistemaOperativo-div" class="row form-group">
-				<div class="col-sm-3" align="right">
-					<label>
-						Sistema Operativo<b style="color:#E30513;font-size:18px;">*</b>
-					</label>
-				</div>
-				<div class="col-sm-4">
-					<div class="input-group">
-						<span class="input-group-addon"><i class="glyphicon glyphicon-sound-6-1"></i></span>
-						<select class="form-control" id="sistemaOperativo" name="sistemaOperativo">
-							<option value="none">  --  Seleccione uno --  </option>
-							<option value="Windows">Windows</option>
-							<option value="Linux/GNU">Linux/GNU</option>
-							<option value="Mac">Mac</option>
-							<option value="Solaris">Solaris</option>
-							<option value="Unix">Unix</option>
-							<option value="Google Chrome OS">Google Chrome OS</option>
-							<option value="AS/400">AS/400</option>
-							<option value="Otro">Otro</option>
-						</select>
-						<span id="sistemaOperativo-span" class=""></span>
-					</div>
-				</div>
-				<div class="col-sm-2" align="right">
-					<label data-toggle="tooltip" data-placement="bottom" title="El número de versión del Sistema Operativo, puede usar puntos, NO COMAS">
-						<u>Versi&oacute;n N&uacute;mero</u><b style="color:#E30513;font-size:18px;">*</b>:</label>
-				</div>
-				<div class="col-sm-2" align="right">
-					<input type="text" class="form-control" id="versionSO" name="versionSO" placeholder="Ejemplo: 8.1">
-					<span id="versionSO-span" class=""></span>
-				</div>
-				<div class="col-sm-1">
-					<div id="sistemaOperativo-error" class="help-block">
-						&nbsp;
-					</div>
-				</div>
-			</div>
-
-
-			<div id="nombreSO-div" class="row form-group">
-				<div class="col-sm-3" align="right">
-					<label data-toggle="tooltip" data-placement="bottom" title="Cómo obtenerlo"
-					 onclick="javascript:$('#nombreSO_Modal').modal('show'); ;"
-					 onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'">
-						<u>Nombre del Sistema Operativo</u>
-						<br/>
-						(click aqu&iacute; para saber c&oacute;mo obtenerlo)
-					</label>
-				</div>
-				<div class="col-sm-8">
-					<div class="input-group">
-						<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
-						<input type="text" class="form-control" id="nombreSO" name="nombreSO" required="required" 
-						 placeholder="Escriba el nombre según aparece en la Info o Configuración del Equipo">
-						<span id="nombreSO-span" class=""></span>
-					</div>
-				</div>
-				<div class="col-sm-1">
-					<div id="nombreSO-error" class="help-block">
 						&nbsp;
 					</div>
 				</div>
@@ -1070,6 +978,457 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<div style="color:#E30513;text-align:right;"><b>* = Campo Obligatorio</b></div>
+				</div>
+			</div>
+			
+			<br/>
+			<hr/>
+			<br/>
+
+			<h4 style="text-align:center; color:#000;">
+				<span class="glyphicon glyphicon-th-large"></span> 
+				<i>Sistema Operativo</i>&nbsp;&nbsp;&nbsp;
+			</h4>
+			<br/>
+
+			<div id="windows-div" class="form-group">
+				<div class="col-sm-3" align="right">
+					<label>Windows con Licencia<b style="color:#E30513;font-size:18px;">*</b></label>
+				</div>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<label class="radio-inline">
+						  <input type="radio" name="windows" id="windows1" value="Si">
+							S&iacute;
+						</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline">
+						  <input type="radio" name="windows" id="windows2" value="No">
+							No
+						</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline">
+						  <input type="radio" name="windows" id="windows3" value="Desconocido">
+							Desconocido / No es Windows
+						</label>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div id="windows-error" class="help-block">
+						&nbsp;
+					</div>
+				</div>
+			</div>
+
+			<div id="sistemaOperativo-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>
+						Sistema Operativo<b style="color:#E30513;font-size:18px;">*</b>
+					</label>
+				</div>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-sound-6-1"></i></span>
+						<select class="form-control" id="sistemaOperativo" name="sistemaOperativo" onchange="javascript:toogleSistemasOperativo(this.value);">
+							<option value="none">  --  Seleccione uno --  </option>
+							<?php
+								foreach ($sistemasOperativos as $so){
+
+									$option = '<option value="' . $so["name"] . '">' . $so["name"] . '</option>';
+									echo $option;
+								}
+							?>
+						</select>
+						<span id="sistemaOperativo-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div id="sistemaOperativo-error" class="help-block">
+						Si existe alguna que no est&eacute; en este listado, 
+						por favor notificarlo al Equipo de Desarrollo
+						del Portal Lanuzasoft para agregarlo a este listado
+						<br/>
+						(Telf 5088376 ext 1030 o enviar la solicitud por correo electrónico, soporte@lanuzagroup.com).
+					</div>
+				</div>
+			</div>
+
+			<div id="nombreSO-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label data-toggle="tooltip" data-placement="bottom" title="Cómo obtenerlo"
+					 onclick="javascript:$('#nombreSO_Modal').modal('show'); ;"
+					 onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'">
+						<u>Nombre del S.O. (en caso de "Otro")</u>
+						<br/>
+						(click aqu&iacute; para saber c&oacute;mo obtenerlo)
+					</label>
+				</div>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
+						<input type="text" class="form-control" id="nombreSO" name="nombreSO" disabled="disabled" 
+						 placeholder="En caso de seleccionar arriba la opción OTRO. Escriba el nombre según aparece en la Configuración del Equipo">
+						<span id="nombreSO-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<div id="nombreSO-error" class="help-block">
+						&nbsp;
+					</div>
+				</div>
+			</div>
+
+
+			<div id="versionSO-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label data-toggle="tooltip" data-placement="bottom" title="Solo en caso de Seleccionar 'Windows' como Sistema Operativo">
+						<u>Versi&oacute;n</u>
+					</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
+						<select class="form-control" id="versionSO" name="versionSO"
+						 onchange="javascript:return false;">
+							<option value="none">  --  Seleccione una versión --  </option>
+
+							
+							<optgroup label="Sistemas Windows">
+<?php
+								$option = "";
+								foreach ($versionesSOWindows as $version){
+
+									$option = '<option value="' . $version["name"] . '">' . $version["name"] . '</option>';
+									echo $option;
+								}
+?>
+								<option value="Windows 3.1" disabled="disabled">Windows 3.1</option>
+
+							<optgroup label="Linux">
+<?php
+								$option = "";
+								foreach ($versionesSOotros as $version){
+
+									if ( $version["soBase"] == "Linux" ){
+										$option = '<option value="' . $version["name"] . '">' . $version["name"] . '</option>';
+										echo $option;
+									}
+								}
+?>
+							<optgroup label="Mac">
+<?php
+								$option = "";
+								foreach ($versionesSOotros as $version){
+
+									if ( $version["soBase"] == "Mac" ){
+										$option = '<option value="' . $version["name"] . '">' . $version["name"] . '</option>';
+										echo $option;
+									}
+								}
+?>
+						</select>
+						<span id="versionSO-span" class=""></span>
+					</div>
+				</div>
+				
+				<div class="col-sm-5">
+					<div id="versionSO-error" class="help-block">
+						Aseg&uacute;rese de seleccionar uno correspondiente al S.O. arriba seleccionado.
+					</div>
+				</div>
+			</div>
+
+			<div id="nombreSistemaOperativo-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>
+						Nombre del Sistema Operativo
+					</label>
+				</div>
+				<div class="col-sm-5">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-th-large"></i></span>
+						<select class="form-control" id="nombreSistemaOperativo" name="nombreSistemaOperativo" onchange="javascript:toogleSistemasOperativo(this.value);">
+							<option value="none">  --  Seleccione uno --  </option>
+<?php
+								foreach ($nombresSO as $soNombre){
+
+									$option = '<option value="' . $soNombre["name"] . '">' . $soNombre["name"] . '</option>';
+									echo $option;
+								}
+?>
+						</select>
+						<span id="nombreSistemaOperativo-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div id="nombreSistemaOperativo-error" class="help-block">
+					</div>
+				</div>
+			</div>
+
+			<div id="tipoLicenciaSO-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>
+						Tipo de Licencia
+					</label>
+				</div>
+				<div class="col-sm-5">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-sound-7-1"></i></span>
+						<select class="form-control" id="tipoLicenciaSO" name="tipoLicenciaSO">
+							<option value="none">  --  Seleccione una --  </option>
+<?php
+								foreach ($tipoLicencias as $licencia){
+
+									$option = '<option value="' . $licencia["name"] . '">' . $licencia["name"] . '</option>';
+									echo $option;
+								}
+?>
+						</select>
+						<span id="tipoLicenciaSO-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div id="tipoLicenciaSO-error" class="help-block">
+						<a href="https://www.microsoft.com/es/sam/licensingoptions.aspx" target="_blank">&iquest;Qu&eacute; es esto&quest;</a>
+					</div>
+				</div>
+			</div>
+
+			<div id="serialSO-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>N&uacute;mero de Serie <br/>(Serial del Sistema Operativo)</label>
+				</div>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-sound-5-1"></i></span>
+						<input type="text" class="form-control" id="serialSO" name="serialSO"
+						 placeholder="Serial del Software que identifica el Sistema Operativo, normalmente en etiquetas o CD's de instalación">
+						<span id="serialSO-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<div id="serialSO-error" class="help-block">
+						&nbsp;
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<div style="color:#E30513;text-align:right;"><b>* = Campo Obligatorio</b></div>
+				</div>
+			</div>
+
+			<br/>
+			<hr/>
+			<br/>
+			<h4 style="text-align:center; color:#000;">
+				<span class="glyphicon glyphicon-text-size"></span> 
+				<i>Herramienta Ofim&aacute;tica</i>&nbsp;&nbsp;&nbsp;
+			</h4>
+			<br/>
+
+			<div id="office-div" class="form-group">
+				<div class="col-sm-3" align="right">
+					<label>Office con Licencia<b style="color:#E30513;font-size:18px;">*</b></label>
+				</div>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<label class="radio-inline">
+						  <input type="radio" name="office" id="office1" value="Si" onclick="javascript:toogleLicOffice(1);">
+							S&iacute;
+						</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline">
+						  <input type="radio" name="office" id="office2" value="No" onclick="javascript:toogleLicOffice(0);">
+							No
+						</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline">
+						  <input type="radio" name="office" id="office3" value="Desconocido" onclick="javascript:toogleLicOffice(1);">
+							Desconocido / No es Windows Office
+						</label>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div id="office-error" class="help-block">
+						&nbsp;
+					</div>
+				</div>
+			</div>
+
+
+			<div id="herramientaOfimatica-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>
+						Herramienta Ofim&aacute;tica<b style="color:#E30513;font-size:18px;">*</b>
+					</label>
+				</div>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-text-size"></i></span>
+						<select class="form-control" id="herramientaOfimatica" name="herramientaOfimatica"
+							 onchange="javascript:toogleOfimatica(this.value);">
+								<option value="none">  --  Seleccione una --  </option>
+<?php
+									$option = "";
+									foreach ($ofimatica as $tool){
+
+										$option = '<option value="' . $tool["name"] . '">' . $tool["name"] . '</option>';
+										echo $option;
+									}
+?>
+							</select>
+						 <span id="herramientaOfimatica-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div id="herramientaOfimatica-error" class="help-block">
+						Si existe alguna que no est&eacute; en este listado, 
+						por favor notificarlo al Equipo de Desarrollo
+						del Portal Lanuzasoft para agregarlo a este listado
+						<br/>
+						(Telf 5088376 ext 1030 o enviar la solicitud por correo electrónico, soporte@lanuzagroup.com).
+					</div>
+				</div>
+			</div>
+
+			<div id="nombreOfimatica-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>
+						<u>Nombre de la Herramienta<br/>(en caso de "Otra")</u>
+					</label>
+				</div>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
+						<input type="text" class="form-control" id="nombreOfimatica" name="nombreOfimatica" disabled="disabled" 
+						 placeholder="En caso de seleccionar arriba la opción OTRA">
+						<span id="nombreOfimatica-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<div id="nombreOfimatica-error" class="help-block">
+						&nbsp;
+					</div>
+				</div>
+			</div>
+
+
+			<div id="nombreHerramientaOfimatica-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>
+						Nombre de Herramienta Ofim&aacute;tica
+					</label>
+				</div>
+				<div class="col-sm-5">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
+						<select class="form-control" id="nombreHerramientaOfimatica" name="nombreHerramientaOfimatica">
+								<option value="none">  --  Seleccione una --  </option>
+<?php
+									$option = "";
+									foreach ($ofimaticaSoftwareNombres as $tool){
+
+										$option = '<option value="' . $tool["name"] . '">' . $tool["name"] . '</option>';
+										echo $option;
+									}
+?>
+							</select>
+						 <span id="nombreHerramientaOfimatica-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div id="nombreHerramientaOfimatica-error" class="help-block">
+					</div>
+				</div>
+			</div>
+
+
+			<div id="versionHerramientaOfimatica-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>
+						Versi&oacute;n de Herramienta Ofim&aacute;tica
+					</label>
+				</div>
+				<div class="col-sm-5">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-sound-7-1"></i></span>
+						<select class="form-control" id="versionHerramientaOfimatica" name="versionHerramientaOfimatica">
+								<option value="none">  --  Seleccione una versión --  </option>
+<?php
+									$option = "";
+									foreach ($versionesOfimaticaSoftware as $tool){
+
+										$option = '<option value="' . $tool["name"] . '">' . $tool["name"] . '</option>';
+										echo $option;
+									}
+?>
+							</select>
+						 <span id="versionHerramientaOfimatica-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div id="versionHerramientaOfimatica-error" class="help-block">
+					</div>
+				</div>
+			</div>
+
+
+			<div id="tipoLicenciaOfimatica-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>
+						Tipo de Licencia
+					</label>
+				</div>
+				<div class="col-sm-5">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-sound-7-1"></i></span>
+						<select class="form-control" id="tipoLicenciaOfimatica" name="tipoLicenciaOfimatica">
+							<option value="none">  --  Seleccione una --  </option>
+							<?php
+								foreach ($tipoLicencias as $licencia){
+
+									$option = '<option value="' . $licencia["name"] . '">' . $licencia["name"] . '</option>';
+									echo $option;
+								}
+							?>
+						</select>
+						<span id="tipoLicenciaOfimatica-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div id="tipoLicenciaOfimatica-error" class="help-block">
+						<a href="https://www.microsoft.com/es/sam/licensingoptions.aspx" target="_blank">&iquest;Qu&eacute; es esto&quest;</a>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="serialOfimatica-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>N&uacute;mero de Serie <br/>(Serial de la Herramienta Ofim&aacute;tica)</label>
+				</div>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-sound-6-1"></i></span>
+						<input type="text" class="form-control" id="serialOfimatica" name="serialOfimatica"
+						 placeholder="Serial del Software que identifica el Office u otra H.O., normalmente en etiquetas o CD's de instalación">
+						<span id="serialOfimatica-span" class=""></span>
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<div id="serialOfimatica-error" class="help-block">
+						&nbsp;
+					</div>
+				</div>
+			</div>
+
 
 			<div class="form-group">
 				<div class="col-sm-12">
@@ -1148,7 +1507,7 @@
 			<div class="row">
 				<div class="col-sm-8" align="right">
 					<br/>
-					<button type="button" class="btn btn-success btn-lg" id="" onclick="javascript:crearEquipo();"
+					<button type="button" class="btn btn-success btn-lg" id="mainclick" onclick="javascript:crearEquipo();"
 					 data-toggle="tooltip" data-placement="bottom" title="Crear un EQUIPO nuevo en el Sistema y continuar con el INVENTARIO (Scripts archivos .CSV)"
 					 style="margin-top: 7px;">
 						<span class="glyphicon glyphicon-hdd"></span> Crear Equipo y continuar con los archivos del Script <span class="glyphicon glyphicon-floppy-disk"></span> </button>
@@ -1320,24 +1679,29 @@
 				document.getElementById("sistemaOperativo-div").className = "form-group has-error has-feedback";
 				document.getElementById("sistemaOperativo-span").className = "glyphicon glyphicon-remove form-control-feedback";
 				document.getElementById("sistemaOperativo-error").innerHTML = "Seleccione uno";
-			
 			}
-
 			
-			var versionSO = $("#versionSO").val();
-			versionSO = versionSO.replace("," , ".");
-
-			if ( !isNumber(versionSO) ){
+			/* Office Ofimática */
+			if ( $("#herramientaOfimatica").val() == "none" ){
+				
 				bool = false;
 				
-				document.getElementById("sistemaOperativo-div").className = "form-group has-error has-feedback";
-				document.getElementById("versionSO-span").className = "glyphicon glyphicon-remove form-control-feedback";
-				document.getElementById("sistemaOperativo-error").innerHTML = "Valor debe ser NUMÉRICO. Ej: 123000,45 (sin separador de miles y la COMA como separador decimal)";
-
-			} else {
-				$("#versionSO").val( versionSO );
+				document.getElementById("herramientaOfimatica-div").className = "form-group has-error has-feedback";
+				document.getElementById("herramientaOfimatica-span").className = "glyphicon glyphicon-remove form-control-feedback";
+				document.getElementById("herramientaOfimatica-error").innerHTML = "Seleccione una herramienta Ofimática";
 			}
 
+			/* Para el semáforo */
+			if ( $("#gama").val() == "none" ){
+				
+				bool = false;
+				
+				document.getElementById("gama-div").className = "form-group has-error has-feedback";
+				document.getElementById("gama-span").className = "glyphicon glyphicon-remove form-control-feedback";
+				document.getElementById("gama-error").innerHTML = "Seleccione uno";
+			}
+
+			/**/
 			if ( bool == true ){
 				var ask = confirm( confirmMessage );
 				if ( ask == true) {
@@ -1347,6 +1711,8 @@
 					/* quitando el disabled */
 					document.getElementById("costo").removeAttribute("disabled");
 					document.getElementById("reposicion").removeAttribute("disabled");
+					$("#nombreSO").removeAttr("disabled");
+					$("#nombreOfimatica").removeAttr("disabled");
 
 					/* submit POST enviando formulario */
 					document.getElementById("inventario_new_eq_form").submit();
@@ -1355,6 +1721,10 @@
 					return false;
 				}
 			} else {
+				$('html, body').animate({
+					scrollTop: 0
+				}, 1000);
+				alert("Por favor, Revise los Errores y vuelva a intentar...");
 				return false;
 			}
 		}
@@ -1405,6 +1775,10 @@
 			document.getElementById("sistemaOperativo-span").className = "";
 			document.getElementById("versionSO-span").className = "";
 			document.getElementById("sistemaOperativo-error").innerHTML = "";
+
+			document.getElementById("gama-div").className = "form-group";
+			document.getElementById("gama-span").className = "";
+			document.getElementById("gama-error").innerHTML = "";
 		}
 
 		function csvTablaHTML(){
@@ -1458,6 +1832,45 @@
 				
 			}
 		}
+
+		function toogleLicOffice(enabled){
+			return;
+/*			if ( enabled == 1 ){
+				/* Solo aqui puede llenar el campo * /
+				$("#licOffice").prop('disabled', false);
+				$("#licOffice").removeAttr('disabled');
+			} else {
+				$("#licOffice").prop('disabled', true);
+				$("#licOffice").attr('disabled','disabled');
+			}
+*/
+		}
+
+		function toogleSistemasOperativo(SOvalue){
+			
+			if ( SOvalue == "Otro" ){
+				$("#nombreSO").removeAttr("disabled");
+				//$("#versionSO").attr("disabled", "disabled");
+				//$("#windowsSelection").removeAttr("disabled");
+				
+			} else {
+				$("#nombreSO").attr("disabled", "disabled");
+				$("#nombreSO").val("");
+				//$("#versionSO").removeAttr("disabled");
+				//$("#windowsSelection").attr("disabled", "disabled");
+			}
+		}
+
+		function toogleOfimatica(officeValue){
+			if ( officeValue == "Otra" ){
+				$("#nombreOfimatica").removeAttr("disabled");
+				
+			} else {
+				$("#nombreOfimatica").attr("disabled", "disabled");
+				$("#nombreOfimatica").val("");
+			}
+		}
+
 	</script>
 
 	<!-- ========================= Modal HARDWARE =============================================== -->
@@ -1822,23 +2235,7 @@
 		  </h4>
 		</div>
 		<div class="modal-body" style="font-size:16px;">
-		  <p style="font-size:18px;">
-		  	En sistemas <b><u>Windows</u></b>:
-		  </p>
-		  <br/>
-		  1.- Pulse las teclas WINDOWS + Pausa | o En su defecto en el bot&oacute;n Inicio - Panel de Control - Sistema
-		  <br/>
-		  2.- Coloque aquí el nombre que ve en dicha ventana, como ejemplo abajo, se extrae la info:
-		  <br/><br/>
-		  <b>Home Premium</b>
-		  <br/><br/>
-		  (<b>NO se coloca</b> Windows 7 ya que esa informaci&oacute;n va en el campo 
-		  	<b>"Sistema Operativo" y "Versi&oacute;n"</b>)
-		  <br/><br/>
-		  <img id="imgX" alt="Codigo de barras generado" src="<?= APPIMAGEPATH; ?>windows_version.png" />
 		  
-		  <br/><br/><br/>
-
 		  En <b><u>Linux</u></b>:
 		  <br/>
 		  1.- Se debe añadir el nombre de la <b>Distribuci&oacute;n</b>
@@ -1867,6 +2264,24 @@
 		  M&aacute;s info consulte: 
 		  	<a href="https://support.apple.com/en-us/HT201260" target="_blank">
 		  		https://support.apple.com/en-us/HT201260</a>
+		  
+		  <br/><br/><br/>
+
+		  <p style="font-size:18px;">
+		  	En sistemas <b><u>Windows</u></b>:
+		  </p>
+		  <br/>
+		  1.- Pulse las teclas WINDOWS + Pausa | o En su defecto en el bot&oacute;n Inicio - Panel de Control - Sistema
+		  <br/>
+		  2.- Coloque aquí el nombre que ve en dicha ventana, como ejemplo abajo, se extrae la info:
+		  <br/><br/>
+		  <b>Home Premium</b>
+		  <br/><br/>
+		  (<b>NO se coloca</b> Windows 7 ya que esa informaci&oacute;n va en el campo 
+		  	<b>"Sistema Operativo" y "Versi&oacute;n"</b>)
+		  <br/><br/>
+		  <img id="imgX" alt="Codigo de barras generado" src="<?= APPIMAGEPATH; ?>windows_version.png" />
+		  
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

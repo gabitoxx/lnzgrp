@@ -12,42 +12,77 @@
 		die("ERROR al tratar de cargar la Info de la Incidencia. Por favo, Intente màs tarde.");
 	}
 
+	//POR DEFECTO
+	$incidenciaUserId = "-1";
+	
+	//JSON vacío
+	$incidenciasSinOpinar = "[]";
+
+	if ( isset($objSinOpinar) && $objSinOpinar != NULL ){
+		$incidenciaUserId = $objSinOpinar->userId;
+		//JSON
+		$incidenciasSinOpinar = $objSinOpinar->incidenciasSinOpinar;
+	}
+
+	if ( isset($usuarioCreadorIncidencia) && $usuarioCreadorIncidencia != NULL && $usuarioCreadorIncidencia != "" ){
+		/* 
+		 * En caso de que una Incidencia esté asignada a un Equipo SIN Usuario
+		 * SE BUSCÓ el UsuarioId creador de Esta Incidencia
+		 */
+		$incidenciaUserId = $usuarioCreadorIncidencia;
+	}
+
+	$esReporteVisita = "false";
+	if ( isset($es_REPORTE_VISITA) && $es_REPORTE_VISITA != NULL && $es_REPORTE_VISITA != "" ){
+		$esReporteVisita = "true";
+	}
+
 ?>
 
 <script>
-var pasosHardware = "1. Verificación del código del equipo y seriales.\n"
-		+ "2. Verificación de la garantía del equipo de cómputo.\n"
-		+ "3. Verificación del estado del equipo.\n"
-		+ "4. Desmontaje de partes, limpieza interna con aire comprimido y limpia contactos, aspirado profundo, verificación de tarjetas, limpieza externa con cera para equipos.\n"
-		+ "\n\n"
-		+ "*Se entregan las siguientes recomendaciones al usuario:\n"
-		+ "\n"
-		+ "1. Cuidar las condiciones físicas de limpieza donde se encuentre el equipo.\n"
-		+ "2. Hacer buen uso de los equipos de cómputo, con una manipulación adecuada y trato gentil.\n"
-		+ "3. No ingerir alimentos y bebidas en el área donde utilice el equipo de cómputo.\n"
-		+ "4. No apagar la computadora sin antes salir adecuadamente del sistema.\n";
+	var pasosHardware = "1. Verificación del código del equipo y seriales.\n"
+			+ "2. Verificación de la garantía del equipo de cómputo.\n"
+			+ "3. Verificación del estado del equipo.\n"
+			+ "4. Desmontaje de partes, limpieza interna con aire comprimido y limpia contactos, aspirado profundo, verificación de tarjetas, limpieza externa con cera para equipos.\n"
+			+ "\n\n"
+			+ "*Se entregan las siguientes recomendaciones al usuario:\n"
+			+ "\n"
+			+ "1. Cuidar las condiciones físicas de limpieza donde se encuentre el equipo.\n"
+			+ "2. Hacer buen uso de los equipos de cómputo, con una manipulación adecuada y trato gentil.\n"
+			+ "3. No ingerir alimentos y bebidas en el área donde utilice el equipo de cómputo.\n"
+			+ "4. No apagar la computadora sin antes salir adecuadamente del sistema.\n";
 
-var pasosSoftware = " 1. Revisión del Log de errores del sistema.\n"
-		+ " 2. Revisión del estado del disco duro.\n"
-		+ " 3. Desinstalación de todos los programas piratas, spam, toolbar o software que no estén autorizados por la Gerencia.\n"
-		+ " 4. Limpieza del registro.\n"
-		+ " 5. Limpieza de archivos temporales y Cookies.\n"
-		+ " 6. Optimización de rendimiento del equipo.\n"
-		+ " 7. Inhabilitación de los servicios de inicio no necesarios.\n"
-		+ " 8. Inhabilitación de las aplicaciones de inicio no necesarios.\n"
-		+ " 9. Limpieza de los navegadores y desinstalación de las extensiones.\n"
-		+ "10. Veririficación de las actualizaciones correspondientes al sistema.\n"
-		+ "11. Limpieza y actualización de drivers.\n"
-		+ "12. Desfragmentacion del disco duro.\n"
-		+ "13. Análisis de virus, usando el antivirus local y otros online.\n"
-		+ "14. Análisis de spyware con antispyware local y otros online.\n"
-		+ "\n\n"
-		+ "*Se entregan las siguientes recomendaciones al Usuario:\n"
-		+ "\n"
-		+ "1. Cuidar las condiciones físicas de limpieza donde se encuentre el equipo.\n"
-		+ "2. Hacer buen uso de los equipos de cómputo, con una manipulación adecuada y trato gentil.\n"
-		+ "3. No ingerir alimentos y bebidas en el área donde utilice el equipo de cómputo.\n"
-		+ "4. No apagar la computadora sin antes salir adecuadamente del sistema.\n";
+	var pasosSoftware = " 1. Revisión del Log de errores del sistema.\n"
+			+ " 2. Revisión del estado del disco duro.\n"
+			+ " 3. Desinstalación de todos los programas piratas, spam, toolbar o software que no estén autorizados por la Gerencia.\n"
+			+ " 4. Limpieza del registro.\n"
+			+ " 5. Limpieza de archivos temporales y Cookies.\n"
+			+ " 6. Optimización de rendimiento del equipo.\n"
+			+ " 7. Inhabilitación de los servicios de inicio no necesarios.\n"
+			+ " 8. Inhabilitación de las aplicaciones de inicio no necesarios.\n"
+			+ " 9. Limpieza de los navegadores y desinstalación de las extensiones.\n"
+			+ "10. Veririficación de las actualizaciones correspondientes al sistema.\n"
+			+ "11. Limpieza y actualización de drivers.\n"
+			+ "12. Desfragmentacion del disco duro.\n"
+			+ "13. Análisis de virus, usando el antivirus local y otros online.\n"
+			+ "14. Análisis de spyware con antispyware local y otros online.\n"
+			+ "\n\n"
+			+ "*Se entregan las siguientes recomendaciones al Usuario:\n"
+			+ "\n"
+			+ "1. Cuidar las condiciones físicas de limpieza donde se encuentre el equipo.\n"
+			+ "2. Hacer buen uso de los equipos de cómputo, con una manipulación adecuada y trato gentil.\n"
+			+ "3. No ingerir alimentos y bebidas en el área donde utilice el equipo de cómputo.\n"
+			+ "4. No apagar la computadora sin antes salir adecuadamente del sistema.\n";
+
+	//JSON
+	var jsIncidenciaId = <?= $incidenciaInfo[0]["incidenciaId"]; ?>;
+	var incidenciaUserId = <?= $incidenciaUserId; ?>;
+	var jsonFormatIncidenciasSinOpinar = '<?= $incidenciasSinOpinar; ?>';
+
+	var jsonIncidenciasSinOpinar = JSON.parse( jsonFormatIncidenciasSinOpinar );
+
+	//"true" o "false"
+	var jsEsReporteVisita = '<?= $esReporteVisita; ?>';
 
 </script>
 
@@ -171,6 +206,11 @@ var pasosSoftware = " 1. Revisión del Log de errores del sistema.\n"
 	<input type="hidden" id="incidenciaId_mainForm" name="incidenciaId_mainForm" value="" />
 	<input type="hidden" id="empresaId_mainForm"    name="empresaId_mainForm" 	 value="<?= $incidenciaInfo[0]["empresaId"] ; ?>" />
 	<input type="hidden" id="reporteOincidencia" 	name="reporteOincidencia" 	 value="" />
+	
+	<input type="hidden" id="incidenciaUserId"         name="incidenciaUserId"         value="<?= $incidenciaUserId; ?>" />
+	<input type="hidden" id="jsonIncidenciasSinOpinar" name="jsonIncidenciasSinOpinar" value="[]" />
+	<input type="hidden" id="es_reporte_de_visita"     name="es_reporte_de_visita"     value="" />
+	
 
 	<div class="panel-group col-sm-12">
 		<div class="panel panel-default">
@@ -1151,17 +1191,6 @@ var pasosSoftware = " 1. Revisión del Log de errores del sistema.\n"
 
 	});
 
-	function collapseDiv( collapseID ){
-		$('#' + collapseID ).collapse('toggle');
-	}
-
-	function collapseAll(){
-		$('.collapse').collapse('hide');
-	}
-
-	function expandAll(){
-		$('.collapse').collapse('show');
-	}
 
 	/**
 	 * Añadiendo Componentes de HARDWARE
@@ -1636,12 +1665,27 @@ var pasosSoftware = " 1. Revisión del Log de errores del sistema.\n"
 
 				$('#reporteOincidencia').val( "" + esReporte );
 
+				/*
+				 * Añadir JSON a sus inscidencias sin opinar
+				 */
+				var toadd = JSON.parse(jsonFormatIncidenciasSinOpinar);
+				var newobj = { "id": ""+jsIncidenciaId };
+				var jsonToUpdate = addJsonObj(toadd, newobj);
+				console.log("jsonToUpdate",jsonToUpdate);
+
+				$('#jsonIncidenciasSinOpinar').val( jsonToUpdate );
+
+
+				$('#es_reporte_de_visita').val( jsEsReporteVisita );
+
+
 				/* submit POST enviando formulario */
 				document.getElementById("resolver_incidencia_form").submit();
 
 				return true;
 
 			} else {
+				//para que el onsubmit no se vaya
 				return false;
 			}
 

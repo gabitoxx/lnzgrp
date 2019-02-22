@@ -52,6 +52,10 @@
 					el cual ser&aacute; 1 solo reporte por su Visita a la Empresa 
 					(en &eacute;l podr&aacute; especificar 
 					<b>un solo reporte por todos los Equipos en los cuales trabaj&oacute;</b>).
+					<br/><br/>
+					<u>Se excluir&aacute; de este tipo de Reporte aquellos Equipos con estatus SUSPENDIDO</u>.
+					<b>Para ver cu&aacute;ntos equipos est&aacute;n ACTIVOS</b> revise el campo de selecci&oacute;n creado abajo
+					 ("Indique el Equipo que presenta fallas") y ah&iacute; podr&aacute; ver los equipos habilitados.
 			</div>
 		</div>
 

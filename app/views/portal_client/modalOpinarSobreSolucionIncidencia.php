@@ -1,6 +1,15 @@
 <?php
 	echo "<script>";
 	echo '	var saludoUsuario = "' . $_SESSION['logged_user_saludo'] . '";';
+    
+	if ( isset($objJsonIncidenciasSinOpinar) && $objJsonIncidenciasSinOpinar != NULL ){
+		echo '	var jsonIncidenciasSinOpinar = ' . $objJsonIncidenciasSinOpinar->incidenciasSinOpinar . ';';
+		echo '	var idUsuarioIncidenciaSinOpinar = ' . $objJsonIncidenciasSinOpinar->userId . ';';
+	} else {
+		echo '	var jsonIncidenciasSinOpinar = "[]";';
+		echo '	var idUsuarioIncidenciaSinOpinar = -1; ';
+	}
+
 	echo "</script>";
 ?>
 <form class="form-horizontal" data-toggle="validator" role="form" id="solucion_opinion_form"
@@ -23,6 +32,9 @@
 <input type="hidden" id="barra_2_Form" name="barra_2_Form" value='0' />
 <input type="hidden" id="barra_3_Form" name="barra_3_Form" value='0' />
 <input type="hidden" id="barra_4_Form" name="barra_4_Form" value='0' />
+
+<input type="hidden" id="json_userId"      name="json_userId"      value='' />
+<input type="hidden" id="json_incidencias" name="json_incidencias" value='' />
 
 <div class="modal fade" id="myModalOpinar" role="dialog">
 	<div class="modal-dialog modal-lg">
@@ -530,6 +542,20 @@
 			/* Add the "show" class to DIV */
 			x.className = "show";
 
+			/*
+			 * Eliminando esta incidencia, el obj JSON, del arreglo
+			 */
+			var json = eliminarIncidenciaDeJson( $("#incidenciaId_Form").val(), jsonIncidenciasSinOpinar);
+			var jsonString = "";
+			if ( json.length == 0 ){
+				jsonString = "[]";
+			} else {
+				jsonString = JSON.stringify(json);
+			}
+			//y añadiendolos al form
+			document.getElementById("json_userId").value = idUsuarioIncidenciaSinOpinar;
+			document.getElementById("json_incidencias").value = jsonString;
+
 			$.ajax({
 				type: "POST",
 				url: modalAjaxURL_2,
@@ -551,6 +577,20 @@
 			 */
 			alert(saludoUsuario + ":\n\nPara nosotros su opinión es muy valiosa e indispensable.\n\n ( Por favor, complete todos los campos solicitados)\n\nSolo así la Encuesta quedará completa y podremos mejorar la Calidad de Servicio que le ofrecemos...\n\nNota: ¿se cercioró de responder el primer botón?");
 		}
+	}
+
+	function eliminarIncidenciaDeJson(incidenciaId, jsonObjs){
+		var result="";
+
+		var estaId = buscarIdEnJson(jsonObjs, ""+incidenciaId);
+
+		if ( estaId > -1 ){
+			console.log("si esta");
+			/* nuevoJson */
+			result = quitarObjJson(jsonObjs, estaId);
+			console.log( "nuevoJson" , JSON.stringify(result));
+		}
+		return result;
 	}
 
 </script>

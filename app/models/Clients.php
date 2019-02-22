@@ -365,4 +365,174 @@ class Clients {
 
 		return $query -> fetchAll();
 	}
+
+
+	/**
+	 * Listado de SistemasOperativos
+	 */
+	public static function getSistemasOperativos(){
+
+		$connection = Database::instance();
+
+		$sql = " SELECT * FROM SistemasOperativosListado ORDER BY id ASC ";
+
+		$query = $connection -> prepare($sql);
+
+		$query -> execute();
+
+		return $query -> fetchAll();
+	}
+
+	/**
+	 * Listado de VersionesWindowsListado + VersionesOtrosSOListado
+	 */
+	public static function getVersionesSistemasOperativos(){
+
+		$connection = Database::instance();
+
+		$sql = " SELECT * FROM VersionesWindowsListado ORDER BY id ASC;
+					SELECT * FROM VersionesOtrosSOListado ORDER BY id ASC; ";
+
+		$query = $connection -> prepare($sql);
+
+		$query->execute();
+
+		$result["windows"] = $query -> fetchAll();
+
+		$query->nextRowset();
+
+		$result["otro"] = $query -> fetchAll();
+
+		return $result;
+	}
+
+	/**
+	 * Listado de VersionesWindowsListado
+	 */
+	public static function getVersionesWindowsListado(){
+
+		$connection = Database::instance();
+
+		$sql = " SELECT * FROM VersionesWindowsListado ORDER BY id ASC ";
+
+		$query = $connection -> prepare($sql);
+
+		$query -> execute();
+
+		return $query -> fetchAll();
+	}
+
+	/**
+	 * Listado de VersionesOtrosSOListado
+	 */
+	public static function getVersionesOtrosSOListado(){
+
+		$connection = Database::instance();
+
+		$sql = " SELECT * FROM VersionesOtrosSOListado ORDER BY id ASC ";
+
+		$query = $connection -> prepare($sql);
+
+		$query -> execute();
+
+		return $query -> fetchAll();
+	}
+
+	/**
+	 * Listado de SistemasOperativosNombresListado
+	 */
+	public static function getSistemasOperativosNombresListado(){
+
+		$connection = Database::instance();
+
+		$sql = " SELECT * FROM SistemasOperativosNombresListado ORDER BY name ASC ";
+
+		$query = $connection -> prepare($sql);
+
+		$query -> execute();
+
+		return $query -> fetchAll();
+	}
+
+	/**
+	 * Listado de LicenciasTipoListado
+	 */
+	public static function getLicenciasTipoListado(){
+
+		$connection = Database::instance();
+
+		$sql = " SELECT * FROM LicenciasTipoListado ORDER BY name ASC ";
+
+		$query = $connection -> prepare($sql);
+
+		$query -> execute();
+
+		return $query -> fetchAll();
+	}
+
+	/**
+	 * Listado de OfimaticaSoftwareListado
+	 */
+	public static function getOfimaticaSoftwareListado(){
+
+		$connection = Database::instance();
+
+		$sql = " SELECT * FROM OfimaticaSoftwareListado ORDER BY id ASC ";
+
+		$query = $connection -> prepare($sql);
+
+		$query -> execute();
+
+		return $query -> fetchAll();
+	}
+	
+	
+	/**
+	 * Listado de OfimaticaSoftwareNombresListado
+	 */
+	public static function getOfimaticaSoftwareNombresListado(){
+
+		$connection = Database::instance();
+
+		$sql = " SELECT * FROM OfimaticaSoftwareNombresListado ORDER BY name ASC ";
+
+		$query = $connection -> prepare($sql);
+
+		$query -> execute();
+
+		return $query -> fetchAll();
+	}
+
+	/**
+	 * Listado de VersionesOfimaticaSoftwareListado
+	 */
+	public static function getVersionesOfimaticaSoftwareListado(){
+
+		$connection = Database::instance();
+
+		$sql = " SELECT * FROM VersionesOfimaticaSoftwareListado ORDER BY id ASC ";
+
+		$query = $connection -> prepare($sql);
+
+		$query -> execute();
+
+		return $query -> fetchAll();
+	}
+
+	/**
+	 * Para obtener los Estatus que poseen los Equipos
+ 	 */
+	public static function getEstatusEquipos(){
+
+		$connection = Database::instance();
+
+		$sql = " SELECT * FROM StatusEquipos ORDER BY status ASC ";
+
+		$query = $connection -> prepare($sql);
+
+		$query -> execute();
+
+		return $query -> fetchAll();
+	}
+
 }

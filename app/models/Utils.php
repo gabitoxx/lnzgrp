@@ -83,6 +83,8 @@ class Utils {
 
 	/**
 	 * Crear una fecha con estos valores
+	 * @param $mes EN LETRAS
+	 * @param $AM_PM {"AM", "PM"}
 	 */
 	public static function crearFecha($anyo, $mes, $dia, $hora, $AM_PM){
 
@@ -96,6 +98,40 @@ class Utils {
 		}
 
 		$month = Utils::getMonthNumber($mes);
+
+		$anyo = Utils::verificarBisiesto($anyo, $month, $dia);
+
+		/*
+		 * Syntax:  mktime(hour,minute,second,month,day,year,is_dst);
+		 */
+		$integerUnixTimestamp = mktime($hour,0,0,$month,$dia,$anyo);
+
+		/*
+		 * Crear FECHA con el valor del dia dado (en formato INTEGER de UNIX)
+		 */
+		$response = date("Y-m-d h:i:s", $integerUnixTimestamp );
+		
+		return $response;
+	}
+
+	/**
+	 * Crear una fecha con estos valores
+	 * @param $mes EN NUMERO
+	 * @param $AM_PM {"AM", "PM"}
+	 */
+	public static function crearFecha2($anyo, $mes, $dia, $hora, $AM_PM){
+
+		$hour = intval( $hora );
+		$month= intval( $mes );
+		
+		if ( $AM_PM == "PM" ){
+			$hour = $hour + 12;
+			if ( $hour == 24 ){
+				$hour = 23;
+			}
+		}
+
+		$anyo = Utils::verificarBisiesto($anyo, $month, $dia);
 
 		/*
 		 * Syntax:  mktime(hour,minute,second,month,day,year,is_dst);
@@ -149,11 +185,21 @@ class Utils {
 		return $response;
 	}
 
+	/**
+	 * @param $haystack la variable donde buscar
+	 * @param $needle el String a buscar
+	 * @return boolean TRUE si comienza con $needle
+	 */
 	public static function startsWith($haystack, $needle){
 		$length = strlen($needle);
 		return (substr($haystack, 0, $length) === $needle);
 	}
 
+	/**
+	 * @param $haystack la variable donde buscar
+	 * @param $needle el String a buscar
+	 * @return boolean TRUE si termina con $needle
+	 */
 	public static function endsWith($haystack, $needle){
 		$length = strlen($needle);
 		if ($length == 0) {
@@ -225,6 +271,49 @@ class Utils {
 		}
 	}
 
+	/**
+	 * verifica si el año es Bisiesto SOLO en caso de que se desee ingresar
+	 * la fecha de Cumpleaños como <29 de Febrero>
+	 * @param $month Integer
+	 * @return la misma fecha dada como parámetro por el usuario A MENOS QUE se establezca un año
+	 *  Bisiesto NO VALIDO, en cuyo caso se devolverá el año 2000
+	 */
+	public static function verificarBisiesto($anyo, $month, $dia){
+
+		if ( $dia > 29 && $month == 2 ){
+			/* validado en Javascript, function diaValido() */
+			return 2000;
+
+		} else if ( $dia == 29 && $month == 2 ){
+
+			 if (((($anyo%100)!=0)&&(($anyo%4)==0))||(($anyo%400)==0)){
+				/* El año sí es bisiesto */
+				return $anyo;
+			 } else {
+			 	return 2000;
+			 }
+		} else {
+			return $anyo;
+		}
+	}
+
+	/**
+	 * Genera un String para los QUERIES, tantos ? segun parámetro
+	 */
+	public static function generarQuestionMarks($cantidad){
+		if ( $cantidad > 0 ){
+			$result = "";
+			for ( $i = 0; $i < $cantidad; $i++ ){
+				$result .= "?,";
+			}
+			/* substring el ultimo caracter, delete the last comma */
+			$result = rtrim($result,",");
+			return $result;
+		} else {
+			return "";
+		}
+	}
+
 
 	/** Funciones utilitarias de PHP
 	 *
@@ -247,5 +336,7 @@ class Utils {
 	 *		replace		Required. Specifies the value to replace the value in find
 	 *		string		Required. Specifies the string to be searched
 	 *		count		Optional. A variable that counts the number of replacements
+	 *
+	 * - trim()  -> aplica ltrim y rtrim  (left-right)
 	 */
 }

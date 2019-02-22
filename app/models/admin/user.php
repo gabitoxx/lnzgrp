@@ -123,7 +123,7 @@ class user implements crud {
 			$sql = "";
 
 			$connection = Database::instance();
-			
+
 			if ( $userType == "activo" ){
 				$sql = " SELECT * FROM Usuarios WHERE ( usuario = ? OR email = ?) AND password = ? AND activo = 'activo' ";
 
@@ -168,17 +168,19 @@ class user implements crud {
 	public static function insert($greetings, $givenname, $lastname, $gender,
 			$email, $username, $password,
 			$empresaId, $dependencia, $cargo,
-			$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext
-			,$activo) {
+			$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext,
+			$activo, $birthdate ) {
 
 		try {
 			$connection = Database::instance();
 
-			$sql = "INSERT INTO Usuarios("
-				. "usuario,password,nombre,apellido,email,empresaId,role,"
-				. "dependencia,saludo,gender,activo,Celular,"
-				. "TelefonoTrabajo,ExtensionTrabajo,TelefonoCasa)" 
-				. "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+			$sql = " INSERT INTO Usuarios (
+				usuario, password, nombre, apellido, email,
+				empresaId, role, dependencia,saludo, gender,
+				activo, Celular, TelefonoTrabajo,ExtensionTrabajo,TelefonoCasa, 
+				cumpleanos
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 
 			$query = $connection -> prepare($sql);
 
@@ -222,6 +224,9 @@ class user implements crud {
 			$query -> bindParam(14, $phone_work_ext, \PDO::PARAM_INT);
 			$query -> bindParam(15, $phone_home, \PDO::PARAM_INT);
 
+			/* cumpleanos */
+			$query -> bindParam(16, $birthdate, \PDO::PARAM_STR);
+
 			$count = $query -> execute();
 
 			/* Cantidad de filas afectadas, se supone que es 1 */
@@ -254,7 +259,8 @@ class user implements crud {
 	 */
 	public static function update($userId, $greetings, $givenname, $lastname, $gender,
 			$email, $dependencia, 
-			$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext) {
+			$cellphone_code, $phone_cell, $phone_home, $phone_work, $phone_work_ext,
+			$birthdate) {
 
 		try {
 			$otroUsuarioConEsteEmail = user::searchAnotherEmail($userId,$email);
@@ -282,7 +288,8 @@ class user implements crud {
 
 			$sql = " UPDATE Usuarios SET nombre=?, apellido=?, "
 					. " email=?,dependencia=?, saludo=?,gender=?, "
-					. " celular=?, telefonoTrabajo=?, extensionTrabajo=?,telefonoCasa=? "
+					. " celular=?, telefonoTrabajo=?, extensionTrabajo=?,telefonoCasa=?, "
+					. " cumpleanos=? "
 					. " WHERE id = ? ";
 
 			$query = $connection -> prepare($sql);
@@ -302,8 +309,9 @@ class user implements crud {
 			$query -> bindParam(9, $phone_work_ext, \PDO::PARAM_STR);
 			$query -> bindParam(10, $phone_home, 	\PDO::PARAM_STR);
 
-			$query -> bindParam(11, $userId, \PDO::PARAM_INT);
-
+			$query -> bindParam(11, $birthdate, \PDO::PARAM_STR);
+			$query -> bindParam(12, $userId, 	\PDO::PARAM_INT);
+			
 			$count = $query -> execute();
 
 			/* Cantidad de filas afectadas, se supone que es 1 */
@@ -370,9 +378,34 @@ class user implements crud {
 		}
 	}
 
-	public static function delete($id)
-	{
+	public static function delete($id){
+		try {
+			$conn = Database::instance();
 
+			$sql = "DELETE FROM Usuarios WHERE id = ?";
+
+			$query = $conn -> prepare($sql);
+
+			$query -> bindParam(1, $id, \PDO::PARAM_INT);
+
+			$cont = $query -> execute();
+
+			return $cont;
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Admin.User.updatePassword()):";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "$userName: $claveActual, $claveNueva";
+
+			/**/
+			Transaccion::insertTransaccionPDOException("Usuario_Actualizar",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",	 $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
 	}
 
 	public static function getUserByEmailOrUsername($forgetPassword){

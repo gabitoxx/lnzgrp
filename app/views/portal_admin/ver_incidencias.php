@@ -94,7 +94,7 @@
 						<button type="button"
 						 <?php 
 							if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
-								echo 'class="btn btn-primary disabled"';
+								echo 'class="btn btn-primary disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-primary"';
 							}
@@ -107,7 +107,7 @@
 						<button type="button"
 						 <?php 
 							if ($incidencia["tecnicoId"]==null || $incidencia["tecnicoId"]==""){
-								echo 'class="btn btn-info disabled"';
+								echo 'class="btn btn-info disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-info"';
 							}
@@ -139,7 +139,7 @@
 								/*
 								 * Si NO se ha resuelto y el tecnicoId es diferente del Admin
 								 */
-								echo 'class="btn btn-success disabled"';
+								echo 'class="btn btn-success disabled" disabled="disabled" ';
 							} else {
 								echo 'class="btn btn-success"';
 							}

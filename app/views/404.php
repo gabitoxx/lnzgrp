@@ -23,17 +23,36 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
+	<link rel="stylesheet" href="css/error.css" type="text/css" media="screen">
+	
 </head>
 <body id="myPage">
 
-	<div class="row">
+	<div id="clouds">
+            <div class="cloud x1"></div>
+            <div class="cloud x1_5"></div>
+            <div class="cloud x2"></div>
+            <div class="cloud x3"></div>
+            <div class="cloud x4"></div>
+            <div class="cloud x5"></div>
+        </div>
+        <div class='c'>
+            <div class='_404'>404</div>
+            <hr>
+            <div class='_1'>Página</div>
+            <div class='_2'>No encontrada</div>
+            <a class='btn' href='https://www.lanuzagroup.com/'>Regresar</a>
+        </div>
+
+	
+	<!--div class="row">
 		<div class="col-sm-12">
 			<img src="<?= APPIMAGEPATH; ?>logo.png" alt="Lanuza Group" class="img-responsive" width="700" height="381">
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<a href="lanuzagroup.com">Volver a la Página de Incio</a>
+			<a href="https://lanuzasoft.com/">Volver a la Página de Incio</a>
 		</div>
-	</div>
+	</div-->
 </body>

@@ -1,0 +1,25 @@
+{
+	"short_name": "LanuzaSoft",
+	"name": "LanuzaSoft: Portal Partners de LanuzaGroup",
+	"icons": [
+		{
+			"src": "https://lanuzasoft.com/app/views/images/apple-touch-icon.png",
+			"type": "image/png",
+			"sizes": "48x48"
+		},
+		{
+			"src": "https://lanuzasoft.com/app/views/images/apple-touch-icon-72x72.png",
+			"type": "image/png",
+			"sizes": "72x72"
+		},
+		{
+			"src": "https://lanuzasoft.com/app/views/images/apple-touch-icon-114x114.png",
+			"type": "image/png",
+			"sizes": "114x114"
+		}
+	],
+	"start_url": "https://lanuzasoft.com",
+	"background_color": "#F9B233",
+	"display": "standalone",
+	"theme_color": "#F9B233"
+}

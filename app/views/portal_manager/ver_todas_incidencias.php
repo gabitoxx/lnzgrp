@@ -1,3 +1,12 @@
+<?php
+	$incidenciasSinOpinarJSON = "[]";
+	if ( isset($jsonIncidenciasSinOpinar) ){
+		$incidenciasSinOpinarJSON = $jsonIncidenciasSinOpinar;
+	}
+	echo "<script>";
+	echo "   var jsonString = '" . $incidenciasSinOpinarJSON . "'" ;
+	echo "</script>";
+?>
 <style>
 	#tableId tr td:nth-child(3){
 		width:210px !important;
@@ -54,7 +63,7 @@
 			<thead class="cf">
 				<tr>
 					<th width="90px" class="active" align="center">Nº Incidencia<br/>y Estatus</th>
-					<th width="160px">Acciones</th>
+					<th width="200px" style="min-width:200px;">Acciones</th>
 					<th width="100px" align="center">Nº Equipo</th>
 					<th width="145px">Fecha creaci&oacute;n<br/>(A&ntilde;o-Mes-D&iacute;a Hora)</th>
 					<th width="160px">Falla:<br/>General</th>
@@ -86,7 +95,7 @@
 						<button type="button"
 						 <?php 
 							if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
-								echo 'class="btn btn-primary disabled"';
+								echo 'class="btn btn-primary disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-primary"';
 							}
@@ -100,7 +109,7 @@
 						<button type="button"
 						 <?php 
 							if ($incidencia["tecnicoId"]==null || $incidencia["tecnicoId"]==""){
-								echo 'class="btn btn-info disabled"';
+								echo 'class="btn btn-info disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-info"';
 							}
@@ -109,6 +118,13 @@
 						 onclick="javascript:verInfoTecnico(<?php echo $incidencia["tecnicoId"] ?>);"
 						 >
 							<span class="glyphicon glyphicon-wrench"></span>
+						</button>
+						&nbsp;
+						<button type="button" class="btn btn-warning"
+						 data-toggle="tooltip" data-placement="bottom" title="Ver Datos de la Conexi&oacute;n Remota"
+						 onclick="javascript:verDatosConexion(<?php echo $incidencia["incidenciaId"] ?>);"
+						 >
+							<span class="glyphicon glyphicon-link"></span>
 						</button>
 						&nbsp;
 						<?php 
@@ -127,7 +143,7 @@
 							<button type="button"
 							 <?php 
 								if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
-									echo 'class="btn btn-success disabled"';
+									echo 'class="btn btn-success disabled" disabled="disabled" ';
 								}else{
 									echo 'class="btn btn-success"';
 								}
@@ -242,7 +258,7 @@
 			<thead class="cf">
 				<tr>
 					<th width="90px" class="active" align="center">Nº Incidencia<br/>y Estatus</th>
-					<th width="155px">Acciones</th>
+					<th width="200px" style="min-width:200px;">Acciones</th>
 					<th width="120px" align="center">Nº Equipo<br/>(Usuario)</th>
 					<th width="160px">Fecha creaci&oacute;n<br/>(A&ntilde;o-Mes-D&iacute;a Hora)</th>
 					<th width="160px">Falla:<br/>General</th>
@@ -272,7 +288,7 @@
 						<button type="button"
 						 <?php 
 							if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
-								echo 'class="btn btn-primary disabled"';
+								echo 'class="btn btn-primary disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-primary"';
 							}
@@ -286,7 +302,7 @@
 						<button type="button"
 						 <?php 
 							if ($incidencia["tecnicoId"]==null || $incidencia["tecnicoId"]==""){
-								echo 'class="btn btn-info disabled"';
+								echo 'class="btn btn-info disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-info"';
 							}
@@ -297,10 +313,17 @@
 							<span class="glyphicon glyphicon-wrench"></span>
 						</button>
 						&nbsp;
+						<button type="button" class="btn btn-warning"
+						 data-toggle="tooltip" data-placement="bottom" title="Ver Datos de la Conexi&oacute;n Remota"
+						 onclick="javascript:verDatosConexion(<?php echo $incidencia["incidenciaId"] ?>);"
+						 >
+							<span class="glyphicon glyphicon-link"></span>
+						</button>
+						&nbsp;
 						<button type="button"
 							 <?php 
 								if ( $incidencia["status"] != "Cerrada" ){
-									echo 'class="btn btn-success disabled"';
+									echo 'class="btn btn-success disabled" disabled="disabled" ';
 								}else{
 									echo 'class="btn btn-success"';
 								}
@@ -557,6 +580,25 @@
 	</div>
 	<br/>
 	<div class="row control-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<table class="table table-hover table-striped">
+				<tr>
+					<td>
+						<button type="button" class="btn btn-warning">
+							<span class="glyphicon glyphicon-link"></span> 
+						</button>
+					</td>
+					<td class="active">
+						<b>Datos de Conexi&oacute;n Remota</b><br/>
+						Son los Datos digitados <b>al momento de Crear la Incidencia</b> y 
+						que son necesarios para establecer la <b>Asistencia y Conexi&oacute;n Remota</b> con el Equipo afectado.
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<br/>
+	<div class="row control-group">
 		<div class="col-sm-2">Reportes de Visita:</div>
 		<div class="col-sm-10" style="background-color:#d9edf7;">
 			En la columna de <b>"Falla General"</b> podr&aacute; ver los 
@@ -568,6 +610,8 @@
 
 </fieldset>
 
+
+<!-- ==================================  ======================================= -->
 <div class="modal fade" id="myModal" role="dialog">
 	<!-- tamaño del modal: modal-sm PEQUEÑO | modal-lg GRANDE -->
 	<div class="modal-dialog modal-sm">
@@ -575,8 +619,9 @@
 	    <div class="modal-header">
 	      <button type="button" class="close" data-dismiss="modal">&times;</button>
 	      <h4 class="modal-title" align="center">
-			<span class="glyphicon glyphicon-wrench"></span> 
-			Informaci&oacute;n del Ingeniero de Soporte
+			<span class="glyphicon glyphicon-wrench" id="titleSpan">
+				Informaci&oacute;n del Ingeniero de Soporte
+			</span> 
 	      </h4>
 	    </div>
 
@@ -597,6 +642,14 @@
 ?>
 <form id="enviarTecnico" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="tecnicoId" name="tecnicoId" value="" />
+</form>
+
+<!-- ================================== Formulario para VER Data Conexion Remota =================================== -->
+<?php
+	echo "<script> var modalAjaxURL_3 = '" . PROJECTURLMENU . "tecnicos/ajax_ver_datos_conexion_remota'; </script>" ;
+?>
+<form id="askDataLink" method="post" enctype="multipart/form-data">
+	<input type="hidden" id="DataLink_incidenciaId" name="DataLink_incidenciaId" value="" />
 </form>
 
 
@@ -723,8 +776,36 @@
 				alert("Error al buscar info del Técnico en nuestro Sistema\nPor favor, intente más tarde");
 			}
 		});
-
 	}
+
+	function verDatosConexion(incidenciaId){
+
+		$('#myModal').modal({
+			backdrop: 'static',
+			keyboard: false,
+			show: true
+		});
+
+		$('#titleSpan').text("Datos de Conexión Remota");
+
+		/* valor en el input type hidden */
+		document.getElementById("DataLink_incidenciaId").value = "" + incidenciaId;
+
+		$.ajax({
+			type: "POST",
+			url: modalAjaxURL_3,
+			data: $('#askDataLink').serialize(),
+			success: function(message){
+				/*alert("OK_");*/
+				/*$("#feedback-modal").modal('hide');*/
+				$("#feedback").html(message);
+			},
+			error: function(){
+				alert("Error al buscar info de la Conexión Remota\nPor favor, intente más tarde");
+			}
+		});
+	}
+
 
 	$(document).ready(function () {
 

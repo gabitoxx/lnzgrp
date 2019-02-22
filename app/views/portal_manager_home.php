@@ -35,6 +35,8 @@
 	<link rel="apple-touch-icon" href="<?= APPIMAGEPATH; ?>apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="<?= APPIMAGEPATH; ?>apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="<?= APPIMAGEPATH; ?>apple-touch-icon-114x114.png">
+	<link rel="manifest" href="http://lanuzasoft.com/app/views/portal_manager/partner-manifest.json" />
+	<meta name="theme-color" content="<?= $_SESSION['portal_color_rgb']; ?>" />
 
 	<!-- Bootstrap core CSS -->
 	<link href="<?= BOOTSTRAPPATH; ?>css/bootstrap.min.css" rel="stylesheet">
@@ -220,7 +222,7 @@
 						Soportes<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="<?= PROJECTURLMENU; ?>portal/calendario"><span class="glyphicon glyphicon-calendar"></span> Calendario</a></li>
-							<li><a href="<?= PROJECTURLMENU; ?>portal/listado_soportes"><span class="glyphicon glyphicon-object-align-right"></span> Listado Soportes</a></li>
+							<li><a href="<?= PROJECTURLMENU; ?>portal/listado_soportes"><span class="glyphicon glyphicon-object-align-right"></span> Resumen Listado Soportes</a></li>
 						</ul>
 					</li>
 					
@@ -288,6 +290,7 @@
 							<li><a href="<?= PROJECTURLMENU; ?>gerentes/cargar_reporte_incidencias"><span class="glyphicon glyphicon-list"></span> Incidencias</a></li>
 							<li><a href="<?= PROJECTURLMENU; ?>gerentes/cargar_reporte_equipos"><span class="glyphicon glyphicon-list-alt"></span> Equipos</a></li>
 							<li><a href="<?= PROJECTURLMENU; ?>gerentes/cargar_historial_equipos"><span class="glyphicon glyphicon-hourglass"></span> Historial de Equipos</a></li>
+							<li><a href="<?= PROJECTURLMENU; ?>gerentes/cargar_licencias_equipos"><span class="glyphicon glyphicon-registration-mark"></span> Licencias de Equipos</a></li>
 						</ul>
 					</li>
 
@@ -336,27 +339,65 @@
 		
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+		<script src="<?= APPJSPATH; ?>funcionesGenericas.js"></script>
+
 		<div id="main-wrapper" class="col-md-12 col-sm-12 col-xs-12 pull-right">
 			<div id="main">
 			  <div class="page-header" style="margin-top:0px; margin-bottom:0px;">
-				<table id="presentation-bar" width="100%">
-					<tr>
-						<td width="150px">
-							<p id="menuIzqButton">
-								&nbsp; <span style="font-size:30px;cursor:pointer" onclick="javascript:openNav();">&#9776; Men&uacute;</span>
-							</p>
-						</td>
-						<td>
-							<h3>&nbsp; <span class="glyphicon glyphicon-briefcase"></span> <u>Portal de Gerentes</u>: <i><?= $user->saludo . " " . $user->nombre . " " . $user->apellido; ?></i></h3>
-						</td>
-						<td align="right">
-							<?php
-							echo "Hoy es " . date("d/m/Y");
-							?>
-						</td>
-					</tr>
-				</table>
-			  </div>
+
+					<div class="hidden-xs">
+					<!-- Esconder en Celulares -->
+						<table id="presentation-bar" width="100%">
+							<tr>
+								<td width="150px">
+									<p id="menuIzqButton">
+										&nbsp; <span style="font-size:30px;cursor:pointer" onclick="javascript:openNav();">&#9776; Men&uacute;</span>
+									</p>
+								</td>
+								<td>
+									&nbsp;&nbsp;
+									<a href="<?= PROJECTURLMENU; ?>portal/home" data-toggle="tooltip" data-placement="bottom" title="Ir al Inicio">
+										<span class="glyphicon glyphicon-home" style="font-size:30px;cursor:pointer"></span>
+									</a>
+								</td>
+								<td>
+									<h3>&nbsp; <span class="glyphicon glyphicon-wrench"></span> <u>Portal Gerencial</u>: <i><?= $user->saludo . " " . $user->nombre . " " . $user->apellido; ?></i></h3>
+								</td>
+								<td align="right">
+									<?php
+									echo "Hoy es " . date("d/m/Y");
+									?>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class="visible-xs-block">
+					<!-- Mostrar SOLO en Celulares -->
+						<table id="presentation-bar" width="100%">
+							<tr>
+								<td>
+									<p id="menuIzqButton">
+										<span style="font-size:20px;cursor:pointer" onclick="javascript:openNav();">&#9776;</span>
+									</p>
+								</td>
+								<td>
+									&nbsp;&nbsp;
+									<a href="<?= PROJECTURLMENU; ?>portal/home">
+										<span class="glyphicon glyphicon-home" style="font-size:20px;cursor:pointer"></span>
+									</a>
+								</td>
+								<td>
+									<i><?= $user->saludo . " " . $user->nombre . " " . $user->apellido; ?></i>
+								</td>
+								<td align="right">
+									<?php
+									echo "Hoy: " . date("d/m/Y");
+									?>
+								</td>
+						</table>
+					</div>
+				</div>
 			  
 			  <div class="page-body">
 				<?php 
@@ -364,6 +405,7 @@
 					include( $fileLocation );
 				?>
 			  </div>
+
 			</div>
 			
 			<!-- div class="col-md-12 footer">

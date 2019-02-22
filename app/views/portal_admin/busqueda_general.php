@@ -244,7 +244,7 @@
 					<i>
 						variables End&oacute;genas, variable Ex&oacute;genas T&eacute;cnicas,
 						variables Ex&oacute;genas Humanas,
-						mantenimientos de Hardware, mantenimientos de Software y/o acompa&oacute;amientos Junior.
+						mantenimientos de Hardware, mantenimientos de Software y/o acompa&ntilde;amientos Junior.
 					</i>
 					<br/><br/>
 					<span style="background-color:#F9B233;">
@@ -954,7 +954,7 @@
 							<button type="button"
 							 <?php 
 								if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
-									echo 'class="btn btn-primary disabled"';
+									echo 'class="btn btn-primary disabled" disabled="disabled" ';
 								}else{
 									echo 'class="btn btn-primary"';
 								}
@@ -967,7 +967,7 @@
 							<button type="button"
 							 <?php 
 								if ($incidencia["tecnicoId"]==null || $incidencia["tecnicoId"]==""){
-									echo 'class="btn btn-info disabled"';
+									echo 'class="btn btn-info disabled" disabled="disabled" ';
 								}else{
 									echo 'class="btn btn-info"';
 								}

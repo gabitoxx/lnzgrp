@@ -959,17 +959,17 @@
 				<div class="col-sm-3">
 					<div class="input-group">
 						<label class="radio-inline">
-						  <input type="radio" name="office" id="office" value="Si">
+						  <input type="radio" name="office" id="office" value="Si" onclick="javascript:toogleLicOffice(1);">
 							S&iacute;
 						</label>
 						&nbsp;&nbsp;&nbsp;
 						<label class="radio-inline">
-						  <input type="radio" name="office" id="office" value="No">
+						  <input type="radio" name="office" id="office" value="No" onclick="javascript:toogleLicOffice(0);">
 							No
 						</label>
 						&nbsp;&nbsp;&nbsp;
 						<label class="radio-inline">
-						  <input type="radio" name="office" id="office" value="Desconocido">
+						  <input type="radio" name="office" id="office" value="Desconocido" onclick="javascript:toogleLicOffice(1);">
 							Desconocido
 						</label>
 					</div>
@@ -981,6 +981,32 @@
 				</div>
 			</div>
 
+
+			<div id="licOffice-div" class="row form-group">
+				<div class="col-sm-3" align="right">
+					<label>
+						Licencia de Office
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="licOffice" name="licOffice" 
+					 placeholder="Ej: 2013, 12.1">
+					 <span id="licOffice-span" class=""></span>
+				</div>
+				<div class="col-sm-5">
+					Solo en caso <b>Afirmativo</b> de la pregunta anterior, indique versi&oacute;n.
+					<br/>
+					Para conocer info sobre versiones de Office: 
+					<a href="https://es.wikipedia.org/wiki/Microsoft_Office" target="_blank">
+						https://es.wikipedia.org/wiki/Microsoft_Office
+					</a>
+				</div>
+				<div class="col-sm-2">
+					<div id="licOffice-error" class="help-block">
+						&nbsp;
+					</div>
+				</div>
+			</div>
 
 
 			<div id="sistemaOperativo-div" class="row form-group">
@@ -1339,6 +1365,23 @@
 				$("#versionSO").val( versionSO );
 			}
 
+
+			var licOffice = $("#licOffice").val();
+			licOffice = licOffice.replace("," , ".");
+
+			if ( !isNumber(licOffice) ){
+				bool = false;
+				
+				document.getElementById("licOffice-div").className = "form-group has-error has-feedback";
+				document.getElementById("licOffice-span").className = "glyphicon glyphicon-remove form-control-feedback";
+				document.getElementById("licOffice-error").innerHTML = "Valor debe ser NUMÉRICO. Ej: 12.9 (o un año. Ej: 2010)";
+
+			} else {
+				$("#licOffice").val( licOffice );
+			}
+
+
+			/**/
 			if ( bool == true ){
 				var ask = confirm( confirmMessage );
 				if ( ask == true) {
@@ -1406,6 +1449,10 @@
 			document.getElementById("sistemaOperativo-span").className = "";
 			document.getElementById("versionSO-span").className = "";
 			document.getElementById("sistemaOperativo-error").innerHTML = "";
+
+			document.getElementById("licOffice-span").className = "";
+			document.getElementById("licOffice-div").className = "form-group";
+			document.getElementById("licOffice-error").innerHTML = "";
 		}
 
 		function csvTablaHTML(){
@@ -1457,6 +1504,18 @@
 				document.getElementById("periferico_codigo").value 		 = codigo;
 				document.getElementById("periferico_observaciones").value= obser;
 				
+			}
+		}
+
+		function toogleLicOffice(enabled){
+
+			if ( enabled == 1 ){
+				/* Solo aqui puede llenar el campo */
+				$("#licOffice").prop('disabled', false);
+				$("#licOffice").removeAttr('disabled');
+			} else {
+				$("#licOffice").prop('disabled', true);
+				$("#licOffice").attr('disabled','disabled');
 			}
 		}
 	</script>

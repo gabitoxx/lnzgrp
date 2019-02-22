@@ -130,7 +130,7 @@
 		<br/>
 		<?= "C&oacute;digo Barras: " . $codigoBarras; ?>
 		<br/>
-		<?= "Sistema Operativo: <b>" . $os[0]["Caption"] . "</b>"; ?>
+		<?= "Sistema Operativo: <b>" . $generalInfo["sistemaOperativo"] . "</b>"; ?>
 		<br/>
 <?php
 		if ( trim( $os[0]["Workgroup"] ) == "WORKGROUP" ){
@@ -139,11 +139,66 @@
 		} else if ( trim( $os[0]["Workgroup"] ) == "HOMEGROUP" ){
 			echo "Grupo de Casa: " . $os[0]["CSName"] . "<br/>";
 		}
+
+		if ( isset($generalInfo["gama"]) && $generalInfo["gama"] != "" ){
+			echo "Gama del Equipo: " . $generalInfo["gama"] . "<br/>";
+		}
 ?>
 		<br/>
 		<span style="font-size: 12px;">* Imagen referencial, NO es la Foto real del Equipo.</span>
 	</div>
 </div>
+
+<br/><br/>
+
+<div class="row">
+	<div class="col-sm-4" align="center" style="font-size: 14px;">
+		Team Viewer ID: <b><?= $generalInfo["teamViewer_Id"] ?></b>
+	</div>
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		Fecha creaci&oacute;n: <b><?= $generalInfo["fechaCreacion"] ?></b>
+	</div>
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		Observaci&oacute;n inicial: <b><?= $generalInfo["observacionInicial"] ?></b>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		Marca: <b><?= $generalInfo["marca"] ?></b>
+	</div>
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		Modelo: <b><?= $generalInfo["modelo"] ?></b>
+	</div>
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		Serial: <b><?= $generalInfo["serial"] ?></b>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		Conexi&oacute;n Remota: <b><?= $generalInfo["conexionRemota"] ?></b>
+	</div>
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		Windows con Licencia: <b><?= $generalInfo["licWindows"] ?></b>
+	</div>
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		Office con Licencia: <b><?= $generalInfo["licOffice"] ?></b>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		Versi&oacute;n Sistema Operativo: <b><?= $generalInfo["versionSO"] ?></b>
+	</div>
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		N&uacute;mero Versi&oacute;n Office: <b><?= $generalInfo["numVersionOffice"] ?></b>
+	</div>
+	<div class="col-sm-4" align="center" style="font-size: 12px;">
+		Estado del HDD: <b><?= $generalInfo["hddEstado"] ?></b>
+	</div>
+</div>
+
 
 <br/>
 <hr/>

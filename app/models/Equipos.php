@@ -5,9 +5,15 @@ defined("APPPATH") OR die("Access denied");
 use \core\Database,
 	\core\View,
 	\app\models\admin\Transaccion,
-	app\models\Utils;
+	\app\models\Utils;
 
 class Equipos {
+	
+	/**
+	 * Filtros genericos
+	 */
+	private static $FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO = " AND eq.estatus <> 'Suspendido' ";
+
 
 	/**
 	 * Obtener Equipo(s) dado el USUARIO y su EMPRESA
@@ -165,7 +171,8 @@ class Equipos {
 		try {
 			$connection = Database::instance();
 
-			$sql = "SELECT * FROM Equipos WHERE empresaId = ? ";
+			$sql = " SELECT * FROM Equipos eq WHERE eq.empresaId = ? "
+				. self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO ;
 
 			$query = $connection -> prepare($sql);
 
@@ -200,11 +207,13 @@ class Equipos {
 		try {
 			$connection = Database::instance();
 
-			$sql = " SELECT eq.*, u.nombre, u.apellido   
+			$sql = " 
+					SELECT eq.*, u.nombre, u.apellido   
 					FROM Equipos eq 
-					LEFT JOIN Usuarios u ON eq.usuarioId = u.id 
-					WHERE eq.empresaId = ? 
-					ORDER BY eq.codigoBarras  ";
+					 LEFT JOIN Usuarios u ON eq.usuarioId = u.id 
+					WHERE eq.empresaId = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO 
+					. " ORDER BY eq.codigoBarras ";
 
 			$query = $connection -> prepare($sql);
 
@@ -494,10 +503,11 @@ class Equipos {
 	 * @param $perifericos  un objeto con valores serializados por coma tipo CSV que se debe procesar
 	 */
 	public static function insert($empresaId, $ownerUserId, $idAutoIncremental, $data, $perifericos){
-		try{
+		try {
 			$connection = Database::instance();
 
-			if ( $ownerUserId <= 0 || $ownerUserId == NULL ){
+			if ( $ownerUserId <= 0 || $ownerUserId == "" ){
+				/* Para Equipos de Empresa, no asignados a un Usuario */
 				$ownerUserId = NULL;
 			}
 
@@ -520,23 +530,29 @@ class Equipos {
 			 * La primera info basica será el nombre del Equipo
 			 */
 			$infoBasica = $data[0];
+			
+			/**/
+			$pregs = Utils::generarQuestionMarks(26);
 
 			/*
-			 * Limpiando version del Sistema Operativo
+			 * Se debe insertar primero la data de los Formularios y generar sus ID's
 			 */
-			$SOversion = trim($data[18]);
-			$SOversion = str_replace(",", ".", $SOversion);
-			
+			$equipoSOInfoId = Equipos::insertEquipoSOInfo( $data[17] );
+
+			$equipoOfimaticaInfoId = Equipos::insertEquipoOfimaticaInfo( $data[18] );
+
 			/*
 			 * SQL
 			 */
-			$sql = " INSERT INTO Equipos( id, equipoId, empresaId, usuarioId, tipoEquipoId, 
+			$sql = " INSERT INTO Equipos( 
+					id, equipoId, empresaId, usuarioId, tipoEquipoId, 
 					teamViewer_Id, teamViewer_clave, observacionInicial, codigoBarras, infoBasica, 
 					nombreEquipo, hddEstado, dependencia, marca, modelo, 
 					serial, conexionRemota, claveAdmin, valor, valorReposicion, 
-					linkImagen, licWindows, licOffice, 
-					sistemaOperativo, versionSO, nombreSO ) 
-					VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) ";
+					linkImagen, licWindows, licOffice, equipoSOInfoId, equipoOfimaticaInfoId,
+					gama
+					 ) 
+					VALUES ( " . $pregs . " )";
 
 			$query = $connection -> prepare($sql);
 
@@ -573,14 +589,16 @@ class Equipos {
 			$query -> bindParam(21,  $data[13], \PDO::PARAM_STR);/* linkDeFoto */
 			$query -> bindParam(22,  $data[14], \PDO::PARAM_STR);
 			$query -> bindParam(23,  $data[15], \PDO::PARAM_STR);
-			
+
+			$query -> bindParam(24,  $equipoSOInfoId, 		 \PDO::PARAM_INT);
+			$query -> bindParam(25,  $equipoOfimaticaInfoId, \PDO::PARAM_INT);
+
 			/**/
-			$query -> bindParam(24,  $data[17],  \PDO::PARAM_STR);/* sistemaOperativo */
-			$query -> bindParam(25,  $SOversion, \PDO::PARAM_STR);
-			$query -> bindParam(26,  $data[19],  \PDO::PARAM_STR);
-			
+			$query -> bindParam(26,  $data[19], \PDO::PARAM_STR);
+
+
 			$count = $query -> execute();
-			
+
 			/*
 			 * Actualizando campo Empresa.equiposRegistrados
 			 */
@@ -591,7 +609,7 @@ class Equipos {
 			 * Agregando Periféricos que el Técnico añadio (si es que hay)
 			 */
 			Equipos::agregarPerifericos($idAutoIncremental, $perifericos);
-			
+
 
 			/* Cantidad de filas afectadas, se supone que es 1 */
 			return $count;
@@ -755,6 +773,12 @@ class Equipos {
 			} else if ( $nombreTabla == "TipsUsoPortal" ){
 				$sql = " SELECT MAX(id) AS max FROM TipsUsoPortal ";
 
+			} else if ( $nombreTabla == "EquipoSOInfo" ){
+				$sql = " SELECT MAX(id) AS max FROM EquipoSOInfo ";
+
+			} else if ( $nombreTabla == "EquipoOfimaticaInfo" ){
+				$sql = " SELECT MAX(id) AS max FROM EquipoOfimaticaInfo ";
+
 			} else {
 				return -1;
 			}
@@ -908,17 +932,30 @@ class Equipos {
 	/**
 	 * Actualizar enlazando el ID del Inventario (tabla EquipoInfo) con el Equipo del Usuario (tabla Equipos)
 	 */
-	public static function updateEquipoConInventario($newEquipoId, $equipoInfoId){
+	public static function updateEquipoConInventario($newEquipoId, $equipoInfoId, $numeroVersionOffice){
 		try{
 			$connection = Database::instance();
-
-			$sql = " UPDATE Equipos SET equipoInfoId = ? WHERE id = ? ";
-
-			$query = $connection -> prepare($sql);
-
-			$query -> bindParam(1, $equipoInfoId,   \PDO::PARAM_INT);
-			$query -> bindParam(2, $newEquipoId,    \PDO::PARAM_INT);
+			$sql = "";
 			
+			if ( $numeroVersionOffice == NULL || $numeroVersionOffice == ""){
+
+				$sql = " UPDATE Equipos SET equipoInfoId = ? WHERE id = ? ";
+
+				$query = $connection -> prepare($sql);
+
+				$query -> bindParam(1, $equipoInfoId,   \PDO::PARAM_INT);
+				$query -> bindParam(2, $newEquipoId,    \PDO::PARAM_INT);
+
+			} else {
+				$sql = " UPDATE Equipos SET equipoInfoId = ?, numVersionOffice = ? WHERE id = ? ";
+
+				$query = $connection -> prepare($sql);
+
+				$query -> bindParam(1, $equipoInfoId,   		\PDO::PARAM_INT);
+				$query -> bindParam(2, $numeroVersionOffice,  \PDO::PARAM_STR);
+				$query -> bindParam(3, $newEquipoId,    		\PDO::PARAM_INT);
+			}
+
 			$count = $query -> execute();
 			
 			/* Cantidad de filas afectadas, se supone que es 1 */
@@ -1621,14 +1658,14 @@ class Equipos {
 		try {
 			$connection = Database::instance();
 
-			$sql = " SELECT eq.id AS equipoId, eq.codigoBarras, eq.observacionInicial, eq.infoBasica, "
-					. "  eq.equipoInfoId, eq.tipoEquipoId, eq.fechaCreacion, eq.linkImagen, "
-					. "  u.id AS usuarioId, u.saludo, u.nombre, u.apellido, u.dependencia, "
-					. "  teq.nombre AS TipoEquipo "
-					. " FROM Equipos eq "
-					. " LEFT JOIN TipoEquipos teq ON eq.tipoEquipoId = teq.tipoEquipoId "
-					. " LEFT JOIN Usuarios u ON eq.usuarioId = u.id "
-					. " WHERE eq.empresaId = ? ";
+			$sql = " SELECT eq.id AS equipoId, eq.codigoBarras, eq.observacionInicial, eq.infoBasica, 
+					 eq.equipoInfoId, eq.tipoEquipoId, eq.fechaCreacion, eq.linkImagen, eq.estatus, 
+					 u.id AS usuarioId, u.saludo, u.nombre, u.apellido, u.dependencia, 
+					 teq.nombre AS TipoEquipo 
+					FROM Equipos eq 
+					LEFT JOIN TipoEquipos teq ON eq.tipoEquipoId = teq.tipoEquipoId 
+					LEFT JOIN Usuarios u ON eq.usuarioId = u.id 
+					WHERE eq.empresaId = ? ";
 
 			$query = $connection -> prepare($sql);
 
@@ -2860,6 +2897,12 @@ class Equipos {
 				 */
 				$sql .= " WHERE eq.codigoBarras = '" . $a . "' ";
 
+			} else if ( Utils::startsWith( $a, "id:") ){
+				/* Buscar Equipo por id, ejemplo 'id:123' */
+				$b = substr( $a , 3);
+				if ( $b != NULL ){
+					$sql .= " WHERE eq.id = '" . $b . "' ";
+				}
 			} else {
 				$sql .= " WHERE eq.usuarioId IN "
 						. " ( SELECT u.id FROM Usuarios u WHERE u.nombre LIKE '%".$a."%' OR u.apellido LIKE '%".$a."%' OR u.email LIKE '%".$a."%' OR u.usuario LIKE '%".$a."%' ) "
@@ -2900,8 +2943,10 @@ class Equipos {
 		try {
 			$connection = Database::instance();
 
-			$sql = " SELECT ep.*, tp.nombre AS Nombre_Periferico FROM EquipoPerifericos ep "
-					. " INNER JOIN TipoPerifericos tp ON ep.tipoPerifericoId = tp.id WHERE ep.equipoId = ? ";
+			$sql = " SELECT ep.*, tp.nombre AS Nombre_Periferico 
+					 FROM EquipoPerifericos ep 
+					  INNER JOIN TipoPerifericos tp ON ep.tipoPerifericoId = tp.id
+					 WHERE ep.equipoId = ? ";
 
 			$query = $connection -> prepare($sql);
 
@@ -2938,18 +2983,25 @@ class Equipos {
 
 			$connection = Database::instance();
 
-			/*
-			 * Limpiando version del Sistema Operativo
+			$currentEquipo = Equipos::getById($equipoId);
+
+			/**
+			 * Creando info del form Sistema Operativo
 			 */
-			$SOversion = trim($data[18]);
-			$SOversion = str_replace(",", ".", $SOversion);
+			$equipoSOInfoId = Equipos::insertOrUpdateEquipoSOInfo( $currentEquipo["equipoSOInfoId"], $data[17] );
 			
-			$sql = " UPDATE Equipos SET 
-					tipoEquipoId = ?, teamViewer_Id = ?, teamViewer_clave = ?, observacionInicial = ?, infoBasica = ?, 
-					nombreEquipo = ?, hddEstado = ?, dependencia = ?, marca = ?, modelo = ?, 
-					serial = ?, conexionRemota = ?, claveAdmin = ?, valor = ?, valorReposicion = ?, 
-					linkImagen = ?, licWindows = ?, licOffice = ?,
-					sistemaOperativo = ?, versionSO = ?, nombreSO = ?
+			/**
+			 * Creando info del form Herramienta Ofimática
+			 */
+			$equipoOfimaticaInfoId = Equipos::insertOrUpdateEquipoOfimaticaInfo( $currentEquipo["equipoOfimaticaInfoId"], $data[18] );
+			
+			/**/
+			$sql =" UPDATE Equipos SET 
+					 tipoEquipoId = ?, teamViewer_Id = ?, teamViewer_clave = ?, observacionInicial = ?, infoBasica = ?, 
+					 nombreEquipo = ?, hddEstado = ?, dependencia = ?, marca = ?, modelo = ?, 
+					 serial = ?, conexionRemota = ?, claveAdmin = ?, valor = ?, valorReposicion = ?, 
+					 linkImagen = ?, licWindows = ?, licOffice = ?, equipoSOInfoId = ?, equipoOfimaticaInfoId = ?,
+					 gama = ? 
 					WHERE id = ? ";
 
 			$query = $connection -> prepare($sql);
@@ -2981,12 +3033,12 @@ class Equipos {
 			$query -> bindParam(16,  $data[13], \PDO::PARAM_STR);/* linkDeFoto */
 			$query -> bindParam(17,  $data[14], \PDO::PARAM_STR);
 			$query -> bindParam(18,  $data[15], \PDO::PARAM_STR);
-		
-			/**/
-			$query -> bindParam(19,  $data[17],  \PDO::PARAM_STR);/* sistemaOperativo */
-			$query -> bindParam(20,  $SOversion, \PDO::PARAM_STR);
-			$query -> bindParam(21,  $data[19],  \PDO::PARAM_STR);
 
+			$query -> bindParam(19,  $equipoSOInfoId,  		 \PDO::PARAM_INT);/* equipoSOInfoId */
+			$query -> bindParam(20,  $equipoOfimaticaInfoId, \PDO::PARAM_INT);
+
+			/**/
+			$query -> bindParam(21,  $data[19], \PDO::PARAM_STR);
 
 			/* WHERE */
 			$query -> bindParam(22, $equipoId, \PDO::PARAM_INT);
@@ -3587,6 +3639,552 @@ class Equipos {
 
 			View::render("internalError");
 			die;
+		}
+	}
+
+	/**
+	 * Actualizar con el mismo EquipoInfoId los nuevos ID's CPU y MB
+	 */
+	public static function updateEquipoConNumeroVersionOffice( $equipoId, $versionOffice ){
+		try {
+			$connection = Database::instance();
+
+			$sql = " UPDATE Equipos SET numVersionOffice = ? WHERE equipoId = ? ";
+			
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $versionOffice, 	\PDO::PARAM_INT);
+			$query -> bindParam(2, $equipoId,  		\PDO::PARAM_INT);
+
+			$count = $query -> execute();
+			
+			return $count;
+			
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.updateEquipoConNumeroVersionOffice():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = " $equipoId --- $versionOffice ";
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Tecnico_Actualizar_Inventario",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	/**
+	 * Obtener de la tabla 
+	 * @deprecated
+	 */
+	public static function getVersionesWindows(){
+		try {
+			$connection = Database::instance();
+
+			$sql = " SELECT * FROM WindowsSOListado ";
+
+			$query = $connection -> prepare($sql);
+
+			$query -> execute();
+
+			return $query -> fetchAll();
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.getVersionesWindows():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "" . date('Y-m-d');
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+	
+
+	/**
+	 * Obtener de la tabla WindowsOfficeListado
+	 * @deprecated
+	 */
+	public static function getVersionesOffice(){
+		try {
+			$connection = Database::instance();
+
+			$sql = " SELECT * FROM WindowsOfficeListado o WHERE o.esWindows = ? order by o.id ";
+
+			$query = $connection -> prepare($sql);
+
+			$b1 = true;
+			$query -> bindParam(1, $b1, \PDO::PARAM_BOOL);
+
+			$query -> execute();
+
+			return $query -> fetchAll();
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.getVersionesOffice():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "" . date('Y-m-d');
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	/**
+	 * Obtener de la tabla WindowsOfficeListado las herramientas OFIMÁTICAS NO WINDOWS
+	 * @deprecated
+	 */
+	public static function getProgramasOfimaticaNoWindows(){
+		try {
+			$connection = Database::instance();
+
+			$sql = " SELECT * FROM WindowsOfficeListado o WHERE o.esWindows = ? order by o.name ";
+
+			$query = $connection -> prepare($sql);
+
+			$b1 = false;
+			$query -> bindParam(1, $b1, \PDO::PARAM_BOOL);
+
+			$query -> execute();
+
+			return $query -> fetchAll();
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.getProgramasOfimaticaNoWindows():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "" . date('Y-m-d');
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+
+	/**
+	 * Insertar data del Formulario "Sistema Operativo" para nuevo/actualizacion Equipo(Inventario)
+	 * @param objeto[] generado por el metodo Tecnicos.obtenerDataDelFormularioEquipo()
+	 * @return a_i del registro recien creado en tabla equipoSOInfoId
+	 */
+	public static function insertEquipoSOInfo( $soInfoObj ){
+		try {
+			$connection = Database::instance();
+			
+			$preg = Utils::generarQuestionMarks(6);
+
+			$sql = " INSERT INTO EquipoSOInfo(id, SO, version, nombre, licencia, serial) VALUES ( ".$preg." ) ";
+			
+			$query = $connection -> prepare($sql);
+
+			$maxID = Equipos::getMaxID("EquipoSOInfo");
+			$maxID++;
+			$query -> bindParam(1, $maxID, \PDO::PARAM_INT);
+
+			$nombreDelSOMarca = $soInfoObj[0];
+			if ( $soInfoObj[1] != "" ){
+				$nombreDelSOMarca = $soInfoObj[1];
+			}
+			
+			$query -> bindParam(2, $nombreDelSOMarca, \PDO::PARAM_STR);
+			$query -> bindParam(3, $soInfoObj[2], \PDO::PARAM_STR);
+			$query -> bindParam(4, $soInfoObj[3], \PDO::PARAM_STR);
+			$query -> bindParam(5, $soInfoObj[4], \PDO::PARAM_STR);
+			$query -> bindParam(6, $soInfoObj[5], \PDO::PARAM_STR);
+			
+			$count = $query -> execute();
+			
+			if ( $count == 1 ){
+				return $maxID;
+			} else {
+				return -1;
+			}
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.insertEquipoSOInfo():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = " $soInfoObj ";
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Tecnico_Nuevo_Inventario",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	/**
+	 * Insertar data del Formulario "Sistema Operativo" para nuevo/actualizacion Equipo(Inventario)
+	 * @param objeto[] generado por el metodo Tecnicos.obtenerDataDelFormularioEquipo()
+	 * @return a_i del registro recien creado en tabla equipoOfimaticaInfoId
+	 */
+	public static function insertEquipoOfimaticaInfo( $officeInfo ){
+		try {
+			$connection = Database::instance();
+
+			$preg = Utils::generarQuestionMarks(6);
+
+			$sql = " INSERT INTO EquipoOfimaticaInfo(id, Ofimatica, nombre, version, licencia, serial) VALUES ( ".$preg." ) ";
+			
+			$query = $connection -> prepare($sql);
+
+			$maxID = Equipos::getMaxID("EquipoOfimaticaInfo");
+			$maxID++;
+			$query -> bindParam(1, $maxID, \PDO::PARAM_INT);
+
+			$nombreMarca = $officeInfo[0];
+			if ( $officeInfo[1] != "" ){
+				$nombreMarca = $officeInfo[1];
+			}
+			
+			$query -> bindParam(2, $nombreMarca, \PDO::PARAM_STR);
+			$query -> bindParam(3, $officeInfo[2], \PDO::PARAM_STR);
+			$query -> bindParam(4, $officeInfo[3], \PDO::PARAM_STR);
+			$query -> bindParam(5, $officeInfo[4], \PDO::PARAM_STR);
+			$query -> bindParam(6, $officeInfo[5], \PDO::PARAM_STR);
+			
+			$count = $query -> execute();
+			
+			if ( $count == 1 ){
+				return $maxID;
+			} else {
+				return -1;
+			}
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.insertEquipoOfimaticaInfo():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = " $officeInfo ";
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Tecnico_Nuevo_Inventario",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+
+	/**
+	 * Obtener de tabla EquipoSOInfo
+	 */
+	public static function getEquipoSOInfo($id){
+
+		try {
+			$connection = Database::instance();
+
+			$sql = "SELECT * FROM EquipoSOInfo WHERE id = ? ";
+
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $id, \PDO::PARAM_INT);
+
+			$query -> execute();
+
+			return $query -> fetch();
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.getEquipoSOInfo():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = $id;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+	
+	/**
+	 * Obtener de tabla EquipoSOInfo
+	 */
+	public static function getEquipoOfimaticaInfo($id){
+
+		try {
+			$connection = Database::instance();
+
+			$sql = "SELECT * FROM EquipoOfimaticaInfo WHERE id = ? ";
+
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $id, \PDO::PARAM_INT);
+
+			$query -> execute();
+
+			return $query -> fetch();
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.getEquipoOfimaticaInfo():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = $id;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	/**
+	 * Para Actualizar un Equipo/Inventario - TABLA EquipoSOInfo
+	 * Se debe Crear registro nuevo ó Actualizar el actual
+	 * @param  $id de la tabla, puede ser nulo
+	 * @return $id de la tabla
+	 */
+	public static function insertOrUpdateEquipoSOInfo($id, $soInfo){
+		try {
+			$op = "";
+			$connection = Database::instance();
+
+			/* Buscando ID actual, si es que existe */
+			if ( $id == NULL || $id == "" || $id <= 0 ){
+				/**************************************************************/
+				$op="INSERT INTO";
+
+				$newId = Equipos::getMaxID("EquipoSOInfo");
+				$newId++;
+
+				/* Crear registro nuevo */
+				$sql = " INSERT INTO EquipoSOInfo(id, SO, version, nombre, licencia, serial) VALUES (?,?,?,?,?,?) ";
+				
+				$query = $connection -> prepare($sql);
+
+				$sistemaOperativo = $soInfo[0];
+				if ( $soInfo[1] != NULL || $soInfo[1] != "" ){
+					$sistemaOperativo = $soInfo[1];
+				}
+
+				$query -> bindParam(1, $newId,   	\PDO::PARAM_INT);
+				$query -> bindParam(2, $sistemaOperativo, \PDO::PARAM_STR);
+				$query -> bindParam(3, $soInfo[2],  \PDO::PARAM_STR);
+				$query -> bindParam(4, $soInfo[3],  \PDO::PARAM_STR);
+				$query -> bindParam(5, $soInfo[4], 	\PDO::PARAM_STR);
+				$query -> bindParam(6, $soInfo[5],  \PDO::PARAM_STR);
+
+				$count = $query -> execute();
+				
+				if ( $count == 1 ){	return $newId;
+				} else {			return -1;
+				}
+
+			} else {
+				/**************************************************************
+				 * Actualizar el actual 
+				 */
+				$op="UPDATE SET";
+
+				$sql =" UPDATE EquipoSOInfo 
+						SET SO = ?, version = ?, nombre = ?,
+						 licencia = ?, serial = ? 
+						WHERE id = ? ";
+
+				$query = $connection -> prepare($sql);
+
+				$sistemaOperativo = $soInfo[0];
+				if ( $soInfo[1] != NULL || $soInfo[1] != "" ){
+					$sistemaOperativo = $soInfo[1];
+				}
+
+				$query -> bindParam(1, $sistemaOperativo, \PDO::PARAM_STR);
+				$query -> bindParam(2, $soInfo[2],  \PDO::PARAM_STR);
+				$query -> bindParam(3, $soInfo[3],  \PDO::PARAM_STR);
+				$query -> bindParam(4, $soInfo[4], 	\PDO::PARAM_STR);
+				$query -> bindParam(5, $soInfo[5], 	\PDO::PARAM_STR);
+
+				$query -> bindParam(6, $id,  \PDO::PARAM_INT);
+				
+				$count = $query -> execute();
+				
+				if ( $count == 1 ){	return $id;
+				} else {			return -1;
+				}
+			}
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.insertOrUpdateEquipoSOInfo():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "$id -- op:$op";
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Tecnico_Actualizar_Inventario",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	
+	/**
+	 * Para Actualizar un Equipo/Inventario - TABLA EquipoOfimaticaInfo
+	 * Se debe Crear registro nuevo ó Actualizar el actual
+	 * @param  $id de la tabla, puede ser nulo
+	 * @return $id de la tabla
+	 */
+	public static function insertOrUpdateEquipoOfimaticaInfo($id, $officeInfo){
+		try {
+			$op = "";
+			$connection = Database::instance();
+			
+			/* Buscando ID actual, si es que existe */
+			if ( $id == NULL || $id == "" || $id <= 0 ){
+				/**************************************************************/
+				$op="INSERT INTO";
+
+				$newId = Equipos::getMaxID("EquipoOfimaticaInfo");
+				$newId++;
+
+				/* Crear registro nuevo */
+				$sql = " INSERT INTO EquipoOfimaticaInfo(id, Ofimatica, version, nombre, licencia, serial) VALUES (?,?,?,?,?,?) ";
+				
+				$query = $connection -> prepare($sql);
+
+				$tool = $officeInfo[0];
+				if ( $officeInfo[1] != NULL || $officeInfo[1] != "" ){
+					$tool = $officeInfo[1];
+				}
+
+				$query -> bindParam(1, $newId,   		\PDO::PARAM_INT);
+				$query -> bindParam(2, $tool, 			\PDO::PARAM_STR);
+				$query -> bindParam(3, $officeInfo[3],  \PDO::PARAM_STR);
+				$query -> bindParam(4, $officeInfo[2],  \PDO::PARAM_STR);
+				$query -> bindParam(5, $officeInfo[4], 	\PDO::PARAM_STR);
+				$query -> bindParam(6, $officeInfo[5],  \PDO::PARAM_STR);
+
+				$count = $query -> execute();
+				
+				if ( $count == 1 ){	return $newId;
+				} else {			return -1;
+				}
+
+			} else {
+				/**************************************************************
+				 * Actualizar el actual 
+				 */
+				$op="UPDATE SET";
+
+				$sql =" UPDATE EquipoOfimaticaInfo 
+						SET Ofimatica = ?, version = ?, nombre = ?,
+						 licencia = ?, serial = ? 
+						WHERE id = ? ";
+
+				$query = $connection -> prepare($sql);
+
+				$tool = $officeInfo[0];
+				if ( $officeInfo[1] != NULL || $officeInfo[1] != "" ){
+					$tool = $officeInfo[1];
+				}
+
+				$query -> bindParam(1, $tool, \PDO::PARAM_STR);
+				$query -> bindParam(2, $officeInfo[3],  \PDO::PARAM_STR);
+				$query -> bindParam(3, $officeInfo[2],  \PDO::PARAM_STR);
+				$query -> bindParam(4, $officeInfo[4], 	\PDO::PARAM_STR);
+				$query -> bindParam(5, $officeInfo[5], 	\PDO::PARAM_STR);
+
+				$query -> bindParam(6, $id,  \PDO::PARAM_INT);
+				
+				$count = $query -> execute();
+				
+				if ( $count == 1 ){	return $id;
+				} else {			return -1;
+				}
+			}
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.insertOrUpdateEquipoOfimaticaInfo():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "$id -- op:$op";
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Tecnico_Actualizar_Inventario",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	
+	/**
+	 * Actualizar Status 
+	 * @param $equipoId 	INT
+	 * @param $status 		String
+	 * @return TRUE si fue actualizado, FALSE si no
+	 */
+	public static function updateStatusEquipo($equipoId, $status){
+		try {
+			$connection = Database::instance();
+
+			$sql = " UPDATE Equipos SET estatus = ? WHERE id = ? ";
+
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $status,   \PDO::PARAM_STR);
+			$query -> bindParam(2, $equipoId, \PDO::PARAM_INT);
+			
+			$count = $query -> execute();
+
+			if ( $count == 1 ){
+				return true;
+			} else {
+				return false;
+			}
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Equipos.updateStatusEquipo($equipoId, $status):";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "equipoId:$equipoId -- status:$status";
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Tecnico_Actualizar_Inventario",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			/* Devolver el mensaje al Tecnico */
+			return $internalErrorCodigo . ": " . $internalErrorMessage . " .:. " . $internalErrorExtra;
 		}
 	}
 

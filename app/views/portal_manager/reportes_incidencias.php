@@ -50,6 +50,25 @@
 		font-weight:bold;
 		height:50px;
 	}
+
+	a.back-to-top {
+		display: block;
+		width: 60px;
+		height: 60px;
+		text-indent: -9999px;
+		position: fixed;
+		z-index: 999;
+		right: 500px;
+		bottom: 20px;
+		background: #F9B233 url("<?= APPIMAGEPATH; ?>up-arrow.png") no-repeat center 43%;
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		border-radius: 30px;
+	}
+	a:hover.back-to-top {
+		background-color: #E30513;
+	}
+
 </style>
 
 <div id="container">
@@ -350,13 +369,13 @@
 
 														echo '<tr class="info">';
 														
-														echo "  <td>";
+														echo "  <td data-title='Ver Reporte'>";
 														echo      '<button type="button" class="btn btn-primary" 
 																	data-toggle="tooltip" data-placement="bottom" title="Ver Soluci&oacute;n de la Incidencia | Opci&oacute;n Imprimir Reporte"
 																	onclick="javascript:verDetalleSolucion(' . $aux . ');"><span class="glyphicon glyphicon-folder-open"></span></button>';
 														echo "  </td>";
 														
-														echo "  <td>";
+														echo "  <td data-title='Detalle'>";
 														echo      $causalesIncidenciasDashboard["endogena"][$i] . "<br/>&nbsp;";
 														echo "  </td>";
 
@@ -544,7 +563,7 @@
 										<th class="active" width="200px">Dependencia</th>
 										<th class="active" width="150px">Tel&eacute;fono</th>
 										<th class="active" width="100px">Extensi&oacute;n</th>
-										<th class="active" width="140px" style="text-align:center;">Cuenta Tipo</th>
+										<th class="active" width="140px" style="text-align:center;">Tipo de Cuenta</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -556,12 +575,12 @@
 ?>
 
 									<tr>
-										<td><?= $user["nombre"]; ?></td>
-										<td><?= $user["apellido"]; ?></td>
-										<td><?= $user["dependencia"]; ?></td>
-										<td><?= $user["telefonoTrabajo"]; ?></td>
-										<td><?= $user["extensionTrabajo"]; ?></td>
-										<td style="text-align:center;">
+										<td data-title="Nombre"><?= $user["nombre"]; ?></td>
+										<td data-title="Apellido"><?= $user["apellido"]; ?></td>
+										<td data-title="Dependencia"><?= $user["dependencia"]; ?></td>
+										<td data-title="Telef."><?= $user["telefonoTrabajo"]; ?></td>
+										<td data-title="Ext."><?= $user["extensionTrabajo"]; ?></td>
+										<td data-title="Tipo Cuenta" style="text-align:center;">
 											<?php 
 												if ( $user["role"] == "admin"){ 		echo "Administrador"; }
 												else if ( $user["role"] == "manager"){  echo "Partner"; }
@@ -639,9 +658,9 @@
 ?>
 
 									<tr>
-										<td><?= $user["nombre"]; ?></td>
-										<td><?= $user["apellido"]; ?></td>
-										<td><?= $user["email"]; ?></td>
+										<td data-title="Nombre"><?= $user["nombre"]; ?></td>
+										<td data-title="Apellido"><?= $user["apellido"]; ?></td>
+										<td data-title="Email"><?= $user["email"]; ?></td>
 									</tr>
 
 <?php							
@@ -725,6 +744,8 @@
 		</div>
 	</div>
 
+	<a href="javascript:goArriba();" class="back-to-top" data-toggle="tooltip" title="Volver Arriba">Volver Arriba</a>
+
 	<br/><br/><br/><br/>
 
 </div><!-- HTMLtoPDF -->
@@ -756,22 +777,6 @@
 
 	});
 
-
-	function collapseDiv( collapseID ){
-		$('#' + collapseID ).collapse('toggle');
-	}
-
-	/**
-	 * Formulario como el del Tecnico pero sin poder editar
-	 */
-	function verDetalleSolucion(resolucionId){
-
-		document.getElementById("resolucionIncidenciaId").value = resolucionId;
-
-		document.getElementById("resolucionIncidenciaForm").submit();
-	}
-
-
 	function printThisPage(){
 
 		HTMLtoPDF();
@@ -793,4 +798,5 @@
 
 		/*document.body.innerHTML = originalContents;*/
 	}
+
 </script>

@@ -13,11 +13,11 @@ class Daemon {
 		try {
 			echo "5.entrò en test() -- ";
 
-			$sql = " INSERT INTO lanuzag_LanuzaGroupDB.CronJobTransaccion(tipoCronJob, resultado, comentarios, error_type, error_description) 
+			$sql = " INSERT INTO lanuzaso_LanuzaGroupDB.CronJobTransaccion(tipoCronJob, resultado, comentarios, error_type, error_description) 
 					VALUES ( 'BUSCA_INCIDENCIAS_NUEVAS', 0, 'comment', 'DAEMON', 'no hya errores' ) ";
 
 $servername = "localhost";
-$username = "lanuzag_dbUser";
+$username = "lanuzaso_dbUser";
 $password = "mysqlC0ntr453ñ4*";
 
 // Create connection

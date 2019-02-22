@@ -82,12 +82,12 @@
 					$a = $user->gender;
 				?>
 				<label class="radio-inline">
-					<input type="radio" name="gender" id="gender" value="Masculino" 
+					<input type="radio" name="gender" id="gender1" value="Masculino" 
 					 <?php if($a=="Hombre") echo 'checked="true"'; ?>
 					 >Masculino
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="gender" id="gender" value="Femenino"
+					<input type="radio" name="gender" id="gender2" value="Femenino"
 					<?php if($a=="Mujer") echo 'checked="true"'; ?>
 					>Femenino
 				</label>
@@ -95,6 +95,74 @@
 		</div>
 		<div class="col-sm-2">
 			<div id="gender-error" class="help-block">
+				&nbsp;
+			</div>
+		</div>
+	  </div>
+
+	  <div id="birthday-div" class="form-group">
+		<label class="control-label col-sm-3" for="birthday" style="margin-top: 35px;">Cumpleaños:</label>
+		<div class="col-sm-3">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-gift"></i></span>
+				
+				<select class="form-control" id="birth_day" name="birth_day" onblur="javascript:validar('birth_day');return false;">
+					<option value="none"> -- Seleccione día -- </option>
+<?php
+					
+					$aux = $user->cumpleanos;
+					$a = 0;
+					$b = "none";
+					$c = 0;
+
+					if ( $aux != NULL && $aux != "" ){
+						$c = substr( $aux , 8 , 2 );
+						$b = substr( $aux , 5 , 2 );
+						$a = substr( $aux , 0 , 4 );
+					}
+
+					for ( $i = 1; $i <= 31; $i++ ){
+						echo '<option value="'.$i.'"';
+						if ($c == $i) echo 'selected="selected"';
+						echo '>'.$i.'</option>';
+					}
+?>
+				</select>
+
+				<select class="form-control" id="birth_mes" name="birth_mes" onblur="javascript:validar('birth_mes');return false;">
+					<option value="none"> -- Seleccione mes -- </option>
+					<option value="Enero" 		<?php if($b==1)	echo 'selected="selected"'; ?> >Enero</option>
+					<option value="Febrero" 	<?php if($b==2)	echo 'selected="selected"'; ?> >Febrero</option>
+					<option value="Marzo" 		<?php if($b==3)	echo 'selected="selected"'; ?> >Marzo</option>
+					<option value="Abril" 		<?php if($b==4)	echo 'selected="selected"'; ?> >Abril</option>
+					<option value="Mayo" 		<?php if($b==5)	echo 'selected="selected"'; ?> >Mayo</option>
+					<option value="Junio" 		<?php if($b==6)	echo 'selected="selected"'; ?> >Junio</option>
+					<option value="Julio" 		<?php if($b==7)	echo 'selected="selected"'; ?> >Julio</option>
+					<option value="Agosto" 		<?php if($b==8)	echo 'selected="selected"'; ?> >Agosto</option>
+					<option value="Septiembre" 	<?php if($b==9)	echo 'selected="selected"'; ?> >Septiembre</option>
+					<option value="Octubre" 	<?php if($b==10)	echo 'selected="selected"'; ?> >Octubre</option>
+					<option value="Noviembre" 	<?php if($b==11)	echo 'selected="selected"'; ?> >Noviembre</option>
+					<option value="Diciembre" 	<?php if($b==12)	echo 'selected="selected"'; ?> >Diciembre</option>
+				</select>
+
+				<select class="form-control" id="birth_year" name="birth_year" onblur="javascript:validar('birth_year');return false;">
+					<option value="none"> -- Seleccione año (opcional) -- </option>
+<?php
+					$d = date('Y');
+					$e = 1912;
+
+					for ( $i = $d; $i >= $e; $i-- ){
+						echo '<option value="'.$i.'"';
+						if ($i == $a) echo 'selected="selected"';
+						echo '>'.$i.'</option>';
+					}
+?>
+				</select>
+				<span id="birthday-span" class=""></span>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div id="birthday-error" class="help-block">
 				&nbsp;
 			</div>
 		</div>
@@ -508,6 +576,10 @@
 		}
 
 
+		if ( elementId.startsWith("birth_") ){
+			elementId = "birthday";
+		}
+		
 		/**
 		 * Manejando los errores
 		 */
@@ -520,6 +592,7 @@
 
 			/* Mensaje de error */
 			document.getElementById(elementId + "-error").innerHTML = sErrorMessage;
+
 			return false;
 		
 		} else {
@@ -532,18 +605,14 @@
 			/* Mensaje de error */
 			document.getElementById(elementId + "-error").innerHTML = "";
 
-			return false;
+			return true;
 		}
-
-		
 
 		/*
 		// $("#" + elementId).closest('form-group').className += " has-error has-feedback";
 		//$("#" + elementId).closest('form-group').addClass += " has-error has-feedback";
 		/* .find('li').removeClass('selected');
 		*/
-		
-		
 	}
 
 	/**
@@ -558,9 +627,9 @@
 	 * Limpia todos los estilos de SUCCESS y ERROR del formulario
 	 */
 	function limpiarEstilos(){
-		var array = ['greetings','givenname', 'lastname', 'gender'
+		var array = ['givenname', 'lastname', 'gender1', 'gender2'
 				, 'username', 'email', 'pwd', 'pwdrepited'
-				, 'company', 'dependencia', 'cargo'
+				, 'dependencia'
 				, 'phone_cell', 'phone_home', 'phone_work', 'phone_work_ext'
 		];
 
@@ -568,11 +637,14 @@
 		for (var i = 0; i < array.length ; i++) {
 
 			elementId = array[i];
-
-			/* al lado del input element */
-			if ( elementId != 'gender' ){
-				document.getElementById(elementId + "-span").className = "";
+			
+			if ( elementId == 'gender1' || elementId == 'gender2' ){
+				continue;
 			}
+			
+			/* al lado del input element */
+			document.getElementById(elementId + "-span").className = "";
+			
 			/* en el elemento form-group*/
 			document.getElementById(elementId + "-div").className = "form-group";
 			/* Mensaje de error */
@@ -602,6 +674,20 @@
 		var bool = true;
 		var scrollElement = "";
 		var scrolled = false;
+
+		var array = ['givenname', 'lastname'
+				, 'username', 'email'
+				, 'dependencia'
+				, 'phone_cell', 'phone_home', 'phone_work', 'phone_work_ext'
+		];
+
+		/* Validando todos los campos */
+		for ( var i = 0; i < array.length ; i++ ) {
+
+			if ( validar( array[i] ) == false ){
+				bool = false;
+			}
+		}
 
 		/* Saludo */
 		if ( $("#greetings").val() == "none" ){
@@ -673,6 +759,30 @@
 			}
 
 		}
+
+		if ( !diaValido() ){
+			bool = false;
+			document.getElementById("birthday-div").className = "form-group has-error has-feedback";
+			document.getElementById("birthday-error").innerHTML = "Hay 30 días en Sept, Jul, Abr y Nov; 28 en Feb; los demás tienen 31";
+
+			if ( scrolled == false ){
+				scrollElement = "#birthday-div";
+				scrolled = true;
+			}
+		}
+
+		if ( $("#birth_day").val() == "none" || $("#birth_mes").val() == "none" ){
+			bool = false;
+			document.getElementById("birthday-div").className = "form-group has-error has-feedback";
+			document.getElementById("birthday-error").innerHTML = "Favor indique su Fecha de Cumpleaños (el Año es opcional)";
+
+			if ( scrolled == false ){
+				scrollElement = "#birthday-div";
+				scrolled = true;
+			}
+		}
+
+
 
 		if ( bool == true && ( campoRepetidoEmail == false && campoRepetidoUsername == false ) 
 				&& algunCambioRealizado == true ){
@@ -752,6 +862,20 @@
 				}
 			});
 		}
+	}
+
+	function diaValido(){
+		var dia = $("#birth_day").val();
+		var mes = $("#birth_mes").val();
+		
+		if ( dia > 30 && (mes == "Septiembre" || mes == "Junio" || mes == "Abril" || mes == "Noviembre") ){
+			return false;
+		}
+		if ( dia > 29 && mes == "Febrero"){
+			return false;
+		}
+		
+		return true;	
 	}
 </script>
 

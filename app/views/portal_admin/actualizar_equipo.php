@@ -1,9 +1,3 @@
-<style>
-	#imgX {
-	 	width: 250px;
-	 	height: 200px;
-	}
-</style>
 <div id="container">
 
 	<div class="row" style="background-color:#F9B233;font-size:16px;">
@@ -62,7 +56,7 @@
 	</script>
 
 	<form data-toggle="validator" role="form" id="inventario_new_eq_form" method="post"
-			 enctype="multipart/form-data" action="<?= PROJECTURLMENU ?>admin/actualizacion_equipo">
+			 enctype="multipart/form-data" action="<?= PROJECTURLMENU ?>tecnicos/actualizacion_equipo">
 
 		<input type="hidden" id="equipoId" 	name="equipoId"  value="<?= $equipo["id"]; ?>" />
 		<input type="hidden" id="usuarioId" name="usuarioId" value="<?= $equipo["usuarioId"]; ?>" />
@@ -224,6 +218,40 @@
 				</div>
 			</div>
 		</div>
+		
+		<div id="gama-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label data-toggle="tooltip" data-placement="bottom" title="GAMA: Elija uno (Semáforo) Ver descripción a la derecha">
+					<u>Gama del Equipo</u><b style="color:#E30513;font-size:18px;">*</b></label>
+			</div>
+			<div class="col-sm-2">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-blackboard"></i></span>
+					<select class="form-control" id="gama" name="gama">
+<?php
+						$option = $equipo["gama"];
+?>
+						<option value="none" <?php if($option=="Desconocido" ) echo 'selected="selected"'; ?> >-- Elija --</option>
+						<option value="Alta" <?php if($option=="Alta" ) echo 'selected="selected"'; ?> >Gama Alta</option>
+						<option value="Media" <?php if($option=="Media" ) echo 'selected="selected"'; ?> >Gama Media</option>
+						<option value="Baja" <?php if($option=="Baja" ) echo 'selected="selected"'; ?> >Gama Baja</option>
+					</select>
+					<span id="gama-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<b>Gama Alta:</b> Equipos de alto poder de cómputo. Ej: Octacore o Quadcore de >8 GB de RAM.
+				<br/>
+				<b>Gama Media:</b> Equipos de precio moderado con buenas características. Ej: equipo con 4GB de RAM.
+				<br/>
+				<b>Gama Baja:</b> Equipo barato de pocas prestaciones. Ej: Pentium III o inferior.
+			</div>
+			<div class="col-sm-1">
+				<div id="gama-error" class="help-block">
+					&nbsp;
+				</div>
+			</div>
+		</div>
 
 		<div class="row form-group">
 			<div class="col-sm-12">
@@ -323,7 +351,7 @@
 			<div class="col-sm-8">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-					<input type="text" class="form-control" id="costo" name="costo" 
+					<input type="text" class="form-control" id="costo" name="costo" disabled="disabled" 
 					 placeholder="En pesos colombianos (COP) | SIN separador de miles | ',' separador decimales | (Ej: 123000,45)"
 					 value="<?= $equipo["valor"]; ?>" onblur="javascript:updated();" 
 					 >
@@ -344,7 +372,7 @@
 			<div class="col-sm-8">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
-					<input type="text" class="form-control" id="reposicion" name="reposicion" 
+					<input type="text" class="form-control" id="reposicion" name="reposicion" disabled="disabled" 
 					 placeholder="Valor de reponer del Equipo, en pesos (COP) SIN separador de miles (Ej: 123000,45) ',' es separador decimal"
 					 value="<?= $equipo["valorReposicion"]; ?>" onblur="javascript:updated();" 
 					 >
@@ -406,161 +434,6 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-sm-12" align="center">
-<?php 
-			$jpg = $equipo["linkImagen"];
-			if ( $jpg == NULL || $jpg == "" ){
-				echo "NO hay imagen almacenada para este Equipo actualmente.";
-			} else {
-				echo "Imagen Almacenada actualmente:<br/>";
-				echo '<img id="imgX" alt="Imagen de Equipo actual" src="' . $jpg . '" />';
-			}
-?>
-			</div>		
-		</div>
-
-		<div id="windows-div" class="form-group">
-			<div class="col-sm-3" align="right">
-				<label>Windows con Licencia<b style="color:#E30513;font-size:18px;">*</b></label>
-			</div>
-			<div class="col-sm-3">
-				<div class="input-group">
-					<label class="radio-inline">
-					  <input type="radio" name="windows" id="windows" value="Si"
-					   <?php if($equipo["licWindows"]=="Si"){ echo ' checked="true" '; } ?>
-					   >
-						S&iacute;
-					</label>
-					&nbsp;&nbsp;&nbsp;
-					<label class="radio-inline">
-					  <input type="radio" name="windows" id="windows" value="No"
-						<?php if($equipo["licWindows"]=="No"){ echo ' checked="true" '; } ?>
-					    >
-						No
-					</label>
-					&nbsp;&nbsp;&nbsp;
-					<label class="radio-inline">
-					  <input type="radio" name="windows" id="windows" value="Desconocido"
-					   <?php if($equipo["licWindows"]=="Desconocido"){ echo ' checked="true" '; } ?>
-					   >
-						Desconocido
-					</label>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div id="windows-error" class="help-block">
-					&nbsp;
-				</div>
-			</div>
-		</div>
-
-		<div id="office-div" class="form-group">
-			<div class="col-sm-3" align="right">
-				<label>Office con Licencia<b style="color:#E30513;font-size:18px;">*</b></label>
-			</div>
-			<div class="col-sm-3">
-				<div class="input-group">
-					<label class="radio-inline">
-					  <input type="radio" name="office" id="office" value="Si"
-					   <?php if($equipo["licOffice"]=="Si"){ echo ' checked="true" '; } ?>
-					   >
-						S&iacute;
-					</label>
-					&nbsp;&nbsp;&nbsp;
-					<label class="radio-inline">
-					  <input type="radio" name="office" id="office" value="No"
-					   <?php if($equipo["licOffice"]=="No"){ echo ' checked="true" '; } ?>
-					   >
-						No
-					</label>
-					&nbsp;&nbsp;&nbsp;
-					<label class="radio-inline">
-					  <input type="radio" name="office" id="office" value="Desconocido"
-						<?php if($equipo["licOffice"]=="Desconocido"){ echo ' checked="true" '; } ?>
-					   >
-						Desconocido
-					</label>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div id="office-error" class="help-block">
-					&nbsp;
-				</div>
-			</div>
-		</div>
-
-
-		<div id="sistemaOperativo-div" class="row form-group">
-			<div class="col-sm-3" align="right">
-				<label>
-					Sistema Operativo<b style="color:#E30513;font-size:18px;">*</b>
-				</label>
-			</div>
-			<div class="col-sm-4">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-sound-6-1"></i></span>
-					<select class="form-control" id="sistemaOperativo" name="sistemaOperativo" onblur="javascript:updated();">
-<?php
-						$a = $equipo["sistemaOperativo"];
-?>
-						<option value="none">  --  Seleccione uno --  </option>
-						<option value="Windows"			<?php if($a=="Windows")				echo 'selected="selected"'; ?> >Windows</option>
-						<option value="Linux/GNU"		<?php if($a=="Linux/GNU")			echo 'selected="selected"'; ?> >Linux/GNU</option>
-						<option value="Mac"				<?php if($a=="Mac")					echo 'selected="selected"'; ?> >Mac</option>
-						<option value="Solaris"			<?php if($a=="Solaris")				echo 'selected="selected"'; ?> >Solaris</option>
-						<option value="Unix"			<?php if($a=="Unix")				echo 'selected="selected"'; ?> >Unix</option>
-						<option value="Google Chrome OS"<?php if($a=="Google Chrome OS")	echo ' selected="selected"'; ?> >Google Chrome OS</option>
-						<option value="AS/400"			<?php if($a=="AS/400")				echo 'selected="selected"'; ?> >AS/400</option>
-						<option value="Otro"			<?php if($a=="Otro")				echo 'selected="selected"'; ?> >Otro</option>
-					</select>
-					<span id="sistemaOperativo-span" class=""></span>
-				</div>
-			</div>
-			<div class="col-sm-2" align="right">
-				<label data-toggle="tooltip" data-placement="bottom" title="El número de versión del Sistema Operativo, puede usar puntos, NO COMAS">
-					<u>Versi&oacute;n N&uacute;mero</u><b style="color:#E30513;font-size:18px;">*</b>:</label>
-			</div>
-			<div class="col-sm-2" align="right">
-				<input type="text" class="form-control" id="versionSO" name="versionSO" onblur="javascript:updated();" 
-				 placeholder="Ejemplo: 8.1" value="<?= $equipo["versionSO"]; ?>">
-				<span id="versionSO-span" class=""></span>
-			</div>
-			<div class="col-sm-1">
-				<div id="sistemaOperativo-error" class="help-block">
-					&nbsp;
-				</div>
-			</div>
-		</div>
-
-
-		<div id="nombreSO-div" class="row form-group">
-			<div class="col-sm-3" align="right">
-				<label data-toggle="tooltip" data-placement="bottom" title="Cómo obtenerlo"
-				 onclick="javascript:$('#nombreSO_Modal').modal('show'); ;"
-				 onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'">
-					<u>Nombre del Sistema Operativo</u>
-					<br/>
-					(click aqu&iacute; para saber c&oacute;mo obtenerlo)
-				</label>
-			</div>
-			<div class="col-sm-8">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
-					<input type="text" class="form-control" id="nombreSO" name="nombreSO" required="required" 
-					 placeholder="Escriba el nombre según aparece en la Info o Configuración del Equipo"
-					 value="<?= $equipo["nombreSO"]; ?>" onblur="javascript:updated();" 
-					 >
-					<span id="nombreSO-span" class=""></span>
-				</div>
-			</div>
-			<div class="col-sm-1">
-				<div id="nombreSO-error" class="help-block">
-					&nbsp;
-				</div>
-			</div>
-		</div>
-
 
 		<div id="hdd-div" class="row form-group">
 			<div class="col-sm-3" align="right">
@@ -588,6 +461,554 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="form-group">
+			<div class="col-sm-12">
+				<div style="color:#E30513;text-align:right;"><b>* = Campo Obligatorio</b></div>
+			</div>
+		</div>
+
+		<br/>
+		<hr/>
+		<br/>
+
+		<h4 style="text-align:center; color:#000;">
+			<span class="glyphicon glyphicon-th-large"></span> 
+			<i>Sistema Operativo</i>&nbsp;&nbsp;&nbsp;
+		</h4>
+		<br/>
+
+		<div id="windows-div" class="form-group">
+			<div class="col-sm-3" align="right">
+				<label>Windows con Licencia<b style="color:#E30513;font-size:18px;">*</b></label>
+			</div>
+			<div class="col-sm-6">
+				<div class="input-group">
+					<label class="radio-inline">
+					  <input type="radio" name="windows" id="windows1" value="Si" onclick="javascript:updated();" 
+<?php if($equipo["licWindows"]=="Si"){ echo ' checked="true" '; } ?> >
+						S&iacute;
+					</label>
+					&nbsp;&nbsp;&nbsp;
+					<label class="radio-inline">
+					  <input type="radio" name="windows" id="windows2" value="No" onclick="javascript:updated();" 
+<?php if($equipo["licWindows"]=="No"){ echo ' checked="true" '; } ?> >
+						No
+					</label>
+					&nbsp;&nbsp;&nbsp;
+					<label class="radio-inline">
+					  <input type="radio" name="windows" id="windows3" value="Desconocido" onclick="javascript:updated();" 
+<?php if($equipo["licWindows"]=="Desconocido"){ echo ' checked="true" '; } ?>
+					   >
+						Desconocido / No es Windows
+					</label>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div id="windows-error" class="help-block">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+<?php
+	$SO="";$versionSO="";$nombreSO="";$tipoLicenciaSO="";$serialSO="";
+	if ( isset($SO_info) ){
+		$SO            = $SO_info["SO"];
+		$versionSO     = $SO_info["version"];
+		$nombreSO      = $SO_info["nombre"];
+		$tipoLicenciaSO= $SO_info["licencia"];
+		$serialSO      = $SO_info["serial"];
+	}
+?>
+		<div id="sistemaOperativo-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label>
+					Sistema Operativo<b style="color:#E30513;font-size:18px;">*</b>
+				</label>
+			</div>
+			<div class="col-sm-3">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-sound-6-1"></i></span>
+					<select class="form-control" id="sistemaOperativo" name="sistemaOperativo" onchange="javascript:toogleSistemasOperativo(this.value);updated();">
+						<option value="none">  --  Seleccione uno --  </option>
+<?php
+							$isCheckedSO = false; $checked="";
+							foreach ($sistemasOperativos as $so){
+
+								if ( $so["name"] == $SO ){
+									$checked = 'selected="selected"';
+									$isCheckedSO = true;
+								} else {
+									$checked="";
+								}
+								
+								$option = '<option value="' . $so["name"] . '" '.$checked.'>' . $so["name"] . '</option>';
+								echo $option;
+							}
+?>
+					</select>
+					<span id="sistemaOperativo-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div id="sistemaOperativo-error" class="help-block">
+					Si existe alguna que no est&eacute; en este listado, 
+					por favor notificarlo al Equipo de Desarrollo
+					del Portal Lanuzasoft para agregarlo a este listado
+					<br/>
+					(Telf 5088376 ext 1030 o enviar la solicitud por correo electrónico, soporte@lanuzagroup.com).
+				</div>
+			</div>
+		</div>
+
+		<div id="nombreSO-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label data-toggle="tooltip" data-placement="bottom" title="Cómo obtenerlo"
+				 onclick="javascript:$('#nombreSO_Modal').modal('show'); ;"
+				 onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'">
+					<u>Nombre del S.O. (en caso de "Otro")</u>
+					<br/>
+					(click aqu&iacute; para saber c&oacute;mo obtenerlo)
+				</label>
+			</div>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
+					<input type="text" class="form-control" id="nombreSO" name="nombreSO" onchange="javascript:updated();"  
+					 placeholder="En caso de seleccionar arriba la opción OTRO. Escriba el nombre según aparece en la Configuración del Equipo"
+<?php  
+					if ( $isCheckedSO == false ) echo ' value="'.$SO.'" ';
+					else echo ' disabled="disabled"  ';
+?>
+					 >
+					<span id="nombreSO-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-1">
+				<div id="nombreSO-error" class="help-block">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+
+
+		<div id="versionSO-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label data-toggle="tooltip" data-placement="bottom" title="Solo en caso de Seleccionar 'Windows' como Sistema Operativo">
+					<u>Versi&oacute;n</u>
+				</label>
+			</div>
+			<div class="col-sm-4">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
+					<select class="form-control" id="versionSO" name="versionSO"
+					 onchange="javascript:updated();">
+						<option value="none">  --  Seleccione una versión --  </option>
+
+						
+						<optgroup label="Sistemas Windows">
+<?php
+							$option = ""; $checked="";
+							foreach ($versionesSOWindows as $version){
+
+								if ( $version["name"] == $versionSO ){
+									$checked = 'selected="selected"';
+								} else {
+									$checked = '';
+								}
+
+								$option = '<option value="' . $version["name"] . '" '. $checked .'>' . $version["name"] . '</option>';
+								echo $option;
+							}
+?>
+							<option value="Windows 3.1" disabled="disabled">Windows 3.1</option>
+
+						<optgroup label="Linux">
+<?php
+							$option = "";
+							foreach ($versionesSOotros as $version){
+
+								if ( $version["name"] == $versionSO ){
+									$checked = 'selected="selected"';
+								} else {
+									$checked = '';
+								}
+
+								if ( $version["soBase"] == "Linux" ){
+									$option = '<option value="' . $version["name"] . '" '. $checked .'>' . $version["name"] . '</option>';
+									echo $option;
+								}
+							}
+?>
+						<optgroup label="Mac">
+<?php
+							$option = "";
+							foreach ($versionesSOotros as $version){
+
+								if ( $version["name"] == $versionSO ){
+									$checked = 'selected="selected"';
+								} else {
+									$checked = '';
+								}
+
+								if ( $version["soBase"] == "Mac" ){
+									$option = '<option value="' . $version["name"] . '" '. $checked .'>' . $version["name"] . '</option>';
+									echo $option;
+								}
+							}
+?>
+					</select>
+					<span id="versionSO-span" class=""></span>
+				</div>
+			</div>
+			
+			<div class="col-sm-5">
+				<div id="versionSO-error" class="help-block">
+					Aseg&uacute;rese de seleccionar uno correspondiente al S.O. arriba seleccionado.
+				</div>
+			</div>
+		</div>
+
+		<div id="nombreSistemaOperativo-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label>
+					Nombre del Sistema Operativo
+				</label>
+			</div>
+			<div class="col-sm-5">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-th-large"></i></span>
+					<select class="form-control" id="nombreSistemaOperativo" name="nombreSistemaOperativo" onchange="javascript:toogleSistemasOperativo(this.value);updated();">
+						<option value="none">  --  Seleccione uno --  </option>
+<?php
+							$checked="";
+							foreach ($nombresSO as $soNombre){
+
+								if ( $soNombre["name"] == $nombreSO ){
+									$checked = 'selected="selected"';
+								} else {
+									$checked="";
+								}
+
+								$option = '<option value="' . $soNombre["name"] . '" '. $checked .'>' . $soNombre["name"] . '</option>';
+								echo $option;
+							}
+?>
+					</select>
+					<span id="nombreSistemaOperativo-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div id="nombreSistemaOperativo-error" class="help-block">
+				</div>
+			</div>
+		</div>
+
+		<div id="tipoLicenciaSO-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label>
+					Tipo de Licencia<b style="color:#E30513;font-size:18px;">*</b>
+				</label>
+			</div>
+			<div class="col-sm-5">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-sound-7-1"></i></span>
+					<select class="form-control" id="tipoLicenciaSO" name="tipoLicenciaSO" onchange="javascript:updated();">
+						<option value="none">  --  Seleccione una --  </option>
+<?php
+							$checked="";
+							foreach ($tipoLicencias as $licencia){
+
+								if ( $licencia["name"] == $tipoLicenciaSO ){
+									$checked = 'selected="selected"';
+								} else {
+									$checked="";
+								}
+
+								$option = '<option value="' . $licencia["name"] . '" '. $checked .'>' . $licencia["name"] . '</option>';
+								echo $option;
+							}
+?>
+					</select>
+					<span id="tipoLicenciaSO-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div id="tipoLicenciaSO-error" class="help-block">
+				</div>
+			</div>
+		</div>
+
+		<div id="serialSO-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label>N&uacute;mero de Serie <br/>(Serial del Sistema Operativo)</label>
+			</div>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-sound-5-1"></i></span>
+					<input type="text" class="form-control" id="serialSO" name="serialSO" onchange="javascript:updated();" 
+					 placeholder="Serial del Software que identifica el Sistema Operativo, normalmente en etiquetas o CD's de instalación"
+					 value="<?= $serialSO; ?>"
+					 >
+					<span id="serialSO-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-1">
+				<div id="serialSO-error" class="help-block">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-12">
+				<div style="color:#E30513;text-align:right;"><b>* = Campo Obligatorio</b></div>
+			</div>
+		</div>
+
+		<br/>
+		<hr/>
+		<br/>
+		<h4 style="text-align:center; color:#000;">
+			<span class="glyphicon glyphicon-text-size"></span> 
+			<i>Herramienta Ofim&aacute;tica</i>&nbsp;&nbsp;&nbsp;
+		</h4>
+		<br/>
+
+		<div id="office-div" class="form-group">
+			<div class="col-sm-3" align="right">
+				<label>Office con Licencia<b style="color:#E30513;font-size:18px;">*</b></label>
+			</div>
+			<div class="col-sm-6">
+				<div class="input-group">
+					<label class="radio-inline">
+					  <input type="radio" name="office" id="office1" value="Si" onclick="javascript:toogleLicOffice(1);updated();"
+<?php if($equipo["licOffice"]=="Si"){ echo ' checked="true" '; } ?> >
+						S&iacute;
+					</label>
+					&nbsp;&nbsp;&nbsp;
+					<label class="radio-inline">
+					  <input type="radio" name="office" id="office2" value="No" onclick="javascript:toogleLicOffice(0);updated();"
+<?php if($equipo["licOffice"]=="No"){ echo ' checked="true" '; } ?> >
+						No
+					</label>
+					&nbsp;&nbsp;&nbsp;
+					<label class="radio-inline">
+					  <input type="radio" name="office" id="office3" value="Desconocido" onclick="javascript:toogleLicOffice(1);updated();"
+<?php if($equipo["licOffice"]=="Desconocido"){ echo ' checked="true" '; } ?> >
+						Desconocido / No es Windows Office
+					</label>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div id="office-error" class="help-block">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+
+<?php
+	$Office="";$versionOffice="";$nombreOffice="";$tipoLicenciaOffice="";$serialOffice="";
+	if ( isset($Office_info) ){
+		$Office            = $Office_info["Ofimatica"];
+		$versionOffice     = $Office_info["version"];
+		$nombreOffice      = $Office_info["nombre"];
+		$tipoLicenciaOffice= $Office_info["licencia"];
+		$serialOffice      = $Office_info["serial"];
+	}
+?>
+		<div id="herramientaOfimatica-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label>
+					Herramienta Ofim&aacute;tica
+				</label>
+			</div>
+			<div class="col-sm-3">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-text-size"></i></span>
+					<select class="form-control" id="herramientaOfimatica" name="herramientaOfimatica"
+						 onchange="javascript:toogleOfimatica(this.value);updated();">
+							<option value="none">  --  Seleccione una --  </option>
+<?php
+								$option = ""; $checked="";
+								foreach ( $ofimatica as $tool ){
+									
+									if ( $tool["name"] == $Office ){
+										$checked = 'selected="selected"';
+									} else {
+										$checked="";
+									}
+
+									$option = '<option value="' . $tool["name"] . '" '.$checked.'>' . $tool["name"] . '</option>';
+									echo $option;
+								}
+?>
+						</select>
+					 <span id="herramientaOfimatica-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div id="herramientaOfimatica-error" class="help-block">
+					Si existe alguna que no est&eacute; en este listado, 
+					por favor notificarlo al Equipo de Desarrollo
+					del Portal Lanuzasoft para agregarlo a este listado
+					<br/>
+					(Telf 5088376 ext 1030 o enviar la solicitud por correo electrónico, soporte@lanuzagroup.com).
+				</div>
+			</div>
+		</div>
+
+		<div id="nombreOfimatica-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label>
+					<u>Nombre de la Herramienta<br/>(en caso de "Otra")</u>
+				</label>
+			</div>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
+					<input type="text" class="form-control" id="nombreOfimatica" name="nombreOfimatica" disabled="disabled" onchange="javascript:updated();" 
+					 placeholder="En caso de seleccionar arriba la opción OTRA">
+					<span id="nombreOfimatica-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-1">
+				<div id="nombreOfimatica-error" class="help-block">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+
+
+		<div id="nombreHerramientaOfimatica-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label>
+					Nombre de Herramienta Ofim&aacute;tica
+				</label>
+			</div>
+			<div class="col-sm-5">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
+					<select class="form-control" id="nombreHerramientaOfimatica" name="nombreHerramientaOfimatica" onchange="javascript:updated();">
+							<option value="none">  --  Seleccione una --  </option>
+<?php
+								$option = ""; $checked="";
+								foreach ( $ofimaticaSoftwareNombres as $tool){
+
+									if ( $tool["name"] == $nombreOffice ){
+										$checked = 'selected="selected"';
+									} else {
+										$checked="";
+									}
+
+									$option = '<option value="' . $tool["name"] . '" '.$checked.'>' . $tool["name"] . '</option>';
+									echo $option;
+								}
+?>
+						</select>
+					 <span id="nombreHerramientaOfimatica-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div id="nombreHerramientaOfimatica-error" class="help-block">
+				</div>
+			</div>
+		</div>
+
+
+		<div id="versionHerramientaOfimatica-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label>
+					Versi&oacute;n de Herramienta Ofim&aacute;tica
+				</label>
+			</div>
+			<div class="col-sm-5">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-sound-7-1"></i></span>
+					<select class="form-control" id="versionHerramientaOfimatica" name="versionHerramientaOfimatica" onchange="javascript:updated();">
+							<option value="none">  --  Seleccione una versión --  </option>
+<?php
+								$option = ""; $checked="";
+								foreach ( $versionesOfimaticaSoftware as $tool){
+
+									if ( $tool["name"] == $versionOffice ){
+										$checked = 'selected="selected"';
+									} else {
+										$checked="";
+									}
+
+									$option = '<option value="' . $tool["name"] . '" '.$checked.'>' . $tool["name"] . '</option>';
+									echo $option;
+								}
+?>
+						</select>
+					 <span id="versionHerramientaOfimatica-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div id="versionHerramientaOfimatica-error" class="help-block">
+				</div>
+			</div>
+		</div>
+
+
+		<div id="tipoLicenciaOfimatica-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label>
+					Tipo de Licencia<b style="color:#E30513;font-size:18px;">*</b>
+				</label>
+			</div>
+			<div class="col-sm-5">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-sound-7-1"></i></span>
+					<select class="form-control" id="tipoLicenciaOfimatica" name="tipoLicenciaOfimatica" onchange="javascript:updated();">
+						<option value="none">  --  Seleccione una --  </option>
+<?php
+							$checked="";
+							foreach ($tipoLicencias as $licencia){
+
+								if ( $licencia["name"] == $tipoLicenciaOffice ){
+									$checked = 'selected="selected"';
+								} else {
+									$checked="";
+								}
+
+								$option = '<option value="' . $licencia["name"] . '" '.$checked.'>' . $licencia["name"] . '</option>';
+								echo $option;
+							}
+?>
+					</select>
+					<span id="tipoLicenciaOfimatica-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div id="tipoLicenciaOfimatica-error" class="help-block">
+				</div>
+			</div>
+		</div>
+
+
+		<div id="serialOfimatica-div" class="row form-group">
+			<div class="col-sm-3" align="right">
+				<label>N&uacute;mero de Serie <br/>(Serial de la Herramienta Ofim&aacute;tica)</label>
+			</div>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-sound-6-1"></i></span>
+					<input type="text" class="form-control" id="serialOfimatica" name="serialOfimatica" onchange="javascript:updated();" 
+					 placeholder="Serial del Software que identifica el Office u otra H.O., normalmente en etiquetas o CD's de instalación"
+					 value="<?= $serialOffice; ?>"
+					>
+					<span id="serialOfimatica-span" class=""></span>
+				</div>
+			</div>
+			<div class="col-sm-1">
+				<div id="serialOfimatica-error" class="help-block">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+
 
 		<div class="form-group">
 			<div class="col-sm-12">
@@ -635,16 +1056,22 @@
 							echo "</script>";
 						} else {
 							$i=0;
-							foreach ($perifericos as $periferico) {
+							foreach ( $perifericos_creados as $periferico) {
 								$i++;
-								$aux = $periferico["id"] . "" . $periferico["marcaPeriferico"] . $periferico["serial"];
+								$marca = "";$desc = "";$serial = "";$nombre = "";
+								if ( isset($periferico["marcaPeriferico"]) ){		$marca = $periferico["marcaPeriferico"]; }
+								if ( isset($periferico["serial"]) ){				$serial = $periferico["serial"];}
+								if ( isset($periferico["Nombre_Periferico"]) ){		$nombre = $periferico["Nombre_Periferico"];}
+								if ( isset($periferico["descripcion_obs"]) ){		$desc = $periferico["descripcion_obs"];}
+
+								$aux = $periferico["id"] . $marca . $serial;
 ?>
 								<tr>
 									<td><?= $periferico["id"] ?></td>
-									<td><?= $periferico["Nombre_Periferico"] ?></td>
-									<td><?= $periferico["marcaPeriferico"] ?></td>
-									<td><?= $periferico["serial"] ?></td>
-									<td><?= $periferico["descripcion_obs"] ?></td>
+									<td><?= $nombre ?></td>
+									<td><?= $marca ?></td>
+									<td><?= $serial ?></td>
+									<td><?= $desc ?></td>
 									<td>
 										<button type="button" class="btn btn-danger"
 										 data-toggle="tooltip" data-placement="bottom" title="Eliminar esta entrada"
@@ -693,7 +1120,7 @@
 			</div>
 			<div class="col-sm-4" align="left">
 				<br/><br/>
-				<a href="<?= PROJECTURLMENU; ?>admin/actualizar_inventario" class="btn btn-link" style="font-size: 18px;">
+				<a href="<?= PROJECTURLMENU; ?>tecnicos/actualizar_inventario" class="btn btn-link" style="font-size: 18px;">
 					Salir SIN guardar los cambios
 					<span class="glyphicon glyphicon-circle-arrow-left"></span> 
 				</a>
@@ -704,6 +1131,19 @@
 	<br/>
 
 	<script>
+
+		$(document).ready(function (){
+
+			$("input").change(function(){
+			    alert("The text has been changed.");
+			    updated();
+			});
+			$("select").change(function(){
+			    updated();
+			});
+
+		});
+
 
 		function updated(){
 			huboAlgunaActualizacion = true;
@@ -717,56 +1157,65 @@
 				alert("Ud. No se ha realizado ningún cambio en este formulario que requiera ser actualizado en el Portal.");
 				return false;
 
-			} else {
-				var bool = true;
+			}
+			var bool = true;
 
-				limpiarEstilos();
+			limpiarEstilos();
 
-				if ( huboAlgunaActualizacion ){
-					bool = verificandoCampos();
-				}
+			if ( huboAlgunaActualizacion ){
+				bool = verificandoCampos();
+			}
 
-				if ( bool == true || huboAlgunaActualizacionPerifericos == true ){
+			if ( bool == true || huboAlgunaActualizacionPerifericos == true ){
 
 <?php
 	if ( trim( $usuarioNombre) == "" ){
 ?>
-					var confirmMessage = "Se procederá a actualizar el Equipo..."
-							+ "\n\nDe la Empresa:  <?= $empresaNombre; ?>"
-							+ "\n\n\n ¿Desea continuar con la actualización del Equipo?";
+				var confirmMessage = "Se procederá a actualizar el Equipo..."
+						+ "\n\nDe la Empresa:  <?= $empresaNombre; ?>"
+						+ "\n\n\n ¿Desea continuar con la actualización del Equipo?";
 <?php 
 	} else {
 ?>
-					var confirmMessage = "Se procederá a actualizar el Equipo..."
-							+ "\n\nDel Usuario:  <?= $usuarioNombre; ?>"
-							+ "\n\nDe la Empresa:  <?= $empresaNombre; ?>"
-							+ "\n\n\n ¿Desea continuar con la actualización del Equipo?";
+				var confirmMessage = "Se procederá a actualizar el Equipo..."
+						+ "\n\nDel Usuario:  <?= $usuarioNombre; ?>"
+						+ "\n\nDe la Empresa:  <?= $empresaNombre; ?>"
+						+ "\n\n\n ¿Desea continuar con la actualización del Equipo?";
 <?php 
 	}
 ?>
-					var ask = confirm( confirmMessage );
-					if ( ask == true) {
+				var ask = confirm( confirmMessage );
+				if ( ask == true) {
 
-						document.getElementById("cambios").value = "true";
+					document.getElementById("cambios").value = "true";
 
-						/* serializando la tabla */
-						if ( huboAlgunaActualizacionPerifericos ){
-							document.getElementById("periferico_cambios").value = "true";
-							csvTablaHTML();
-						}
-
-
-						/* submit POST enviando formulario */
-						document.getElementById("inventario_new_eq_form").submit();
-						return true;
-					} else {
-						return false;
+					/* serializando la tabla */
+					if ( huboAlgunaActualizacionPerifericos ){
+						document.getElementById("periferico_cambios").value = "true";
+						csvTablaHTML();
 					}
+
+					/* quitando el disabled */
+					document.getElementById("costo").removeAttribute("disabled");
+					document.getElementById("reposicion").removeAttribute("disabled");
+					$("#nombreSO").removeAttr("disabled");
+					$("#nombreOfimatica").removeAttr("disabled");
+
+					/* submit POST enviando formulario */
+					document.getElementById("inventario_new_eq_form").submit();
+					return true;
 				} else {
 					return false;
 				}
+			} else {
+				$('html, body').animate({
+					scrollTop: 0
+				}, 1000);
+				alert("Por favor, Revise los Errores y vuelva a intentar...");
+				return false;
 			}
 		}
+		
 		function verificandoCampos(){
 
 			var bool = true;
@@ -919,26 +1368,31 @@
 				document.getElementById("sistemaOperativo-div").className = "form-group has-error has-feedback";
 				document.getElementById("sistemaOperativo-span").className = "glyphicon glyphicon-remove form-control-feedback";
 				document.getElementById("sistemaOperativo-error").innerHTML = "Seleccione uno";
-			
 			}
-
 			
-			var versionSO = $("#versionSO").val();
-			versionSO = versionSO.replace("," , ".");
-
-			if ( !isNumber(versionSO) ){
+			/* Office Ofimática */
+			if ( $("#herramientaOfimatica").val() == "none" ){
+				
 				bool = false;
 				
-				document.getElementById("sistemaOperativo-div").className = "form-group has-error has-feedback";
-				document.getElementById("versionSO-span").className = "glyphicon glyphicon-remove form-control-feedback";
-				document.getElementById("sistemaOperativo-error").innerHTML = "Valor debe ser NUMÉRICO. Ej: 123000,45 (sin separador de miles y la COMA como separador decimal)";
+				document.getElementById("herramientaOfimatica-div").className = "form-group has-error has-feedback";
+				document.getElementById("herramientaOfimatica-span").className = "glyphicon glyphicon-remove form-control-feedback";
+				document.getElementById("herramientaOfimatica-error").innerHTML = "Seleccione una herramienta Ofimática";
+			}
 
-			} else {
-				$("#versionSO").val( versionSO );
+			/* Para el semáforo */
+			if ( $("#gama").val() == "none" ){
+				
+				bool = false;
+				
+				document.getElementById("gama-div").className = "form-group has-error has-feedback";
+				document.getElementById("gama-span").className = "glyphicon glyphicon-remove form-control-feedback";
+				document.getElementById("gama-error").innerHTML = "Seleccione uno";
 			}
 
 			return bool;
 		}
+
 
 		/**
 		 * Funcion que determina si el valor pasado como parametro es o no un NUMERO
@@ -947,6 +1401,7 @@
 		function isNumber (o) {
 			return ! isNaN (o-0) && o !== null && o !== "" && o !== false;
 		}
+
 
 		function limpiarEstilos(){
 			document.getElementById("tipo_equipo-span").className = "";
@@ -986,6 +1441,11 @@
 			document.getElementById("sistemaOperativo-span").className = "";
 			document.getElementById("versionSO-span").className = "";
 			document.getElementById("sistemaOperativo-error").innerHTML = "";
+
+			document.getElementById("gama-div").className = "form-group";
+			document.getElementById("gama-span").className = "";
+			document.getElementById("gama-error").innerHTML = "";
+			
 		}
 
 		function csvTablaHTML(){
@@ -1038,6 +1498,43 @@
 				document.getElementById("periferico_observaciones").value= obser;
 			}
 		}
+
+		function toogleLicOffice(enabled){
+
+			if ( enabled == 1 ){
+				/* Solo aqui puede llenar el campo */
+				$("#licOffice").prop('disabled', false);
+				$("#licOffice").removeAttr('disabled');
+			} else {
+				$("#licOffice").prop('disabled', true);
+				$("#licOffice").attr('disabled','disabled');
+			}
+		}
+
+		function toogleSistemasOperativo(SOvalue){
+			
+			if ( SOvalue == "Otro" ){
+				$("#nombreSO").removeAttr("disabled");
+				//$("#versionSO").attr("disabled", "disabled");
+				//$("#windowsSelection").removeAttr("disabled");
+				
+			} else {
+				$("#nombreSO").attr("disabled", "disabled");
+				$("#nombreSO").val("");
+				//$("#versionSO").removeAttr("disabled");
+				//$("#windowsSelection").attr("disabled", "disabled");
+			}
+		}
+
+		function toogleOfimatica(officeValue){
+			if ( officeValue == "Otra" ){
+				$("#nombreOfimatica").removeAttr("disabled");
+				
+			} else {
+				$("#nombreOfimatica").attr("disabled", "disabled");
+				$("#nombreOfimatica").val("");
+			}
+		}
 	</script>
 
 	<!-- ========================= Modal HARDWARE =============================================== -->
@@ -1065,8 +1562,8 @@
 								<option value="none">  --  Seleccione un tipo --  </option>
 								<?php
 									$option = "";
-									if ( isset( $perifericosTodos ) ){
-										foreach ($perifericosTodos as $periferico){
+									if ( isset( $perifericos ) ){
+										foreach ($perifericos as $periferico){
 
 											$option = '<option value="' . $periferico["id"] . '">' . $periferico["nombre"] . '</option>';
 											echo $option;
@@ -1457,6 +1954,7 @@
 	  </div>
 	</div>
 </div>
+
 <?php
 	if ( isset( $cambioRealizado ) ){
 		echo "<script>";
@@ -1470,6 +1968,7 @@
 		echo "</script>";		
 	}
 ?>
+
 
 <!-- ========================= Modal subir imagenes a IMGUR =============================================== -->
 <div class="modal fade" id="imgurModal" role="dialog">
@@ -1527,7 +2026,6 @@
 	</div>
 </div>
 
-
 <!-- ========================= Modal subir imagenes a IMGUR =============================================== -->
 <div class="modal fade" id="nombreSO_Modal" role="dialog">
 	<div class="modal-dialog modal-lg">
@@ -1554,7 +2052,7 @@
 		  (<b>NO se coloca</b> Windows 7 ya que esa informaci&oacute;n va en el campo 
 		  	<b>"Sistema Operativo" y "Versi&oacute;n"</b>)
 		  <br/><br/>
-		  <img alt="Codigo de barras generado" src="<?= APPIMAGEPATH; ?>windows_version.png" />
+		  <img id="imgX" alt="Codigo de barras generado" src="<?= APPIMAGEPATH; ?>windows_version.png" />
 		  
 		  <br/><br/><br/>
 

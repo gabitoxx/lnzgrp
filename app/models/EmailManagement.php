@@ -10,6 +10,9 @@ use \core\View,
  
 class EmailManagement {
 
+	/* ANTES: http://lanuzagroup.com/login  */
+	private static $iniPage ="http://lanuzasoft.com/";
+
 	public static function recordarPassword($user){
 
 		try {
@@ -31,11 +34,11 @@ class EmailManagement {
 					<br/><br/>
 					"
 					. "<br/>Usuario:   " . $user->usuario
-					. "<br/>Contraseña:" . $user->password
+					. "<br/>Contrase&ntilde;a:" . $user->password
 					. "<br/><br/><br/>"
 					. " Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
 						<br/><br/>
-						<a href=\"http://lanuzagroup.com/login\" target=\"_blank\">http://lanuzagroup.com/login</a>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
 						<br/><br/>
 					    Muchas gracias por usar nuestros servicios.
 					    <br/><br/>
@@ -72,7 +75,7 @@ class EmailManagement {
 	 */
 	public static function nuevoUsuarioCreado($user){
 		try {
-			$to = CONTACTEMAIL1 . "," . CONTACT_EMAIL_3 . "," . $user->email;
+			$to = "" . CONTACTEMAIL1 . "," . CONTACT_EMAIL_3 . "," . $user->email;
 
 			$headers = "Content-Type: text/html; charset=iso-8859-1\n"; 
 			$headers .= "From:". CONTACTEMAIL1 ."\r\n";            
@@ -96,7 +99,7 @@ class EmailManagement {
 						<br/><br/>
 						Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
 						<br/><br/>
-						<a href=\"http://lanuzagroup.com/login\" target=\"_blank\">http://lanuzagroup.com/login</a>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
 						<br/><br/>
 					    Muchas gracias por usar nuestros servicios.
 					    <br/><br/>
@@ -234,7 +237,7 @@ class EmailManagement {
 					. "<br/><br/><br/>"
 					. " Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
 						<br/><br/>
-						<a href=\"http://lanuzagroup.com/login\" target=\"_blank\">http://lanuzagroup.com/login</a>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
 						<br/><br/>
 					    Muchas gracias por usar nuestros servicios.
 					    <br/><br/>
@@ -307,7 +310,7 @@ class EmailManagement {
 					. "<br/> Luego podr&aacute; continuar con la resoluci&oacute;n del inconveniente. <br/><br/>"
 					. " Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
 						<br/><br/>
-						<a href=\"http://lanuzagroup.com/login\" target=\"_blank\">http://lanuzagroup.com/login</a>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
 						<br/><br/>
 					    Muchas gracias por usar nuestros servicios.
 					    <br/><br/>
@@ -372,7 +375,7 @@ class EmailManagement {
 					. "</i> <br/><br/><br/>"
 					. " Ingrese al Portal para continuar con la resoluci&oacute;n de la Incidencia. Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
 						<br/><br/>
-						<a href=\"http://lanuzagroup.com/login\" target=\"_blank\">http://lanuzagroup.com/login</a>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
 						<br/><br/>
 					    Muchas gracias por usar nuestros servicios.
 					    <br/><br/>
@@ -462,7 +465,7 @@ class EmailManagement {
 					para mejorar nuestra Calidad de Servicio. <br/><br/>"
 					. " Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
 						<br/><br/>
-						<a href=\"http://lanuzagroup.com/login\" target=\"_blank\">http://lanuzagroup.com/login</a>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
 						<br/><br/>
 					    Muchas gracias por usar nuestros servicios.
 					    <br/><br/>
@@ -517,7 +520,7 @@ class EmailManagement {
 					. "<br/><br/><br/>"
 					. " Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
 						<br/><br/>
-						<a href=\"http://lanuzagroup.com/login\" target=\"_blank\">http://lanuzagroup.com/login</a>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
 						<br/><br/>
 					    Muchas gracias por usar nuestros servicios.
 					    <br/><br/>
@@ -593,7 +596,7 @@ class EmailManagement {
 					. "<br/><br/><br/>"
 					. " Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
 						<br/><br/>
-						<a href=\"http://lanuzagroup.com/login\" target=\"_blank\">http://lanuzagroup.com/login</a>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
 						<br/><br/>
 					    Muchas gracias por usar nuestros servicios.
 					    <br/><br/>
@@ -683,7 +686,7 @@ class EmailManagement {
 					. "<br/><br/><br/>"
 					. " Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
 						<br/><br/>
-						<a href=\"http://lanuzagroup.com/login\" target=\"_blank\">http://lanuzagroup.com/login</a>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
 						<br/><br/>
 					    Muchas gracias por usar nuestros servicios.
 					    <br/><br/>
@@ -778,7 +781,7 @@ class EmailManagement {
 					. "<br/><br/><br/>"
 					. " Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
 						<br/><br/>
-						<a href=\"http://lanuzagroup.com/login\" target=\"_blank\">http://lanuzagroup.com/login</a>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
 						<br/><br/>
 					    Muchas gracias por usar nuestros servicios.
 					    <br/><br/>
@@ -787,8 +790,8 @@ class EmailManagement {
 					    <i>El Equipo T&eacute;cnico de <b>Lanuza Group</b></i>"
 			;
 			
- echo "$mail"."<br/>"."$tema"."<br/>"."$mensaje"."<br/>"."$cabeceras";
-//			mail("$mail","$tema","$mensaje","$cabeceras");
+			/* echo "$mail"."<br/>"."$tema"."<br/>"."$mensaje"."<br/>"."$cabeceras"; */
+			mail("$mail","$tema","$mensaje","$cabeceras");
 
 
 		} catch( Exception $e) {
@@ -800,4 +803,143 @@ class EmailManagement {
 			Transaccion::insertTransaccionPDOException($tipo_transaccion, $internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
 		}
 	}
+
+
+	/**
+	 * Recordatorio de Soporte Programado para MAÑANA
+	 */
+	public static function notificarCitaManana($mails,$message){
+		try {
+			$mensaje="
+					<b>PORTAL LANUZA GROUP </b>
+					<br/><br/>"
+					. $message
+
+					. " Nos veremos el día de mañana. Estaremos para servirle con gusto.
+					<br/><br/>
+					Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
+						<br/><br/>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
+						<br/><br/>
+					    Muchas gracias por usar nuestros servicios.
+					    <br/><br/>
+					    --<br/>
+					    Atte.<br/>
+					    <i>El Equipo T&eacute;cnico de <b>Lanuza Group</b></i>"
+			;
+
+			/*
+			 * Para enviar un correo HTML, debe establecerse la cabecera Content-type
+			 */
+			$cabeceras  = "MIME-Version: 1.0" . "\r\n";
+			$cabeceras .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
+
+			/* Cabeceras adicionales */
+			$cabeceras .= "To: " . $mails . "\r\n";
+			$cabeceras .= "From: " . CONTACTEMAIL1 . "\r\n";
+			$cabeceras .= "Cc: " . CONTACTEMAIL1 . "\r\n";
+			$cabeceras .= "Bcc: " . CONTACT_EMAIL_3 . "\r\n";
+			$cabeceras .= "X-Mailer: PHP\r\n";
+			$cabeceras .= "X-Priority: 1"; // fijo prioridad
+
+			$tema =  "LanuzaGroup :: Recordatorio de visita el día de Mañana";
+
+			/* echo "$mails"."<br/>"."$tema"."<br/>"."$mensaje"."<br/>"."$cabeceras";  */
+			mail("$mails","$tema","$mensaje","$cabeceras");
+
+
+		} catch( Exception $e) {
+			$internalErrorCodigo  = "Exception in models.EmailManagement.notificarCitaManana():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = $user->saludo . " " . $user->nombre . " " . $user->apellido;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Soporte_aviso_email",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",	 $internalErrorExtra);
+
+			View::render("internalError");
+
+			return false;
+		}
+	}
+
+	/**
+	 * Enviar correo al Admin con CC al usuario
+	 */
+	public static function solicitudDarDeBajaAUsuario($empresaId, $userObject, $usuarioAEliminarId, $nombre, $apellido){
+		try {
+			/* Empresa creadora */
+			$company = Empresas::getEmpresa($empresaId);
+
+			$to = CONTACTEMAIL2;
+
+			/*
+			 * Para enviar un correo HTML, debe establecerse la cabecera Content-type
+			 */
+			$cabeceras  = "MIME-Version: 1.0" . "\r\n";
+			$cabeceras .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
+
+			/* Cabeceras adicionales */
+			$cabeceras .= "To: " . CONTACTEMAIL2 . "\r\n";
+			$cabeceras .= "From: " . CONTACTEMAIL1 . "\r\n";
+			$cabeceras .= "Cc: " . $userObject->email . "\r\n";
+			$cabeceras .= "X-Mailer: PHP\r\n";
+			$cabeceras .= "X-Priority: 1"; // fijo prioridad
+
+			$tema =  "(INACTIVAR USUARIO) Dar de Baja | Solicitud hecha por "
+					. $userObject->saludo . " " . $userObject->nombre . " " . $userObject->apellido;
+
+			$mensaje="
+					<b>PORTAL LANUZA GROUP </b>
+					<br/><br/>"
+					."<b>Solicitud 'Dar de Baja' creada por ". $userObject->saludo . " " . $userObject->nombre . " " . $userObject->apellido . "</b>"
+					. "<br/><br/>
+					Info:
+					<br/><br/>
+					"
+					. "<br/>Empresa:   " . $company->nombre . " (" . $company->razonSocial . ") "
+					. "<br/>Fecha:" . date("d/m/Y")
+					. "<br/><b>Dar de baja a Usuario con ID:" . $usuarioAEliminarId . "</b>"
+					. "<br/>Nombre:" . $nombre . " " . $apellido
+					. "<br/><br/><br/>"
+					. " Para ingresar directamente al LOGIN del Portal ingrese en el siguiente link:
+						<br/><br/>
+						<a href=\"" . self::$iniPage . "\" target=\"_blank\">" . self::$iniPage . "</a>
+						<br/><br/>
+					    Muchas gracias por usar nuestros servicios.
+					    <br/><br/>
+					    --<br/>
+					    Atte.<br/>
+					    <i>El Equipo T&eacute;cnico de <b>Lanuza Group</b></i>
+						<br/><br/>
+						PD al Admin.: recuerde la opci&oacute;n de INACTIVAR USUARIO en el Portal, secci&oacute;n Administraci&oacute;n -> Usuarios.
+					    "
+			;
+			
+ 			/* echo "$to"."<br/>"."$tema"."<br/>"."$mensaje"."<br/>"."$cabeceras"; */
+			mail("$to","$tema","$mensaje","$cabeceras");
+
+			return true;
+
+		} catch( Exception $e) {
+			$internalErrorCodigo  = "Exception in models.EmailManagement.solicitudDarDeBajaAUsuario():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = $userObject->saludo . " " . $userObject->nombre . " " . $userObject->apellido;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Usuario_Desactivar",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",	 $internalErrorExtra);
+
+			View::render("internalError");
+
+			return false;
+		}
+	}
+
 }

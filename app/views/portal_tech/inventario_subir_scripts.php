@@ -42,7 +42,7 @@
 			</div>
 
 <?php 
-			echo '<script> generalInfo = "<b>Empresa Seleccionada:</b> '.$companyInfo;'<br/>"; </script>';
+			echo '<script> generalInfo = "<b>Empresa Seleccionada:</b> ' . $companyInfo . '<br/>"; </script>';
 		}
 ?>
 

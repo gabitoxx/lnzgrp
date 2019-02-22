@@ -59,25 +59,76 @@
 		border-style: inset;
 		border-width: 3px;
 	}
+
+	a.back-to-top {
+		display: block;
+		width: 60px;
+		height: 60px;
+		text-indent: -9999px;
+		position: fixed;
+		z-index: 999;
+		right: 500px;
+		bottom: 20px;
+		background: #F9B233 url("<?= APPIMAGEPATH; ?>up-arrow.png") no-repeat center 43%;
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		border-radius: 30px;
+	}
+	a:hover.back-to-top {
+		background-color: #E30513;
+	}
+
+	#div_year{
+		display: block;
+		position: fixed;
+		right: 650px;
+		bottom: 0px;
+		font-size: 20px;
+		z-index: 999;
+		background-color: <?= RGB_MANAGER; ?>;
+	}
 </style>
 
 <div id="container">
 <div id="HTMLtoPDF" class="page-body">
 
+	<div id="div_year" class=" well well-lg">
+		<b>Reporte de <?= $reporteYear; ?></b>
+	</div>
 
 	<div class="row">
-		<div class="col-sm-6">
+		<div class="col-sm-4">
+			<br/>
 			<h4 style="text-align:center; color:#E30513;">
 				<span class="glyphicon glyphicon-dashboard"></span>
 				<i>Dashboard</i> .:. <?= $empresa->nombre; ?>
 			</h4>
 		</div>
-		<div class="col-sm-6" align="center">
-			<h4><i>
-				Res&uacute;men de Reportes para el a&ntilde;o <u><?= date('Y', time());  ?></u>
+		<div class="col-sm-5" align="center">
+			<br/>
+			<h4 style="background-color:yellow;"><i>
+				Res&uacute;men de Reportes para el a&ntilde;o <u><?= $reporteYear; ?></u>
 			</i></h4>
 		</div>
+		<div class="col-sm-3" align="center">
+			<h5>
+				Solicitar Reporte de otro a&ntilde;o:
+				<select class="form-control" id="anyo_dashboard" name="anyo_dashboard"
+				 onchange="javascript:goToYearReport();" style="width:30%;">
+<?php
+				for ( $i = date("Y",time()); $i >= 2017; $i-- ){
+					echo '<option value="' . $i . '"';
+					if ( $i == $reporteYear ) echo 'selected="selected"';
+					echo '>' . $i . '</option>';
+				}
+?>
+				</select>
+			</h5>
+		</div>
 	</div>
+<?php 
+	echo "<script> var URL = '" . PROJECTURLMENU . "gerentes/dashboard/'; </script>" ;
+?>
 
 	<!-- =================================================================================================== -->
 	<hr/>
@@ -302,7 +353,7 @@
 									<th class="active">Dependencia</th>
 									<th class="active">Tel&eacute;fono</th>
 									<th class="active">Extensi&oacute;n</th>
-									<th class="active">Cuenta Tipo</th>
+									<th class="active">Tipo de Cuenta</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -310,12 +361,12 @@
 <?php 						foreach ($usuariosEquipos as $user) {  ?>
 
 								<tr>
-									<td><?= $user["nombre"]; ?></td>
-									<td><?= $user["apellido"]; ?></td>
-									<td><?= $user["dependencia"]; ?></td>
-									<td><?= $user["telefonoTrabajo"]; ?></td>
-									<td><?= $user["extensionTrabajo"]; ?></td>
-									<td>
+									<td data-title="Nombre"><?= $user["nombre"]; ?></td>
+									<td data-title="Apellido"><?= $user["apellido"]; ?></td>
+									<td data-title="Dependencia"><?= $user["dependencia"]; ?></td>
+									<td data-title="Telef."><?= $user["telefonoTrabajo"]; ?></td>
+									<td data-title="Ext."><?= $user["extensionTrabajo"]; ?></td>
+									<td data-title="Tipo cuenta">
 										<?php 
 											if ( $user["role"] == "admin"){ 		echo "Administrador"; }
 											else if ( $user["role"] == "manager"){  echo "Partner"; }
@@ -341,6 +392,17 @@
 	<div class="row">
 		<div class="col-sm-2">&nbsp;</div>
 		<div class="col-sm-4" align="center" style="text-align:center;">
+<?php
+	$Windows_conLic = 0;
+	$Windows_sinLic = 0;
+	$OtrosSO_conLic = 0;
+	$OtrosSO_sinLic = 0;
+
+	if ( isset($licencias["win_contSi"]) ){ 	$Windows_conLic = $licencias["win_contSi"]; }
+	if ( isset($licencias["win_contNo"]) ){ 	$Windows_sinLic = $licencias["win_contNo"]; }
+	if ( isset($licencias["win_otrosSO_Si"]) ){ $OtrosSO_conLic = $licencias["win_otrosSO_Si"]; }
+	if ( isset($licencias["win_otrosSO_No"]) ){ $OtrosSO_sinLic = $licencias["win_otrosSO_No"]; }
+?>
 			<script type="text/javascript">
 
 				google.charts.setOnLoadCallback(drawChart3);
@@ -352,9 +414,11 @@
 					data.addColumn('string', '¿Es Licenciado?');
 					data.addColumn('number', 'Cantidad de Equipos');
 					data.addRows([
-					  ['Sí', 			<?= $licencias["win_contSi"]; ?> ],
-					  ['No', 			<?= $licencias["win_contNo"]; ?> ],
-					  ['Desconocido', 	<?= $licencias["win_contUnknown"]; ?> ]
+						['Windows con Licencia',		<?= $Windows_conLic; ?> ],
+						['Windows sin Licencia',		<?= $Windows_sinLic; ?> ],
+						['Desconocido', 				<?= $licencias["win_contUnknown"]; ?> ],
+						['Otros S.O. con Licencia', 	<?= $OtrosSO_conLic; ?> ],
+						['Otros S.O. sin Licencia', 	<?= $OtrosSO_sinLic; ?> ]
 					]);
 
 					/* Set chart options */
@@ -371,7 +435,9 @@
 						slices: {
 							0: { color: '#E30513' },
 							1: { color: '#0D181C' },
-							2: { color: '#94A6B0' }
+							2: { color: '#94A6B0' },
+							3: { color: '#39A8D9' },
+							4: { color: '#AFCA0A' }
 						},
 						width: 450,
 						height: 300
@@ -384,6 +450,17 @@
 			<div id="chart_div_pie1" align="center" style="text-align:center;"></div>
 		</div>
 		<div class="col-sm-6" align="center" style="text-align:center;">
+<?php
+	$Office_conLic = 0;
+	$Office_sinLic = 0;
+	$OtroOff_conLic = 0;
+	$OtroOff_sinLic = 0;
+
+	if ( isset($licencias["off_contSi"]) ){ 	$Office_conLic  = $licencias["off_contSi"]; }
+	if ( isset($licencias["off_contNo"]) ){ 	$Office_sinLic  = $licencias["off_contNo"]; }
+	if ( isset($licencias["off_otros_Si"]) ){ 	$OtroOff_conLic = $licencias["off_otros_Si"]; }
+	if ( isset($licencias["off_otros_No"]) ){ 	$OtroOff_sinLic = $licencias["off_otros_No"]; }
+?>
 			<script type="text/javascript">
 
 			  google.charts.setOnLoadCallback(drawChart4);
@@ -395,9 +472,11 @@
 				data.addColumn('string', '¿Es Licenciado?');
 				data.addColumn('number', 'Cantidad de Equipos');
 				data.addRows([
-				  ['Sí', 			<?= $licencias["off_contSi"]; ?> ],
-				  ['No', 			<?= $licencias["off_contNo"]; ?> ],
-				  ['Desconocido', 	<?= $licencias["off_contUnknown"]; ?> ]
+					['Microsoft Office con Licencia', 			<?= $Office_conLic; ?> ],
+					['Microsoft Office sin Licencia', 			<?= $Office_sinLic; ?> ],
+					['Desconocido', 							<?= $licencias["off_contUnknown"]; ?> ],
+					['Otro software Ofimático con Licencia', 	<?= $OtroOff_conLic; ?> ],
+					['Otro software Ofimático sin Licencia', 	<?= $OtroOff_sinLic; ?> ]
 				]);
 
 				/* Set chart options */
@@ -414,7 +493,9 @@
 					slices: {
 						0: { color: '#E30513' },
 						1: { color: '#0D181C' },
-						2: { color: '#94A6B0' }
+						2: { color: '#94A6B0' },
+						3: { color: '#39A8D9' },
+						4: { color: '#AFCA0A' }
 					},
 					width: 500,
 					height: 300
@@ -483,7 +564,7 @@
 						<tr>
 							<td style="text-align:left;">
 								<a data-toggle="collapse" href="#" onclick="javascript:collapseDiv('collapse2');return false;">
-									Detalle de los Cambios Realizados por nuestros Ingenieros de Soporte en sus Equipos. Click aqu&iacute; para desplegar/ocultar:
+									Detalle de los Cambios Realizados por nuestros Ingenieros de Soporte en sus Equipos. <strong>Click aqu&iacute;</strong> para desplegar/ocultar:
 								</a>
 							</td>
 						</tr>
@@ -525,11 +606,11 @@
 											foreach ($reemplazosHardware as $hw) {  ?>
 
 												<tr>
-													<td><?= $hw["hardwareARemplazar"]; ?></td>
-													<td><?= $hw["descripcion"]; ?></td>
-													<td><?= $hw["hardwareViejo"]; ?></td>
-													<td><?= $hw["hardwareNuevo"]; ?></td>
-													<td style="text-align:center;"><?= ucfirst( $hw["fueRemplazado"] ); ?></td>
+													<td data-title="HW reemplazar"><?= $hw["hardwareARemplazar"]; ?></td>
+													<td data-title="Descrip."><?= $hw["descripcion"]; ?></td>
+													<td data-title="HW reemplazado"><?= $hw["hardwareViejo"]; ?></td>
+													<td data-title="HW nuevo"><?= $hw["hardwareNuevo"]; ?></td>
+													<td data-title="¿Reemplazado?" style="text-align:center;"><?= ucfirst( $hw["fueRemplazado"] ); ?></td>
 												</tr>
 
 <?php										}
@@ -890,13 +971,13 @@
 
 														echo '<tr class="info">';
 														
-														echo "  <td>";
+														echo "  <td data-title='Ver Reporte'>";
 														echo      '<button type="button" class="btn btn-primary" 
 																	data-toggle="tooltip" data-placement="bottom" title="Ver Soluci&oacute;n de la Incidencia | Opci&oacute;n Imprimir Reporte"
 																	onclick="javascript:verDetalleSolucion(' . $aux . ');"><span class="glyphicon glyphicon-folder-open"></span></button>';
 														echo "  </td>";
 														
-														echo "  <td>";
+														echo "  <td data-title='Detalle'>";
 														echo      $causalesIncidenciasDashboard["endogena"][$i] . "<br/>&nbsp;";
 														echo "  </td>";
 
@@ -1054,8 +1135,10 @@
 						<tr>
 							<td style="text-align:left;">
 								<a data-toggle="collapse" href="#" onclick="javascript:collapseDiv('collapse4');return false;">
-									<span id="usuariosReportanCantidad" style="font-family: monospace; font-size: 18px;"></span> 
-									Usuarios han reportado Incidencias en este a&ntilde;o. Click aqu&iacute; para desplegar/ocultar:
+									<strong>
+										<span id="usuariosReportanCantidad" style="font-family: monospace; font-size: 18px;"></span> 
+									</strong> 
+									Usuarios han reportado Incidencias en este a&ntilde;o. <strong>Click aqu&iacute;</strong> para desplegar/ocultar:
 								</a>
 							</td>
 						</tr>
@@ -1069,7 +1152,7 @@
 <?php
 						if ( $usuariosDeIncidenciasDeEsteAnyo == NULL || $usuariosDeIncidenciasDeEsteAnyo == "" ){
 							echo "<br/>";
-							echo "<b>No</b> se han reportado Incidencias en lo que va de año.";
+							echo "<b>No</b> se han reportado Incidencias en lo que va de a&ntilde;o.";
 							echo "<br/>";
 							echo "<script>";
 							echo ' document.getElementById("usuariosReportanCantidad").innerHTML = "0"; ';
@@ -1084,7 +1167,7 @@
 										<th class="active" width="200px">Dependencia</th>
 										<th class="active" width="150px">Tel&eacute;fono</th>
 										<th class="active" width="100px">Extensi&oacute;n</th>
-										<th class="active" width="140px" style="text-align:center;">Cuenta Tipo</th>
+										<th class="active" width="140px" style="text-align:center;">Tipo de Cuenta</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -1096,12 +1179,12 @@
 ?>
 
 									<tr>
-										<td><?= $user["nombre"]; ?></td>
-										<td><?= $user["apellido"]; ?></td>
-										<td><?= $user["dependencia"]; ?></td>
-										<td><?= $user["telefonoTrabajo"]; ?></td>
-										<td><?= $user["extensionTrabajo"]; ?></td>
-										<td style="text-align:center;">
+										<td data-title="Nombre"><?= $user["nombre"]; ?></td>
+										<td data-title="Apellido"><?= $user["apellido"]; ?></td>
+										<td data-title="Dependencia"><?= $user["dependencia"]; ?></td>
+										<td data-title="Telef."><?= $user["telefonoTrabajo"]; ?></td>
+										<td data-title="Ext."><?= $user["extensionTrabajo"]; ?></td>
+										<td data-title="Tipo cuenta" style="text-align:center;">
 											<?php 
 												if ( $user["role"] == "admin"){ 		echo "Administrador"; }
 												else if ( $user["role"] == "manager"){  echo "Partner"; }
@@ -1140,8 +1223,10 @@
 						<tr>
 							<td style="text-align:left;">
 								<a data-toggle="collapse" href="#" onclick="javascript:collapseDiv('collapse5');return false;">
-									<span id="tecnicosResuelvenCantidad" style="font-family: monospace; font-size: 18px;"></span> 
-									Ingenieros de Soporte han solucionado las Incidencias reportadas este a&ntilde;o. Click aqu&iacute; para desplegar/ocultar:
+									<strong>
+										<span id="tecnicosResuelvenCantidad" style="font-family: monospace; font-size: 18px;"></span> 
+									</strong> 
+									Ingenieros de Soporte han solucionado las Incidencias reportadas este a&ntilde;o. <strong>Click aqu&iacute;</strong> para desplegar/ocultar:
 								</a>
 							</td>
 						</tr>
@@ -1179,9 +1264,9 @@
 ?>
 
 									<tr>
-										<td><?= $user["nombre"]; ?></td>
-										<td><?= $user["apellido"]; ?></td>
-										<td><?= $user["email"]; ?></td>
+										<td data-title="Nombre"><?= $user["nombre"]; ?></td>
+										<td data-title="Apellido"><?= $user["apellido"]; ?></td>
+										<td data-title="Email"><?= $user["email"]; ?></td>
 									</tr>
 
 <?php							
@@ -1240,7 +1325,7 @@
 							<table id="agendaFutura" class="table-hover table-striped cf" style="font-size: 14px;">
 								<thead class="cf">
 									<tr>
-										<th class="active" width="100px">Fecha</th>
+										<th class="active" width="100px">Fecha<br/>(a&ntilde;o-mes-d&iacute;a)</th>
 										<th class="active" width="200px">Horario de Visita</th>
 										<th class="active" width="300px">Trabajo a Realizar</th>
 										<th class="active" width="200px">Ing. de Soporte asignado</th>
@@ -1251,10 +1336,10 @@
 <?php 							foreach ( $citasFuturas as $cita ) {		?>
 
 									<tr>
-										<td>
-											<?= substr( $cita["fecha_cita"], 0, 9 ); ?>
+										<td data-title="Fecha">
+											<?= substr( $cita["fecha_cita"], 0, 10 ); ?>
 										</td>
-										<td>
+										<td data-title="Horario">
 											<?php 
 												$aux = $cita["hora_estimada"] . " " . $cita["am_pm"];
 
@@ -1267,7 +1352,7 @@
 												echo $aux1;
 											?>
 										</td>
-										<td>
+										<td data-title="Trabajo">
 											<?php
 												if ( $cita["inventario_info"] != NULL && $cita["inventario_info"] ){
 													echo $cita["trabajoArealizar"] . "<br/>" . $cita["inventario_info"];
@@ -1276,7 +1361,7 @@
 												}
 											?>
 										</td>
-										<td>
+										<td data-title="Ing. asignado">
 											<?php 
 												if ( $cita["tecnicoId"] != NULL && $cita["tecnicoId"] != ""){
 													echo $cita["nombre"] . " " . $cita["apellido"] . "<br/>(Contacto: " . $cita["email"] . ")";
@@ -1308,8 +1393,10 @@
 						<tr>
 							<td style="text-align:left;">
 								<a data-toggle="collapse" href="#" onclick="javascript:collapseDiv('collapse6');return false;">
-									<span id="citasCantidad" style="font-family: monospace; font-size: 18px;"></span> 
-									Citas de Soporte IT realizadas en lo que van de a&ntilde;o. Click aqu&iacute; para desplegar/ocultar:
+									<strong>
+										<span id="citasCantidad" style="font-family: monospace; font-size: 18px;"></span> 
+									</strong> 
+									Cita(s) de Soporte IT realizadas en lo que van de a&ntilde;o. <strong>Click aqu&iacute;</strong> para desplegar/ocultar:
 								</a>
 							</td>
 						</tr>
@@ -1333,7 +1420,7 @@
 							<table id="agendaPasada" class="table-hover table-striped cf" style="font-size: 14px;">
 								<thead class="cf">
 									<tr>
-										<th class="active" width="100px">Fecha</th>
+										<th class="active" width="100px">Fecha<br/>(a&ntilde;o-mes-d&iacute;a)</th>
 										<th class="active" width="200px">Horario de Visita</th>
 										<th class="active" width="300px">Trabajo a Realizar</th>
 										<th class="active" width="200px">Ing. de Soporte asignado</th>
@@ -1348,10 +1435,10 @@
 ?>
 
 									<tr>
-										<td>
-											<?= substr( $cita["fecha_cita"], 0, 9 ); ?>
+										<td data-title="Fecha">
+											<?= substr( $cita["fecha_cita"], 0, 10 ); ?>
 										</td>
-										<td>
+										<td data-title="Horario">
 											<?php 
 												$aux = $cita["hora_estimada"] . " " . $cita["am_pm"];
 
@@ -1364,7 +1451,7 @@
 												echo $aux1;
 											?>
 										</td>
-										<td>
+										<td data-title="Trabajo">
 											<?php
 												if ( $cita["inventario_info"] != NULL && $cita["inventario_info"] ){
 													echo $cita["trabajoArealizar"] . "<br/>" . $cita["inventario_info"];
@@ -1373,7 +1460,7 @@
 												}
 											?>
 										</td>
-										<td>
+										<td data-title="Ing. asignado">
 											<?php 
 												if ( $cita["tecnicoId"] != NULL && $cita["tecnicoId"] != ""){
 													echo $cita["nombre"] . " " . $cita["apellido"] . "<br/>(Contacto: " . $cita["email"] . ")";
@@ -1425,8 +1512,10 @@
 						<tr>
 							<td style="text-align:left;">
 								<a data-toggle="collapse" href="#" onclick="javascript:collapseDiv('collapse7');return false;">
-									<span id="citasCantidad" style="font-family: monospace; font-size: 18px;"></span> 
-									Reportes de Visita: trabajos realizados por nuestros Ingenieros de Soporte en su Empresa in-situ (presencialmente). Click aqu&iacute; para desplegar/ocultar:
+									<strong>
+										<span id="citasCantidad" style="font-family: monospace; font-size: 18px;"></span> 
+									</strong> 
+									Reportes de Visita: trabajos realizados por nuestros Ingenieros de Soporte en su Empresa in-situ (presencialmente). <strong>Click aqu&iacute;</strong> para desplegar/ocultar:
 								</a>
 							</td>
 						</tr>
@@ -1467,7 +1556,7 @@
 											<button type="button"
 											 <?php 
 												if ($informe["resolucionId"]==null || $informe["resolucionId"]==""){
-													echo 'class="btn btn-primary disabled"';
+													echo 'class="btn btn-primary disabled" disabled="disabled" ';
 												}else{
 													echo 'class="btn btn-primary"';
 												}
@@ -1480,7 +1569,7 @@
 											<button type="button"
 											 <?php 
 												if ($informe["tecnicoId"]==null || $informe["tecnicoId"]==""){
-													echo 'class="btn btn-info disabled"';
+													echo 'class="btn btn-info disabled" disabled="disabled" ';
 												}else{
 													echo 'class="btn btn-info"';
 												}
@@ -1601,7 +1690,7 @@
 								<a data-toggle="collapse" href="#" onclick="javascript:collapseDiv('collapse8');return false;">
 									<span id="citasCantidad" style="font-family: monospace; font-size: 18px;"></span> 
 									A continuaci&oacute;n podr&aacute; ver el Iventario actualizado de Equipos, y un resumen de cada uno.
-									Click aqu&iacute; para desplegar/ocultar:
+									<strong>Click aqu&iacute;</strong> para desplegar/ocultar:
 								</a>
 							</td>
 						</tr>
@@ -1753,12 +1842,15 @@
 		</div>
 	</div>
 
+	<a href="javascript:goArriba();" class="back-to-top" data-toggle="tooltip" title="Volver Arriba">Volver Arriba</a>
+
 	<br/><br/><br/><br/>
 
 </div><!-- HTMLtoPDF -->
 </div><!-- container -->
 
 <script>
+	
 	$(document).ready(function(){
 
 		
@@ -1794,12 +1886,22 @@
 
 		$('.collapse').collapse();
 
+
+		var amountScrolled = 300;
+
+		$('#container').scroll(function(){
+			if ( $('#container').scrollTop() > amountScrolled ) {
+				$('a.back-to-top').fadeIn('slow');
+			} else {
+				$('a.back-to-top').fadeOut('slow');
+			}
+		});
+
+		
+
 	});
 
 
-	function collapseDiv( collapseID ){
-		$('#' + collapseID ).collapse('toggle');
-	}
 
 	/**
 	 * Formulario como el del Tecnico pero sin poder editar
@@ -1840,6 +1942,20 @@
 	function verMenosDetalles(trId){
 		var result_style = document.getElementById( trId ).style;
 		result_style.display = 'none';
+	}
+
+
+	function goArriba(){
+		location.href = "#container";
+	}
+
+	function goToYearReport(){
+
+		$("#container").css('cursor', 'wait');
+
+		URL += $("#anyo_dashboard").val();
+		
+		location.href = URL;
 	}
 
 </script>

@@ -5,9 +5,9 @@
  */
 $sql_host = "lanuzagroup.com";
 
-$sql_db = "lanuzag_LanuzaGroupDB";
+$sql_db = "lanuzaso_LanuzaGroupDB";
 
-$sql_user = "lanuzag_dbUser";
+$sql_user = "lanuzaso_dbUser";
 
 $sql_password = "mysqlC0ntr453ñ4*";
 

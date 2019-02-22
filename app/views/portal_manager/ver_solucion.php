@@ -564,17 +564,6 @@
 
 	});
 
-	function collapseDiv( collapseID ){
-		$('#' + collapseID ).collapse('toggle');
-	}
-
-	function collapseAll(){
-		$('.collapse').collapse('hide');
-	}
-
-	function expandAll(){
-		$('.collapse').collapse('show');
-	}
 
 	function certificar(){
 		document.getElementById("solucion_incidencia_form").submit();

@@ -16,15 +16,26 @@
 <!-- ==========================   Modulo PQRS  ========================================================  -->
 <div id="div_chat" class="chatLive well well-sm" onclick="javascript:openPQRS();"
  onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'">
-	<span class="glyphicon glyphicon-heart"></span>
-	&nbsp;&nbsp;&nbsp;
-	<b>M&oacute;dulo PQRS</b>
-	&nbsp;&nbsp;&nbsp;
-	<span class="glyphicon glyphicon-comment"></span>
-	<br/>
-	¿Comentarios, Quejas, Reclamos o Sugerencias?
-	<br/>
-	Estamos aqu&iacute; para escucharte...
+	
+	<div class="hidden-xs">
+	<!-- Esconder en Celulares -->
+		<span class="glyphicon glyphicon-heart"></span>
+		&nbsp;&nbsp;&nbsp;
+		<b>M&oacute;dulo PQRS</b>
+		&nbsp;&nbsp;&nbsp;
+		<span class="glyphicon glyphicon-comment"></span>
+		<br/>
+		¿Comentarios, Quejas, Reclamos o Sugerencias?
+		<br/>
+		Estamos aqu&iacute; para escucharte...
+	</div>
+	
+	<div class="visible-xs-block">
+	<!-- Mostrar SOLO en Celulares -->
+		<span class="glyphicon glyphicon-heart"></span>
+		<b>PQRS</b>
+		<span class="glyphicon glyphicon-comment"></span>
+	</div>
 </div>
 
 <!-- ==========================   Modal  ========================================================  -->

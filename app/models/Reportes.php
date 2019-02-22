@@ -11,6 +11,12 @@ use \core\Database,
  */
 class Reportes {
 
+	/**
+	 * Filtros:
+	 */
+	private static $FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO = " AND eq.estatus <> 'Suspendido' ";
+
+
 
 	/**
 	 * Todo lo concerniente a Reportes sobre Equipos de UNA EMPRESA
@@ -22,7 +28,10 @@ class Reportes {
 			$connection = Database::instance();
 
 			/**/
-			$sql1 = " SELECT COUNT(eq.id) AS Cantidad_Equipos FROM Equipos eq WHERE eq.empresaId = ? ";
+			$sql1 = " SELECT COUNT(eq.id) AS Cantidad_Equipos 
+					FROM Equipos eq 
+					WHERE eq.empresaId = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO;
 
 			$query1 = $connection -> prepare($sql1);
 
@@ -35,7 +44,10 @@ class Reportes {
 			$out["Cantidad_Equipos"] = $r1->Cantidad_Equipos;
 
 			/**/
-			$sql2 = " SELECT COUNT(eq.id) AS Equipos_Asignados FROM Equipos eq WHERE eq.empresaId = ? AND eq.usuarioId IS NOT NULL ";
+			$sql2 = " SELECT COUNT(eq.id) AS Equipos_Asignados 
+					FROM Equipos eq 
+					WHERE eq.empresaId = ? AND eq.usuarioId IS NOT NULL "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO;
 
 			$query2 = $connection -> prepare($sql2);
 
@@ -86,7 +98,9 @@ class Reportes {
 			$sql = " SELECT te.nombre AS Presentacion
 					FROM Equipos eq
 					INNER JOIN TipoEquipos te ON te.tipoEquipoId = eq.tipoEquipoId 
-					WHERE eq.empresaId = ? ORDER BY Presentacion ";
+					WHERE eq.empresaId = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO
+					. " ORDER BY Presentacion ";
 
 			$query = $connection -> prepare($sql);
 
@@ -167,8 +181,9 @@ class Reportes {
 
 			$sql = " SELECT u.nombre, u.apellido, u.dependencia, u.telefonoTrabajo, u.extensionTrabajo, u.role 
 					FROM Usuarios u WHERE u.id IN (
-					  SELECT DISTINCT(eq.usuarioId) FROM Equipos eq WHERE eq.empresaId = ? AND eq.usuarioId IS NOT NULL
-					) 
+					  SELECT DISTINCT(eq.usuarioId) FROM Equipos eq WHERE eq.empresaId = ? AND eq.usuarioId IS NOT NULL "
+					  . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO
+					. " ) 
 					ORDER BY u.nombre ASC ";
 
 			$query = $connection -> prepare($sql);
@@ -291,13 +306,18 @@ class Reportes {
 	 * SOLO el AÑO actual
 	 * @return Object[] {"Numero_Incidencias", "Numero_tecnicos_que_han_visitado_empresa"}
  	 */
-	public static function estadisticasIncidenciasDashboard($empresaId){
+	public static function estadisticasIncidenciasDashboard($empresaId, $searchYear){
 		try {
 			$connection = Database::instance();
 
 			/* AÑO actual */
 			$yearDesde = date('Y', time());
 			$yearHasta = ( $yearDesde + 1 );
+
+			if ( $searchYear != NULL && $searchYear != "" && $searchYear > 2016 ){
+				$yearDesde = $searchYear;
+				$yearHasta = ( $yearDesde + 1 );
+			}
 
 			/**/
 			$sql1 = " SELECT COUNT(i.incidenciaId) AS Numero_Incidencias FROM Incidencias i WHERE i.empresaId = ? 
@@ -353,13 +373,18 @@ class Reportes {
 	 * No toma en cuenta el tiempo, solo el AÑO ACTUAL
 	 * @return listado
  	 */
-	public static function usuariosDeIncidenciasDashboard($empresaId){
+	public static function usuariosDeIncidenciasDashboard($empresaId, $searchYear){
 		try {
 			$connection = Database::instance();
 
 			/* AÑO actual */
 			$yearDesde = date('Y', time());
 			$yearHasta = ( $yearDesde + 1 );
+
+			if ( $searchYear != NULL && $searchYear != "" && $searchYear > 2016 ){
+				$yearDesde = $searchYear;
+				$yearHasta = ( $yearDesde + 1 );
+			}
 
 			/**/
 			$sql = " SELECT u.id, u.nombre, u.apellido, u.dependencia, u.telefonoTrabajo, u.extensionTrabajo, u.role 
@@ -400,13 +425,18 @@ class Reportes {
 	 * No toma en cuenta el tiempo, solo el AÑO ACTUAL
 	 * @return listado
  	 */
-	public static function tecnicosEnEmpresaDashboard($empresaId){
+	public static function tecnicosEnEmpresaDashboard($empresaId, $searchYear){
 		try {
 			$connection = Database::instance();
 
 			/* AÑO actual */
 			$yearDesde = date('Y', time());
 			$yearHasta = ( $yearDesde + 1 );
+
+			if ( $searchYear != NULL && $searchYear != "" && $searchYear > 2016 ){
+				$yearDesde = $searchYear;
+				$yearHasta = ( $yearDesde + 1 );
+			}
 
 			/**/
 			$sql = " SELECT u.nombre, u.apellido, u.email FROM Usuarios u WHERE u.role = 'tech' AND u.id IN 
@@ -446,13 +476,18 @@ class Reportes {
 	 * 		"Numero_Incidencias_Status_En_Espera", "Numero_Incidencias_Status_Cerrada", 
 	 *		"Numero_Incidencias_Status_Certificada",     "Numero_Incidencias_Total"    }
  	 */
-	public static function clasificacionIncidenciasDashboard($empresaId){
+	public static function clasificacionIncidenciasDashboard($empresaId, $searchYear){
 		try {
 			$connection = Database::instance();
 
 			/* AÑO actual */
 			$yearDesde = date('Y', time());
 			$yearHasta = ( $yearDesde + 1 );
+
+			if ( $searchYear != NULL && $searchYear != "" && $searchYear > 2016 ){
+				$yearDesde = $searchYear;
+				$yearHasta = ( $yearDesde + 1 );
+			}
 
 			/**/
 			$sql1 = " SELECT COUNT(i.incidenciaId) AS Numero_Incidencias_Status_Abierta FROM Incidencias i 
@@ -562,7 +597,7 @@ class Reportes {
 	 * No toma en cuenta el tiempo, solo el AÑO ACTUAL
 	 * @return Object[] con 6 listados
  	 */
-	public static function clasificacionCausasIncidenciasDashboard($empresaId){
+	public static function clasificacionCausasIncidenciasDashboard($empresaId, $searchYear){
 		$array = NULL;
 		try {
 			$connection = Database::instance();
@@ -570,6 +605,11 @@ class Reportes {
 			/* AÑO actual */
 			$yearDesde = date('Y', time());
 			$yearHasta = ( $yearDesde + 1 );
+
+			if ( $searchYear != NULL && $searchYear != "" && $searchYear > 2016 ){
+				$yearDesde = $searchYear;
+				$yearHasta = ( $yearDesde + 1 );
+			}
 
 			/**/
 			$sql = " SELECT sol.variableEndogena, sol.variableExogenaTecnica, sol.variableExogenaHumana, sol.incidenciaId, sol.solucionId 
@@ -646,13 +686,18 @@ class Reportes {
 	 * No toma en cuenta el tiempo, solo el AÑO ACTUAL
 	 * @return listado
  	 */
-	public static function duracionPromedioIncidenciasDashboard($empresaId){
+	public static function duracionPromedioIncidenciasDashboard($empresaId, $searchYear){
 		try {
 			$connection = Database::instance();
 
 			/* AÑO actual */
 			$yearDesde = date('Y', time());
 			$yearHasta = ( $yearDesde + 1 );
+
+			if ( $searchYear != NULL && $searchYear != "" && $searchYear > 2016 ){
+				$yearDesde = $searchYear;
+				$yearHasta = ( $yearDesde + 1 );
+			}
 
 			/**/
 			$sql = " SELECT sol.incidenciaDuracionDias FROM Soluciones sol 
@@ -691,13 +736,18 @@ class Reportes {
 	 * No toma en cuenta el tiempo, solo el AÑO ACTUAL
 	 * @return listado
  	 */
-	public static function reemplazosHardwareDashboard($empresaId){
+	public static function reemplazosHardwareDashboard($empresaId, $searchYear){
 		try {
 			$connection = Database::instance();
 
 			/* AÑO actual */
 			$yearDesde = date('Y', time());
 			$yearHasta = ( $yearDesde + 1 );
+
+			if ( $searchYear != NULL && $searchYear != "" && $searchYear > 2016 ){
+				$yearDesde = $searchYear;
+				$yearHasta = ( $yearDesde + 1 );
+			}
 
 			/**/
 			$sql = " SELECT * FROM CambioHardware hard WHERE hard.solucionId IN 
@@ -737,13 +787,18 @@ class Reportes {
 	 * No toma en cuenta el tiempo, solo el AÑO ACTUAL
 	 * @return listado
  	 */
-	public static function reemplazosSoftwareDashboard($empresaId){
+	public static function reemplazosSoftwareDashboard($empresaId, $searchYear){
 		try {
 			$connection = Database::instance();
 
 			/* AÑO actual */
 			$yearDesde = date('Y', time());
 			$yearHasta = ( $yearDesde + 1 );
+
+			if ( $searchYear != NULL && $searchYear != "" && $searchYear > 2016 ){
+				$yearDesde = $searchYear;
+				$yearHasta = ( $yearDesde + 1 );
+			}
 
 			/**/
 			$sql = " SELECT * FROM CambioSoftware soft WHERE soft.solucionId IN 
@@ -824,12 +879,16 @@ class Reportes {
 	 * Citas previas del dia actual, solo de ESTE AÑO
 	 * @return listado
  	 */
-	public static function agendaPasadasEnEmpresaDashboard($empresaId){
+	public static function agendaPasadasEnEmpresaDashboard($empresaId, $searchYear){
 		try {
 			$connection = Database::instance();
 
 			/* AÑO actual */
 			$yearDesde = date('Y', time());
+
+			if ( $searchYear != NULL && $searchYear != "" && $searchYear > 2016 ){
+				$yearDesde = $searchYear;
+			}
 
 			/**/
 			$sql = " SELECT sp.*, tech.id, tech.nombre, tech.apellido, tech.email
@@ -868,10 +927,14 @@ class Reportes {
 	 * @return Object[]
  	 */
 	public static function licenciamientoEquiposDashboard($empresaId){
+		
 		try {
 			$connection = Database::instance();
 
-			$sql = " SELECT eq.licWindows, eq.licOffice FROM Equipos eq WHERE eq.empresaId = ? ";
+			$sql = " SELECT eq.licWindows, eq.licOffice, eq.equipoSOInfoId, eq.equipoOfimaticaInfoId 
+					FROM Equipos eq 
+					WHERE eq.empresaId = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO;
 
 			$query = $connection -> prepare($sql);
 
@@ -897,33 +960,88 @@ class Reportes {
 			die;
 		}
 
-		$win_contSi = 0; $win_contNo = 0; $win_contUnknown = 0;
-		$off_contSi = 0; $off_contNo = 0; $off_contUnknown = 0;
+		/*************************************************************************************
+		 * Transformando valores para el grafico de torta
+		 */
+		$win_contSi = 0; $win_contNo = 0; $win_contUnknown = 0; $win_fks[0] = 0; $win_sinData = 0;
+		$off_contSi = 0; $off_contNo = 0; $off_contUnknown = 0; $off_fks[0] = 0; $lic_sinData = 0;
 
 		$i = -1;
 		foreach ( $array as $variable ) {
 			$i++;
 
+			/* Windows */
 			$aux = $variable["licWindows"];
 			if ( $aux == "Si" ){					$win_contSi++;
 			} else if ( $aux == "No" ){				$win_contNo++;
-			} else if ( $aux == "Desconocido" ){	$win_contUnknown++;
+			} else if ( $aux == "Desconocido" ){
+				if ( $variable["equipoSOInfoId"] != null && $variable["equipoSOInfoId"] != "" ){
+					$win_fks[ $win_contUnknown ] = $variable["equipoSOInfoId"];
+					$win_contUnknown++;
+				} else {
+					 $win_sinData++;
+				}
 			}
 
+			/* Ofimática */
 			$aux1 = $variable["licOffice"];
 			if ( $aux1 == "Si" ){					$off_contSi++;
 			} else if ( $aux1 == "No" ){			$off_contNo++;
-			} else if ( $aux1 == "Desconocido" ){	$off_contUnknown++;
+			} else if ( $aux1 == "Desconocido" ){
+				if ( $variable["equipoOfimaticaInfoId"] != null && $variable["equipoOfimaticaInfoId"] != "" ){
+					$off_fks[ $off_contUnknown ] = $variable["equipoOfimaticaInfoId"];
+					$off_contUnknown++;
+				} else {
+					$lic_sinData++;
+				}
 			}
 		}
 
+		/********************************************************************
+		 * Version 2 de almacenamiento de esta info: 
+		 * buscar en las FK equipoSOInfoId y equipoOfimaticaInfoId
+		 */
+		$NOwin_siLic = 0; $NOwin_noLic = 0;
+
+		if ( $win_contUnknown > 0 ){
+
+			$responseWin = Reportes::buscarLicenciasSistemasOperativos( $win_fks, $win_contUnknown );
+
+			$win_contSi = $win_contSi + $responseWin["windows_si"];
+			$win_contNo = $win_contNo + $responseWin["windows_no"];
+
+			$NOwin_siLic = $responseWin["otros_si"];
+			$NOwin_noLic = $responseWin["otros_no"];
+		}
+
+		$NOoff_siLic = 0; $NOoff_noLic = 0;
+
+		if ( $off_contUnknown > 0 ){
+
+			$responseOff = Reportes::buscarLicenciasOfimaticas( $off_fks, $off_contUnknown );
+
+			$off_contSi = $off_contSi + $responseOff["office_si"];
+			$off_contNo = $off_contNo + $responseOff["office_no"];
+			
+			$NOoff_siLic = $responseOff["otro_office_si"];
+			$NOoff_noLic = $responseOff["otro_office_no"];
+		}
+
+
+		/****************************************************************
+		 * Valores a devolver
+		 */
 		$out["win_contSi"] 		= $win_contSi;
 		$out["win_contNo"] 		= $win_contNo;
-		$out["win_contUnknown"] = $win_contUnknown;
+		$out["win_contUnknown"] = $win_sinData;
+		$out["win_otrosSO_Si"]  = $NOwin_siLic;
+		$out["win_otrosSO_No"]  = $NOwin_noLic;
 
 		$out["off_contSi"] 		= $off_contSi;
 		$out["off_contNo"] 		= $off_contNo;
-		$out["off_contUnknown"] = $off_contUnknown;
+		$out["off_contUnknown"] = $lic_sinData;
+		$out["off_otros_Si"] 	= $NOoff_siLic;
+		$out["off_otros_No"] 	= $NOoff_noLic;
 
 		/**/
 		return $out;
@@ -941,7 +1059,8 @@ class Reportes {
 			$sql = " SELECT eq.*, te.nombre AS TipoEquipo 
 					FROM Equipos eq 
 					LEFT JOIN TipoEquipos te ON eq.tipoEquipoId = te.tipoEquipoId 
-					WHERE eq.empresaId = ? ";
+					WHERE eq.empresaId = ? "
+					. self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO;
 
 			$query = $connection -> prepare($sql);
 
@@ -977,8 +1096,9 @@ class Reportes {
 		try {
 			$connection = Database::instance();
 
-			$sql = " SELECT eq.codigoBarras, eq.valor, eq.valorReposicion, eq.nombreEquipo 
-					FROM Equipos eq WHERE eq.empresaId = ? ";
+			$sql = " SELECT eq.codigoBarras, eq.valor, eq.valorReposicion, eq.nombreEquipo, eq.gama  
+					FROM Equipos eq WHERE eq.empresaId = ? "
+					. self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO;
 
 			$query = $connection -> prepare($sql);
 
@@ -1021,7 +1141,8 @@ class Reportes {
 					 LEFT JOIN ICPU cpu ON ei.cpuId = cpu.cpuId 
 					 LEFT JOIN IMotherBoard mb ON ei.motherboardId = mb.motherboardId 
 					WHERE eq.empresaId = ?
-					 AND cpu.isLegacy = ? AND mb.isLegacy = ? ";
+					 AND cpu.isLegacy = ? AND mb.isLegacy = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO;
 
 			$query = $connection -> prepare($sql);
 
@@ -1064,7 +1185,8 @@ class Reportes {
 			$sql = " SELECT eq.codigoBarras, ram.BankLabel, ram.Capacity, ram.Speed 
 					FROM IRAM ram 
 					 INNER JOIN Equipos eq ON eq.equipoInfoId = ram.equipoInfoId 
-					WHERE eq.empresaId = ? AND ram.isLegacy = ? ";
+					WHERE eq.empresaId = ? AND ram.isLegacy = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO;
 
 			$query = $connection -> prepare($sql);
 
@@ -1106,8 +1228,9 @@ class Reportes {
 					FROM ISound so 
 					 INNER JOIN Equipos eq ON eq.equipoInfoId = so.equipoInfoId 
 					WHERE eq.empresaId = ? 
-					 AND so.isLegacy = ? 
-					GROUP BY eq.codigoBarras ";
+					 AND so.isLegacy = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO 
+					. " GROUP BY eq.codigoBarras ";
 
 			$query1 = $connection -> prepare($sql1);
 
@@ -1125,8 +1248,9 @@ class Reportes {
 					FROM IVideo vi 
 					 INNER JOIN Equipos eq ON eq.equipoInfoId = vi.equipoInfoId 
 					WHERE eq.empresaId = ? 
-					 AND vi.isLegacy = ? 
-					GROUP BY eq.codigoBarras ";
+					 AND vi.isLegacy = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO
+					. " GROUP BY eq.codigoBarras ";
 
 			$query2 = $connection -> prepare($sql2);
 
@@ -1169,7 +1293,8 @@ class Reportes {
 			$sql = " SELECT eq.codigoBarras, eq.nombreEquipo, hd.* 
 					FROM IHardDrives hd 
 					 INNER JOIN Equipos eq ON eq.equipoInfoId = hd.equipoInfoId 
-					WHERE eq.empresaId = ? AND hd.isLegacy = ? ";
+					WHERE eq.empresaId = ? AND hd.isLegacy = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO;
 
 			$query = $connection -> prepare($sql);
 
@@ -1265,7 +1390,8 @@ class Reportes {
 					 sm.fechaUltimaActualizacion 
 					FROM ISMART sm 
 					 INNER JOIN Equipos eq ON eq.equipoInfoId = sm.equipoInfoId 
-					WHERE eq.empresaId = ? AND sm.isLegacy = ? ";
+					WHERE eq.empresaId = ? AND sm.isLegacy = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO;
 
 			$query = $connection -> prepare($sql);
 
@@ -1296,12 +1422,21 @@ class Reportes {
 	}
 
 	/**
-	 * tabla: Discos y Uso del Equipo
+	 * Reportes de Visita: en Dashbard y en menu /gerentes/reportes_de_visita
 	 * @return list
  	 */
-	public static function reportesDeVisita($empresaId){
+	public static function reportesDeVisita($empresaId, $searchYear){
 		try {
 			$connection = Database::instance();
+
+			/* AÑO actual */
+			$yearDesde = date('Y', time());
+			$yearHasta = ( $yearDesde + 1 );
+
+			if ( $searchYear != NULL && $searchYear != "" && $searchYear > 2016 ){
+				$yearDesde = $searchYear;
+				$yearHasta = ( $yearDesde + 1 );
+			}
 
 			$sql = " SELECT i.*, fg.nombre AS TipoFalla, sol.*, 
 					 u.nombre AS UsuarioNombre, u.apellido AS UsuarioApellido 
@@ -1309,8 +1444,11 @@ class Reportes {
 					 INNER JOIN FallasGenerales fg ON i.fallaId = fg.fallaId 
 					 LEFT JOIN Soluciones sol ON i.resolucionId = sol.solucionId 
 					 LEFT JOIN Usuarios u ON i.usuarioId = u.id 
+					 LEFT JOIN Equipos eq ON i.equipoId = eq.id 
 					WHERE i.empresaId = ? AND i.fallaId >= 100 
-					ORDER BY i.incidenciaId ASC ";
+					 AND sol.fecha BETWEEN '" .$yearDesde. "-01-01 00:00.00' AND '" .$yearHasta. "-01-01 00:00.00' 
+					 AND eq.estatus <> 'Suspendido' 
+					ORDER BY i.incidenciaId DESC ";
 
 			$query = $connection -> prepare($sql);
 
@@ -1349,8 +1487,9 @@ class Reportes {
 					FROM Equipos eq 
 					INNER JOIN TipoEquipos te ON eq.tipoEquipoId = te.tipoEquipoId 
 					LEFT JOIN Usuarios u ON eq.usuarioId = u.id 
-					WHERE eq.empresaId = ? 
-					ORDER BY eq.codigoBarras ";
+					WHERE eq.empresaId = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO
+					. " ORDER BY eq.codigoBarras ";
 
 			$query = $connection -> prepare($sql);
 
@@ -1362,7 +1501,7 @@ class Reportes {
 			/* return $query -> fetch( \PDO::FETCH_OBJ ); */
 
 		} catch(\PDOException $e) {
-			$internalErrorCodigo  = "PDOException in models.Equipos.getEquiposDeEmpresaDashboard():";
+			$internalErrorCodigo  = "PDOException in models.Reportes.getEquiposDeEmpresaDashboard():";
 			$internalErrorMessage = $e -> getMessage();
 			$internalErrorExtra   = "empresa:".$empresaId;
 			
@@ -1379,4 +1518,205 @@ class Reportes {
 	}
 
 
+	/**
+	 * Obtener Info sobre Licencias en la tabla EquipoSOInfo
+	 */
+	public static function buscarLicenciasSistemasOperativos( $equipoSOInfoIDs, $total ){
+
+		try {
+			$W_si = 0; $W_no = 0; $O_si = 0; $O_no = 0;
+
+			if ( $total > 0 && $equipoSOInfoIDs != null ){
+				$connection = Database::instance();
+
+				$sql = " SELECT e.SO, e.licencia FROM EquipoSOInfo e  
+						WHERE e.id = ? ";
+
+				for ( $i = 0; $i < $total; $i++ ){
+
+					$query = $connection -> prepare($sql);
+
+					$query -> bindParam(1, $equipoSOInfoIDs[ $i ], \PDO::PARAM_INT);
+
+					$query -> execute();
+
+					$r = $query -> fetch( \PDO::FETCH_OBJ );
+
+					if ( $r->SO == "Windows" ) {
+						if ( $r->licencia == "none" ){	$W_no++;
+						} else {						$W_si++;
+						}
+					} else {
+						if ( $r->licencia == "none" ){	$O_no++;
+						} else {						$O_si++;
+						}
+					}
+				}
+			}
+
+			$out["windows_si"] = $W_si;
+			$out["windows_no"] = $W_no;
+			$out["otros_si"]   = $O_si;
+			$out["otros_no"]   = $O_no;
+
+			return $out;
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Reportes.buscarLicenciasSistemasOperativos():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = $equipoSOInfoIDs;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	/**
+	 * Obtener Info sobre Licencias en la tabla EquipoOfimaticaInfo
+	 */
+	public static function buscarLicenciasOfimaticas( $equipoOfimaticaInfoIDs, $total ){
+		
+		try {
+			$W_si = 0; $W_no = 0; $O_si = 0; $O_no = 0;
+
+			if ( $total > 0 && $equipoOfimaticaInfoIDs != null ){
+				$connection = Database::instance();
+
+				$sql = " SELECT e.Ofimatica, e.licencia FROM EquipoOfimaticaInfo e  
+						WHERE e.id = ? ";
+
+				for ( $i = 0; $i < $total; $i++ ){
+
+					$query = $connection -> prepare($sql);
+
+					$query -> bindParam(1, $equipoOfimaticaInfoIDs[ $i ], \PDO::PARAM_INT);
+
+					$query -> execute();
+
+					$r = $query -> fetch( \PDO::FETCH_OBJ );
+
+					if ( $r->Ofimatica == "Microsoft Office" ) {
+						if ( $r->licencia == "none" ){	$W_no++;
+						} else {						$W_si++;
+						}
+					} else {
+						if ( $r->licencia == "none" ){	$O_no++;
+						} else {						$O_si++;
+						}
+					}
+				}
+			}
+
+			$out["office_si"] 		= $W_si;
+			$out["office_no"] 		= $W_no;
+			$out["otro_office_si"]  = $O_si;
+			$out["otro_office_no"]  = $O_no;
+
+			return $out;
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Reportes.buscarLicenciasOfimaticas():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = $equipoOfimaticaInfoIDs;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+
+	/**
+	 * Menú Licencias de Equipos para una Empresa - Sistemas Operativos
+	 */
+	public static function licenciasSistemaOperativoPorEmpresa($empresaId){
+		try {
+			$connection = Database::instance();
+
+			$sql =" SELECT esoi.*, eq.* 
+					FROM EquipoSOInfo esoi 
+					 INNER JOIN Equipos eq ON eq.equipoOfimaticaInfoId = esoi.id
+					WHERE eq.empresaId = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO
+					 . " ORDER BY esoi.licencia ASC ";
+
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $empresaId, \PDO::PARAM_INT);
+
+			$query -> execute();
+
+			return $query -> fetchAll();
+			/* return $query -> fetch( \PDO::FETCH_OBJ ); */
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Reportes.licenciasSistemaOperativoPorEmpresa():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "empresa:".$empresaId;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+	
+
+	/**
+	 * Menú Licencias de Equipos para una Empresa - Herramientas Ofimática
+	 */
+	public static function licenciasOfimaticasPorEmpresa($empresaId){
+		try {
+			$connection = Database::instance();
+
+			$sql =" SELECT eoi.*, eq.* 
+					FROM EquipoOfimaticaInfo eoi 
+					 INNER JOIN Equipos eq ON eq.equipoOfimaticaInfoId = eoi.id
+					WHERE eq.empresaId = ? "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO
+					 . " ORDER BY eoi.licencia ASC ";
+
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $empresaId, \PDO::PARAM_INT);
+
+			$query -> execute();
+
+			return $query -> fetchAll();
+			/* return $query -> fetch( \PDO::FETCH_OBJ ); */
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Reportes.licenciasOfimaticasPorEmpresa():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "empresa:".$empresaId;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
 }

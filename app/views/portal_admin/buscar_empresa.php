@@ -89,13 +89,21 @@
 <?php 
 	}/* "Busqueda_Empresa" */
 
+	/* Año actual */
+	$year = date('Y', time());
+
 	/*
 	 * En caso de buscar Empresas
 	 */
 	if ( isset($procesoParte) && $procesoParte == "Seleccion_Empresa"  && isset($companies) ){
 
+		$opcionesExtrasUrl = "";
+		if ( $redireccionarA == "reporte_dashboard" || $redireccionarA == "reporte_equipos" ){
+			$opcionesExtrasUrl = "/" . $year;
+		}
+
 		echo "<script>";
-		echo " var URL = '" . PROJECTURLMENU . "admin/" . $redireccionarA . "';" ;
+		echo " var URL = '" . PROJECTURLMENU . "admin/" . $redireccionarA . $opcionesExtrasUrl . "';" ;
 		echo "</script>";
 ?>
 
@@ -194,6 +202,9 @@
 
 					} else if ( $redireccionarA == "historialEquipos" ){
 						echo "Reporte trabajos realizados a 'Equipos' de la Empresa seleccionada";
+					
+					} else if ( $redireccionarA == "licencias" ){
+						echo "Reporte Inventario de Licencias de los Equipos de la Empresa seleccionada";
 					}
 ?>
 				</b>.

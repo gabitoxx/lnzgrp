@@ -70,7 +70,7 @@
 						<button type="button"
 						 <?php 
 							if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
-								echo 'class="btn btn-primary disabled"';
+								echo 'class="btn btn-primary disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-primary"';
 							}
@@ -80,12 +80,19 @@
 						>
 						<span class="glyphicon glyphicon-folder-open"></span></button>
 						&nbsp;
+						<button type="button" class="btn btn-warning"
+						 data-toggle="tooltip" data-placement="bottom" title="Ver Datos de la Conexi&oacute;n Remota"
+						 onclick="javascript:verDatosConexion(<?php echo $incidencia["incidenciaId"] ?>);"
+						 >
+							<span class="glyphicon glyphicon-link"></span>
+						</button>
+						&nbsp;
 						<button type="button"
 						 <?php 
 							if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
 								echo 'class="btn btn-success"';
 							}else{
-								echo 'class="btn btn-success disabled"';
+								echo 'class="btn btn-success disabled" disabled="disabled" ';
 							}
 						 ?>
 						 onclick="javascript:editarSolucion(<?php echo $incidencia["incidenciaId"] . "," . $incidencia["tecnicoId"] . "," . $incidencia["empresaId"]; ?>);"
@@ -187,6 +194,7 @@
 		/* En caso de que haya incidencias, mostrar la tabla */
 ?>
 
+
 <div class="container">
 	<div id="no-more-tables">
 		<table id="tableId" class="col-md-12 table-hover table-striped cf" style="font-size: 12px;">
@@ -219,16 +227,24 @@
 
 					<td data-title="Acciones">
 						<button type="button"
-						 <?php 
+						  <?php 
 							if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
-								echo 'class="btn btn-primary disabled"';
+								echo 'class="btn btn-primary disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-primary"';
 							}
-						 ?>
-						 data-toggle="tooltip" data-placement="bottom" title="Ver Soluci&oacute;n | Opci&oacute;n Imprimir"
-						 onclick="javascript:verDetalleSolucion(<?php echo $incidencia["resolucionId"] ?>);">
-						<span class="glyphicon glyphicon-folder-open"></span></button>
+						  ?>
+						  data-toggle="tooltip" data-placement="bottom" title="Ver Soluci&oacute;n | Opci&oacute;n Imprimir"
+						  onclick="javascript:verDetalleSolucion(<?php echo $incidencia["resolucionId"] ?>);">
+						 <span class="glyphicon glyphicon-folder-open"></span>
+						</button>
+						&nbsp;
+						<button type="button" class="btn btn-warning"
+						 data-toggle="tooltip" data-placement="bottom" title="Ver Datos de la Conexi&oacute;n Remota"
+						 onclick="javascript:verDatosConexion(<?php echo $incidencia["incidenciaId"] ?>);"
+						 >
+							<span class="glyphicon glyphicon-link"></span>
+						</button>
 						&nbsp;
 						<?php 
 							if ( ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]=="")
@@ -492,6 +508,23 @@
 			</table>
 		</div>
 	</div>
+	<div class="row control-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<table class="table table-hover table-striped">
+				<tr>
+					<td>
+						<button type="button" class="btn btn-warning">
+							<span class="glyphicon glyphicon-link"></span> 
+						</button>
+					</td>
+					<td><b>Datos de Conexi&oacute;n Remota</b></td>
+					<td>Son los Datos digitados <b>al momento de Crear la Incidencia</b> y 
+						que son necesarios para establecer la <b>Asistencia y Conexi&oacute;n Remota</b> con el Equipo afectado.
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 
 	<div class="row control-group">
 		<div class="col-sm-2">Reportes de Visita:</div>
@@ -512,8 +545,9 @@
 		<div class="modal-header">
 		  <button type="button" class="close" data-dismiss="modal">&times;</button>
 		  <h4 class="modal-title" align="center">
-			<span class="glyphicon glyphicon-wrench"></span> 
-			Informaci&oacute;n del Ingeniero de Soporte
+			<span class="glyphicon glyphicon-wrench" id="titleSpan">
+			 Informaci&oacute;n del Ingeniero de Soporte
+			</span> 
 		  </h4>
 		</div>
 
@@ -554,6 +588,14 @@
 	action="<?= PROJECTURLMENU; ?>tecnicos/ver_resolucion_incidencia">
 	
 		<input type="hidden" id="resolucionIncidenciaId" name="resolucionIncidenciaId" value="" />
+</form>
+
+<!-- ================================== Formulario para VER Data Conexion Remota =================================== -->
+<?php
+	echo "<script> var modalAjaxURL_3 = '" . PROJECTURLMENU . "tecnicos/ajax_ver_datos_conexion_remota'; </script>" ;
+?>
+<form id="askDataLink" method="post" enctype="multipart/form-data">
+	<input type="hidden" id="DataLink_incidenciaId" name="DataLink_incidenciaId" value="" />
 </form>
 
 
@@ -617,7 +659,34 @@
 				alert("Error al buscar info del Técnico en nuestro Sistema\nPor favor, intente más tarde");
 			}
 		});
+	}
 
+	function verDatosConexion(incidenciaId){
+
+		$('#myModal').modal({
+			backdrop: 'static',
+			keyboard: false,
+			show: true
+		});
+
+		$('#titleSpan').text("Datos de Conexión Remota");
+
+		/* valor en el input type hidden */
+		document.getElementById("DataLink_incidenciaId").value = "" + incidenciaId;
+
+		$.ajax({
+			type: "POST",
+			url: modalAjaxURL_3,
+			data: $('#askDataLink').serialize(),
+			success: function(message){
+				/*alert("OK_");*/
+				/*$("#feedback-modal").modal('hide');*/
+				$("#feedback").html(message);
+			},
+			error: function(){
+				alert("Error al buscar info de la Conexión Remota\nPor favor, intente más tarde");
+			}
+		});
 	}
 
 	$(document).ready(function () {
@@ -635,9 +704,9 @@
 
 		var r = confirm(" >> Resolver la Incidencia/Reporte número: "
 			+ incidenciaId + " << "
-			+ "\n\n Esta opción le permitirá llenar el Formulario de Resolución de esta Incidencia."
+			+ "\n Esta opción le permitirá llenar el Formulario de Resolución de esta Incidencia."
 			+ "\n\n ¿Desea continuar?"
-			+ "\n\n (Presione Yes/OK si usted dará el Soporte TI a esta incidencia)");
+			+ "\n (Presione Yes/OK si usted dará el Soporte TI a esta incidencia)");
 
 		if (r == true) {
 			/* txt = "You pressed OK!"; */
@@ -661,9 +730,9 @@
 		var ask = confirm(" >> Asignarte la Incidencia número: "
 			+ incidenciaId + " << "
 			+ "\n\n Pulsando esta opción, usted será el Ingeniero de Soporte a cargo de Resolver esta Incidencia."
-			+ "\n\n [ Podrá solucionar la Incidencia ahora mismo o en otro momento. ]"
+			+ "\n [ Podrá solucionar la Incidencia ahora mismo o en otro momento. ]"
 			+ "\n\n ¿Desea continuar?"
-			+ "\n\n (Presione Yes/OK para asignarse esta incidencia)");
+			+ "\n (Presione Yes/OK para asignarse esta incidencia)");
 
 		if ( ask == true) {
 			/* añadiendo valor y mandadno formulario */

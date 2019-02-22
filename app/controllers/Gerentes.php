@@ -8,7 +8,8 @@ use \core\View,
 	\app\models\admin\Transaccion,
 	\app\models\Equipos,
 	\app\models\Clients,
-	\app\models\Reportes;
+	\app\models\Reportes,
+	\app\models\EmailManagement;
 
 class Gerentes {
 
@@ -206,7 +207,7 @@ class Gerentes {
 	/**
 	 * mostrar Dashboard principal
 	 */ 
-	public static function dashboard(){
+	public static function dashboard($anyo){
 
 		session_start();
 
@@ -215,6 +216,8 @@ class Gerentes {
 		View::set("user", $user);
 
 		try {
+			View::set("reporteYear", $anyo);
+
 			$empresaId = $_SESSION['logged_user_empresaId'];
 
 			$company = Empresas::getEmpresa($empresaId);
@@ -245,10 +248,10 @@ class Gerentes {
 			View::set("usuariosEquipos", $usuariosEquipos);
 
 
-			$reemplazosHardware = Reportes::reemplazosHardwareDashboard($empresaId);
+			$reemplazosHardware = Reportes::reemplazosHardwareDashboard($empresaId, $anyo);
 			View::set("reemplazosHardware", $reemplazosHardware);
 
-			$reemplazosSoftware = Reportes::reemplazosSoftwareDashboard($empresaId);
+			$reemplazosSoftware = Reportes::reemplazosSoftwareDashboard($empresaId, $anyo);
 			View::set("reemplazosSoftware", $reemplazosSoftware);
 
 
@@ -259,27 +262,27 @@ class Gerentes {
 			/*
 			 * III PARTE: Incidencias
 			 */
-			$estadisticasIncidencias = Reportes::estadisticasIncidenciasDashboard($empresaId);
+			$estadisticasIncidencias = Reportes::estadisticasIncidenciasDashboard($empresaId, $anyo);
 			View::set("estadisticasIncidencias", $estadisticasIncidencias);
 
 
-			$tiposIncidencias = Reportes::clasificacionIncidenciasDashboard($empresaId);
+			$tiposIncidencias = Reportes::clasificacionIncidenciasDashboard($empresaId, $anyo);
 			View::set("clasificacionIncidenciasDashboard", $tiposIncidencias);
 
 
-			$tiposProblemas = Reportes::clasificacionCausasIncidenciasDashboard($empresaId);
+			$tiposProblemas = Reportes::clasificacionCausasIncidenciasDashboard($empresaId, $anyo);
 			View::set("causalesIncidenciasDashboard", $tiposProblemas);
 
 
-			$duracionPromedio = Reportes::duracionPromedioIncidenciasDashboard($empresaId);
+			$duracionPromedio = Reportes::duracionPromedioIncidenciasDashboard($empresaId, $anyo);
 			View::set("duracionPromedio", $duracionPromedio);
 
 
-			$usuariosDeIncidencias = Reportes::usuariosDeIncidenciasDashboard($empresaId);
+			$usuariosDeIncidencias = Reportes::usuariosDeIncidenciasDashboard($empresaId, $anyo);
 			View::set("usuariosDeIncidenciasDeEsteAnyo", $usuariosDeIncidencias);
 
 
-			$tecnicos = Reportes::tecnicosEnEmpresaDashboard($empresaId);
+			$tecnicos = Reportes::tecnicosEnEmpresaDashboard($empresaId, $anyo);
 			View::set("tecnicosQueHanVisitadoLaEmpresa", $tecnicos);
 
 
@@ -289,10 +292,10 @@ class Gerentes {
 			$citasFuturas = Reportes::agendaFuturaEnEmpresaDashboard($empresaId);
 			View::set("citasFuturas", $citasFuturas);
 
-			$citasPasadas = Reportes::agendaPasadasEnEmpresaDashboard($empresaId);
+			$citasPasadas = Reportes::agendaPasadasEnEmpresaDashboard($empresaId, $anyo);
 			View::set("citasPasadas", $citasPasadas);
 
-			$reportesVisita = Reportes::reportesDeVisita($empresaId);
+			$reportesVisita = Reportes::reportesDeVisita($empresaId, $anyo);
 			View::set("reportesVisita", $reportesVisita);
 
 			/*
@@ -364,7 +367,7 @@ class Gerentes {
 	/**
 	 * Menú Equipos -> Reportes
 	 */ 
-	public static function reportes_equipos(){
+	public static function reportes_equipos($anyo){
 
 		session_start();
 
@@ -400,10 +403,10 @@ class Gerentes {
 			View::set("usuariosEquipos", $usuariosEquipos);
 
 
-			$reemplazosHardware = Reportes::reemplazosHardwareDashboard($empresaId);
+			$reemplazosHardware = Reportes::reemplazosHardwareDashboard($empresaId, $anyo);
 			View::set("reemplazosHardware", $reemplazosHardware);
 
-			$reemplazosSoftware = Reportes::reemplazosSoftwareDashboard($empresaId);
+			$reemplazosSoftware = Reportes::reemplazosSoftwareDashboard($empresaId, $anyo);
 			View::set("reemplazosSoftware", $reemplazosSoftware);
 
 
@@ -498,7 +501,7 @@ class Gerentes {
 	/**
 	 * Menu Incidencias -> Reportes
 	 */ 
-	public static function reportes_incidencias(){
+	public static function reportes_incidencias($anyo){
 
 		session_start();
 
@@ -515,27 +518,27 @@ class Gerentes {
 			View::set("pageTitle", "Reporte: Incidencias en su Empresa" );
 
 
-			$estadisticasIncidencias = Reportes::estadisticasIncidenciasDashboard($empresaId);
+			$estadisticasIncidencias = Reportes::estadisticasIncidenciasDashboard($empresaId, $anyo);
 			View::set("estadisticasIncidencias", $estadisticasIncidencias);
 
 
-			$tiposIncidencias = Reportes::clasificacionIncidenciasDashboard($empresaId);
+			$tiposIncidencias = Reportes::clasificacionIncidenciasDashboard($empresaId, $anyo);
 			View::set("clasificacionIncidenciasDashboard", $tiposIncidencias);
 
 
-			$tiposProblemas = Reportes::clasificacionCausasIncidenciasDashboard($empresaId);
+			$tiposProblemas = Reportes::clasificacionCausasIncidenciasDashboard($empresaId, $anyo);
 			View::set("causalesIncidenciasDashboard", $tiposProblemas);
 
 
-			$duracionPromedio = Reportes::duracionPromedioIncidenciasDashboard($empresaId);
+			$duracionPromedio = Reportes::duracionPromedioIncidenciasDashboard($empresaId, $anyo);
 			View::set("duracionPromedio", $duracionPromedio);
 
 
-			$usuariosDeIncidencias = Reportes::usuariosDeIncidenciasDashboard($empresaId);
+			$usuariosDeIncidencias = Reportes::usuariosDeIncidenciasDashboard($empresaId, $anyo);
 			View::set("usuariosDeIncidenciasDeEsteAnyo", $usuariosDeIncidencias);
 
 
-			$tecnicos = Reportes::tecnicosEnEmpresaDashboard($empresaId);
+			$tecnicos = Reportes::tecnicosEnEmpresaDashboard($empresaId, $anyo);
 			View::set("tecnicosQueHanVisitadoLaEmpresa", $tecnicos);
 
 
@@ -579,7 +582,7 @@ class Gerentes {
 
 		$empresaId = $_SESSION['logged_user_empresaId'];
 
-		$reportesVisita = Reportes::reportesDeVisita($empresaId);
+		$reportesVisita = Reportes::reportesDeVisita($empresaId, "");
 
 		if ( $reportesVisita == NULL || $reportesVisita =="" ){
 			View::set("no_reportes_de_visita", "no_reportes_de_visita");
@@ -681,5 +684,97 @@ class Gerentes {
 		View::render( "portal_manager_home" );
 	}
 
-	
+	/**
+	 * Enviar correo al Admin. de LanuzaSoft para dar de BAJA a este usuario
+	 */
+	public static function dar_de_baja(){
+
+		session_start();
+
+		$user = $_SESSION['logged_user'];
+
+		View::set("user", $user);
+
+		if ( isset( $_POST['bajarUsuarioId'] ) ){
+
+			$empresaId = $_SESSION['logged_user_empresaId'];
+			
+			/* usuario a eliminar */
+			$usuarioId  = $_POST['bajarUsuarioId'];
+			$nombre 	= $_POST['bajarUsuarioNombre'];
+			$apellido 	= $_POST['bajarUsuarioApellido'];
+
+			EmailManagement::solicitudDarDeBajaAUsuario($empresaId, $user, $usuarioId, $nombre, $apellido);
+		}
+		/* llamada AJAX, no hay retorno */
+		echo "OK";
+	}
+
+	/**
+	 * mostrar la página de "Cargando Reportes...."
+	 */ 
+	public static function cargar_licencias_equipos(){
+		
+		session_start();
+
+		View::set("user", $_SESSION['logged_user'] );
+
+		$opcionMenu = "cargando_dashboard";
+		View::set("opcionMenu", $opcionMenu);
+
+		View::set("pageTitle", "Cargando Historial de Equipos...");
+
+		/*
+		 * Buscando un tip en la BD
+		 */
+		$max_id = Equipos::getMaxID("TipsUsoPortal");
+
+		$tip = Clients::getTip( $max_id, $_SESSION['role_user'] );
+		View::set("tip", $tip);
+
+		/*
+		 * A qué funcion se va a llamar:
+		 */
+		View::set("funcionAcargar", "InventarioLicenciasEquipos");
+
+		View::render( "portal_manager_home" );
+	}
+
+
+	/**
+	 * mostrar la página de "Cargando Reportes...."
+	 */ 
+	public static function InventarioLicenciasEquipos(){
+
+		session_start();
+
+		$user = $_SESSION['logged_user'];
+		View::set("user", $user );
+
+		//
+		$empresaId = $_SESSION['logged_user_empresaId'];
+		$usuarioId = $user->id;
+		
+		//
+		$company = Empresas::getEmpresa($empresaId);
+		View::set("empresa", $company);
+
+		View::set("pageTitle", "Inventario por Licencias de " . $company->nombre );
+
+		/*
+		 * obtener Licencias para los SO's y Ofimática
+		 */
+		$SO = Reportes::licenciasSistemaOperativoPorEmpresa($empresaId);
+		View::set("licencias_sistemas_operativos", $SO);
+
+		$office = Reportes::licenciasOfimaticasPorEmpresa($empresaId);
+		View::set("licencias_sistemas_ofimatica", $office);
+
+
+		/* VISTA */
+		$opcionMenu = "licencias_inventario_equipos";
+		View::set("opcionMenu", $opcionMenu);
+
+		View::render( "portal_manager_home" );
+	}
 }

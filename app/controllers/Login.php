@@ -18,6 +18,6 @@ class Login{
 		/**
 		 * Llamando a la Vista
 		 */
-		View::render("login_form");
+		View::render("index3");
 	}
 }

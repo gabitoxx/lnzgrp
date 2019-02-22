@@ -2,14 +2,26 @@
 	echo "&nbsp; Si usted presenta inconvenientes con alguno de los Equipos de su Empresa, levante una nueva Incidencia."
 		. " Su requerimiento será atendido por uno de nuestros técnicos a la brevedad posible.";
 
-	if ( isset($Incidencias_que_faltan_por_opinar) && ($Incidencias_que_faltan_por_opinar == NULL || $Incidencias_que_faltan_por_opinar == "") ){
-		$puede_crear_incidencia = true;
+	if ( isset($Incidencias_que_faltan_por_opinar) ){
 
-	} else {
-		$puede_crear_incidencia = false;
+		if ( $Incidencias_que_faltan_por_opinar == NULL || $Incidencias_que_faltan_por_opinar == ""
+				|| $Incidencias_que_faltan_por_opinar == "[]" ){
+			//puede venir un JSON vacìo
+			$puede_crear_incidencia = true;
 
-		$razon_no_crear_incidencia = "Ud. NO podrá crear una nueva Incidencia hasta no Certificar la(s) Incidencia(s) número: "
-				. $Incidencias_que_faltan_por_opinar;
+			echo "<script>var jsonObjs = '[]'; </script>";
+
+		} else {
+			$puede_crear_incidencia = false;
+			/* legacy code usando SEPARATOR
+			$a = str_replace("****", ", ", $Incidencias_que_faltan_por_opinar);
+			$b = str_replace("**", " ", $a);
+			*/
+
+			$razon_no_crear_incidencia = "Ud. NO podrá crear una nueva Incidencia hasta no Certificar la(s) Incidencia(s) número: ";
+
+			echo "<script>var jsonObjs = " . $Incidencias_que_faltan_por_opinar . "; </script>";
+		}
 	}
 ?>
 
@@ -21,6 +33,7 @@
 			<i>Generar Nueva Incidencia</i>&nbsp;&nbsp;&nbsp;
 		</h4>
 		
+	  <input type="hidden" id="jsonDatosConexion" name="jsonDatosConexion" value='[]' />
 	  
 	  <div class="col-sm-12">
 			<br/>
@@ -127,7 +140,7 @@
 
 	<div class="col-sm-12">
 		<h4 align="center"><i>
-			<span style="color:#E30513">Complete los siguientes 2 campos:</span>
+			<span style="color:#E30513">Complete los siguientes campos:</span>
 		</i></h4>
 	  </div>
 
@@ -150,7 +163,7 @@
 	  </div>
 
 	<div id="tipo_falla-div" class="form-group">
-		<label class="control-label col-sm-3" for="tipo_falla">Especifique un tipo de falla:</label>
+		<label class="control-label col-sm-3" for="tipo_falla">Especifique un tipo de falla:<b style="color:#E30513;font-size:18px;">*</b></label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-fire"></i></span>
@@ -174,7 +187,10 @@
 	  </div>
 
 	  <div id="observaciones-div" class="form-group">
-		<label class="control-label col-sm-3" for="observaciones">Observaciones: <br/>(Describa brevemente el problema que presenta)</label>
+		<label class="control-label col-sm-3" for="observaciones">
+			Observaciones:<b style="color:#E30513;font-size:18px;">*</b>
+			<br/>(Describa brevemente el problema que presenta)
+		</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
@@ -192,38 +208,116 @@
 		</div>
 	  </div>
 
+	  <hr/>
+
+	  <div class="col-sm-12">
+		<h4 align="center"><i>
+			<span style="color:#E30513">Datos de Conexi&oacute;n Remota</span>
+		</i></h4>
+	  </div>
+
+	  <div id="remote-div" class="form-group">
+		<label class="control-label col-sm-3" for="remote">Conexi&oacute;n Remota:<b style="color:#E30513;font-size:18px;">*</b></label>
+		<div class="col-sm-7">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-link"></i></span>
+				<input type="text" class="form-control" id="remote" name="remote" placeholder="TeamViewer, Windows Remoto, etc." required="required"
+				 onblur="javascript:validar('remote');return false;">
+				<span id="remote-span" class=""></span>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div id="remote-error" class="help-block">
+				&nbsp;
+			</div>
+		</div>
+	  </div>
+
+	  <div id="userID-div" class="form-group">
+		<label class="control-label col-sm-3" for="userID">Identificaci&oacute;n:<b style="color:#E30513;font-size:18px;">*</b></label>
+		<div class="col-sm-7">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
+				<input type="text" class="form-control" id="userID" name="userID" placeholder="ID del Usuario de la conexión remota" required="required"
+				 onblur="javascript:validar('userID');return false;">
+				<span id="userID-span" class=""></span>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div id="userID-error" class="help-block">
+				&nbsp;
+			</div>
+		</div>
+	  </div>
+
+	  <div id="password-div" class="form-group">
+		<label class="control-label col-sm-3" for="password">Contrase&ntilde;a:<b style="color:#E30513;font-size:18px;">*</b></label>
+		<div class="col-sm-7">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+				<input type="text" class="form-control" id="password" name="password" placeholder="Password" required="required"
+				 onblur="javascript:validar('password');return false;">
+				<span id="password-span" class=""></span>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div id="password-error" class="help-block">
+				&nbsp;
+			</div>
+		</div>
+	  </div>
+	  <div class="form-group">
+			<div class="col-sm-9">
+				<div style="color:#E30513;text-align:right;"><b>* = Campo Obligatorio</b></div>
+			</div>
+	  </div>
+
+	  <br/><br/>
+
 	  <div class="form-group"> 
 		<div class="col-sm-offset-3 col-sm-4">
-		  <button type="submit" class="btn btn-success"
-		   data-toggle="tooltip" data-placement="left" title="Reportar Problema con este equipo"
-		   <?php if ( $puede_crear_incidencia == false ){ echo 'disabled="disabled"';} ?>
-		   >
+		  <button type="submit" class="btn btn-success btn-lg"
+		   data-toggle="tooltip" data-placement="left" title="Reportar Problema con este equipo">
 			<span class="glyphicon glyphicon-flash"></span> Reportar Incidencia
 		  </button>
 		</div>
 		<div class="col-sm-5">
-		  <input class="btn btn-warning" type="reset" value=" Empezar desde cero " onclick="javascript:limpiarEstilos();"
+		  <input class="btn btn-warning btn-lg" type="reset" value=" Empezar desde cero " onclick="javascript:limpiarEstilos();"
 		   data-toggle="tooltip" data-placement="right" title="Limpiar Formulario y comenzar otra vez">
 		</div>
 	  </div>
 
-<?php 		if ( $puede_crear_incidencia == false && isset($razon_no_crear_incidencia)){	?>
 
-		<div class="row form-group" style="background-color:yellow;">
+		<div id="extra-info-1" class="row form-group" style="background-color:yellow;">
 			<div class="col-sm-offset-1 col-sm-11">
 				<span class="glyphicon glyphicon-hand-right"></span> &nbsp; 
 
-				<b>No se puede Crear una nueva Incidencia:</b> <?= $razon_no_crear_incidencia; ?>
-
-				<span class="glyphicon glyphicon-hand-left"></span>
+				<b>No se puede Crear una nueva Incidencia:</b> <?= $razon_no_crear_incidencia; ?> 
+				<strong><span id="ids-incidencias-pendientes"></span></strong>
+				<br/>
+				<span class="glyphicon glyphicon-hand-right"></span> &nbsp; 
+				Posee en total <strong><span id="numero-incidencias-total"></span> por Certificar</strong>.
 			</div>
 		</div>
 
-<?php		}	?>
+<?php 		if ( $puede_crear_incidencia == false && isset($razon_no_crear_incidencia) ){	?>
+
+		<script>
+			$("#extra-info-1").addClass( "display" );
+		</script>
+
+<?php		} else {	?>
+
+		<script>
+			$("#extra-info-1").addClass( "hidden" );
+		</script>
+
+<?php		} ?>
 
 </form>
 
 <script>
+	var bPuedeCrearIncidencia = true;
 	$(document).ready(function () {
 
 		var msg="";
@@ -254,6 +348,8 @@
 		}
 
 		$('[data-toggle="tooltip"]').tooltip();
+
+		fillingPendingData();
 
 	});
 
@@ -297,11 +393,42 @@
 			document.getElementById("equipos-span").className = "glyphicon glyphicon-remove form-control-feedback";
 			document.getElementById("equipos-error").innerHTML = "... seleccione Equipo";
 		}
+		
+		if ( $("#password").val().trim() == "" ){
 
-		if ( bool == true ){
+			bool = false;
+			
+			document.getElementById("password-div").className = "form-group has-error has-feedback";
+			document.getElementById("password-span").className = "glyphicon glyphicon-remove form-control-feedback";
+			document.getElementById("password-error").innerHTML = "Por favor, Indique la contraseña";
+		}
+		if ( $("#userID").val().trim() == "" ){
+
+			bool = false;
+			
+			document.getElementById("userID-div").className = "form-group has-error has-feedback";
+			document.getElementById("userID-span").className = "glyphicon glyphicon-remove form-control-feedback";
+			document.getElementById("userID-error").innerHTML = "Por favor, Indique el identificador de usuario Remoto";
+		}
+		if ( $("#remote").val().trim() == "" ){
+
+			bool = false;
+			
+			document.getElementById("remote-div").className = "form-group has-error has-feedback";
+			document.getElementById("remote-span").className = "glyphicon glyphicon-remove form-control-feedback";
+			document.getElementById("remote-error").innerHTML = "Por favor, Indique la forma cómo podremos asistirle remotamente";
+		}
+
+		if ( bool == true && bPuedeCrearIncidencia == true ){
+			/* JSON con los datos de la Conexion */
+			var json = generarJsonDatosConexion( $("#remote").val(), $("#userID").val(), $("#password").val());
+			$("#jsonDatosConexion").val( json );
+
 			/* submit POST enviando formulario */
 			document.getElementById("new_incidencia").submit();
+
 			return true;
+
 		} else {
 			return false;
 		}
@@ -360,6 +487,47 @@
 			document.getElementById("givenname-span").className = "";
 			document.getElementById("givenname-error").innerHTML = "";
 		}
+	}
+
+	function fillingPendingData(){
+
+		if ( $("#extra-info-1").hasClass("display") ){
+
+			var x = ( jsonObjs != undefined ) ? jsonObjs.length : 0;
+
+			if ( x == 1 || x == "1" ){
+				$("#numero-incidencias-total").text( x + " Incidencia pendiente" );
+			} else {
+				$("#numero-incidencias-total").text( x + " Incidencia(s) pendiente(s)");
+			}
+
+			var y = "";
+			for(var i=0; i < jsonObjs.length ; i++){
+				y += jsonObjs[i].id;
+				if ( i != jsonObjs.length -1 ){
+					y += ", ";
+				}
+			}
+			$("#ids-incidencias-pendientes").text( y );
+		}
+
+		/* dependiendo si se muestra o no la seccion info extra: pendientes por Certificar/Opinar */
+		if ( $("#extra-info-1").hasClass("hidden") ){
+
+			$(".btn-success").removeAttr("disabled");
+			bPuedeCrearIncidencia = true;
+		
+		} else if ( $("#extra-info-1").hasClass("display") ){
+			
+			$(".btn-success").attr("disabled","disabled");
+			bPuedeCrearIncidencia = false;
+		}
+	}
+
+	function validar(inputID){
+		var s = $("#"+inputID).val();
+		s = s.replace(/"/gi, "");
+		$("#"+inputID).val( s );
 	}
 
 </script>

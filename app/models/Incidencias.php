@@ -10,13 +10,20 @@ use \core\View,
 	\app\models\Equipos;
 
 class Incidencias {
+	
+	/**
+	 * Filtros genericos
+	 */
+	private static $FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO = " AND ( eq.estatus <> 'Suspendido' OR eq.estatus IS NULL ) ";
+
 
 	/**
 	 * Crea una NUEVA INCIDENCIA
+	 * @param $jsonString para el campo Incidencias.datosConexionRemota
 	 * @return incidenciaId
 	 */ 
 	public static function insert($userId, $equipoIdIncidencia, $tipoFalla, 
-			$observaciones, $empresaId) {
+			$observaciones, $empresaId, $jsonString) {
 		try {
 			$connection = Database::instance();
 
@@ -38,8 +45,8 @@ class Incidencias {
 			$incidenciaId++;
 
 			$sql = " INSERT INTO Incidencias ( "
-				. " usuarioId,equipoId,fallaId,observaciones,status,empresaId, incidenciaId )" 
-				. " VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
+				. " usuarioId, equipoId, fallaId, observaciones, status, empresaId, incidenciaId, datosConexionRemota )" 
+				. " VALUES ( ?, ?, ?, ?, ?, ?, ?, ? ) ";
 
 			$query = $connection -> prepare($sql);
 
@@ -58,9 +65,9 @@ class Incidencias {
 			$status = "Abierta";
 			$query -> bindParam(5, $status, \PDO::PARAM_STR);
 
-			$query -> bindParam(6, $empresaId, \PDO::PARAM_INT);
-
+			$query -> bindParam(6, $empresaId,    \PDO::PARAM_INT);
 			$query -> bindParam(7, $incidenciaId, \PDO::PARAM_INT);
+			$query -> bindParam(8, $jsonString,   \PDO::PARAM_STR);
 			
 			$count = $query -> execute();
 			
@@ -289,23 +296,27 @@ class Incidencias {
 
 			$connection = Database::instance();
 
-			$sql = " SELECT i.incidenciaId, i.equipoId, i.fecha, "
-					. " fg.nombre AS tipoFalla, "
-					. " eq.codigoBarras AS codigoBarras, "
-					. " i.observaciones, i.status, i.tecnicoId, "
-					. " u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  "
-					. " i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, "
-					. " i.enEsperaPor, "
-					. " s.variableEndogena, s.variableExogenaTecnica, s.variableExogenaHumana, s.incidenciaDuracionDias, "
-					. " emp.nombre AS nombreEmpresa "
-					. " FROM Incidencias i  "
-					. " INNER JOIN FallasGenerales fg ON i.fallaId = fg.fallaId "
-					. " LEFT JOIN Usuarios u ON i.tecnicoId = u.id "
-					. " LEFT JOIN Equipos eq ON i.equipoId = eq.id "
-					. " LEFT JOIN Soluciones s ON i.incidenciaId = s.incidenciaId "
-					. " LEFT JOIN Empresas emp ON i.empresaId = emp.empresaId "
-					. " WHERE i.tecnicoId = ? AND i.status IN ('Cerrada', 'Certificada') "
-					. " LIMIT ? OFFSET ? ";
+			$sql = " 
+					SELECT i.incidenciaId, i.equipoId, i.fecha, 
+					 fg.nombre AS tipoFalla, 
+					 eq.codigoBarras AS codigoBarras, 
+					 i.observaciones, i.status, i.tecnicoId, 
+					 u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  
+					 i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, 
+					 i.enEsperaPor, 
+					 s.variableEndogena, s.variableExogenaTecnica, s.variableExogenaHumana, s.incidenciaDuracionDias, 
+					 emp.nombre AS nombreEmpresa 
+					FROM Incidencias i  
+					 INNER JOIN FallasGenerales fg ON i.fallaId = fg.fallaId 
+					 LEFT JOIN Usuarios u ON i.tecnicoId = u.id 
+					 LEFT JOIN Equipos eq ON i.equipoId = eq.id 
+					 LEFT JOIN Soluciones s ON i.incidenciaId = s.incidenciaId 
+					 LEFT JOIN Empresas emp ON i.empresaId = emp.empresaId 
+					WHERE i.tecnicoId = ? AND i.status IN ('Cerrada', 'Certificada') "
+					. self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO 
+					. " ORDER BY i.incidenciaId DESC 
+					 LIMIT ? OFFSET ? ";
+					
 					
 			$query = $connection -> prepare($sql);
 			
@@ -466,23 +477,25 @@ class Incidencias {
 
 			$connection = Database::instance();
 
-			$sql = "SELECT i.incidenciaId,i.equipoId,i.fecha, "
-					. "f.nombre AS falla, "
-					. "eq.codigoBarras AS codigoBarras, "
-					. "i.observaciones, i.status, i.tecnicoId, "
-					. "u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  "
-					. "i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, "
-					. "rp.nombre AS reportadaPorNombre, "
-					. "rp.apellido AS reportadaPorApellido, "
-					. "i.enEsperaPor AS enEsperaPor, "
-					. "i.empresaId, "
-					. "i.respuestaEsperada "
-					. "FROM Incidencias i  "
-					. "INNER JOIN FallasGenerales f ON i.fallaId = f.fallaId  "
-					. "LEFT JOIN Usuarios u ON i.tecnicoId = u.id "
-					. "LEFT JOIN Equipos eq ON i.equipoId = eq.id "
-					. "LEFT JOIN Usuarios rp ON i.usuarioId = rp.id "
-					. "WHERE i.tecnicoId = ? AND i.status <> 'Cerrada' AND i.status <> 'Certificada' ";
+			$sql = " 
+					SELECT i.incidenciaId,i.equipoId,i.fecha, 
+					 f.nombre AS falla, 
+					 eq.codigoBarras AS codigoBarras, 
+					 i.observaciones, i.status, i.tecnicoId, 
+					 u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  
+					 i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, 
+					 rp.nombre AS reportadaPorNombre, 
+					 rp.apellido AS reportadaPorApellido, 
+					 i.enEsperaPor AS enEsperaPor, 
+					 i.empresaId, 
+					 i.respuestaEsperada 
+					FROM Incidencias i  
+					 INNER JOIN FallasGenerales f ON i.fallaId = f.fallaId  
+					 LEFT JOIN Usuarios u ON i.tecnicoId = u.id 
+					 LEFT JOIN Equipos eq ON i.equipoId = eq.id 
+					 LEFT JOIN Usuarios rp ON i.usuarioId = rp.id 
+					WHERE i.tecnicoId = ? AND i.status <> 'Cerrada' AND i.status <> 'Certificada' "
+					. self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO;
 
 			$query = $connection -> prepare($sql);
 			
@@ -518,23 +531,25 @@ class Incidencias {
 
 			$connection = Database::instance();
 
-			$sql = "SELECT i.incidenciaId,i.equipoId,i.fecha, "
-					. " f.nombre AS falla, "
-					. " eq.codigoBarras AS codigoBarras, "
-					. " i.observaciones, i.status, i.tecnicoId, "
-					. " u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  "
-					. " i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, "
-					. " rp.nombre AS reportadaPorNombre, "
-					. " rp.apellido AS reportadaPorApellido, "
-					. " i.respuestaEsperada, i.enEsperaPor, "
-					. " emp.nombre AS nombreEmpresa "
-					. " FROM Incidencias i  "
-					. " INNER JOIN FallasGenerales f ON i.fallaId = f.fallaId  "
-					. " LEFT JOIN Usuarios u ON i.tecnicoId = u.id "
-					. " LEFT JOIN Equipos eq ON i.equipoId = eq.id "
-					. " LEFT JOIN Usuarios rp ON i.usuarioId = rp.id "
-					. " LEFT JOIN Empresas emp ON i.empresaId = emp.empresaId "
-					. " WHERE i.status NOT IN ('Cerrada', 'Certificada') "
+			$sql = " 
+					 SELECT i.incidenciaId,i.equipoId,i.fecha, 
+					  f.nombre AS falla, 
+					  eq.codigoBarras AS codigoBarras, 
+					  i.observaciones, i.status, i.tecnicoId, 
+					  u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  
+					  i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, 
+					  rp.nombre AS reportadaPorNombre, 
+					  rp.apellido AS reportadaPorApellido, 
+					  i.respuestaEsperada, i.enEsperaPor, 
+					  emp.nombre AS nombreEmpresa 
+					 FROM Incidencias i  
+					  INNER JOIN FallasGenerales f ON i.fallaId = f.fallaId  
+					  LEFT JOIN Usuarios u ON i.tecnicoId = u.id 
+					  LEFT JOIN Equipos eq ON i.equipoId = eq.id 
+					  LEFT JOIN Usuarios rp ON i.usuarioId = rp.id 
+					  LEFT JOIN Empresas emp ON i.empresaId = emp.empresaId 
+					 WHERE i.status NOT IN ('Cerrada', 'Certificada') "
+					. self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO
 					. " ORDER BY i.incidenciaId ASC ";
 
 			$query = $connection -> prepare($sql);
@@ -570,23 +585,27 @@ class Incidencias {
 
 			$connection = Database::instance();
 
-			$sql = " SELECT i.incidenciaId, i.equipoId, i.fecha, "
-					. " fg.nombre AS tipoFalla, "
-					. " eq.codigoBarras AS codigoBarras, "
-					. " i.observaciones, i.status, i.tecnicoId, "
-					. " u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  "
-					. " i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, "
-					. " i.enEsperaPor, "
-					. " s.variableEndogena, s.variableExogenaTecnica, s.variableExogenaHumana, s.incidenciaDuracionDias, "
-					. " emp.nombre AS nombreEmpresa "
-					. " FROM Incidencias i  "
-					. " INNER JOIN FallasGenerales fg ON i.fallaId = fg.fallaId "
-					. " LEFT JOIN Usuarios u ON i.tecnicoId = u.id "
-					. " LEFT JOIN Equipos eq ON i.equipoId = eq.id "
-					. " LEFT JOIN Soluciones s ON i.incidenciaId = s.incidenciaId "
-					. " LEFT JOIN Empresas emp ON i.empresaId = emp.empresaId "
-					. " WHERE i.status IN ('Cerrada', 'Certificada') "
-					. " LIMIT ? OFFSET ? ";
+			$sql = " 
+					 SELECT i.incidenciaId, i.equipoId, i.fecha, 
+					  fg.nombre AS tipoFalla, 
+					  eq.codigoBarras AS codigoBarras, 
+					  i.observaciones, i.status, i.tecnicoId, 
+					  u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  
+					  i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, 
+					  i.enEsperaPor, 
+					  s.variableEndogena, s.variableExogenaTecnica, s.variableExogenaHumana, s.incidenciaDuracionDias, 
+					  emp.nombre AS nombreEmpresa 
+					 FROM Incidencias i  
+					  INNER JOIN FallasGenerales fg ON i.fallaId = fg.fallaId 
+					  LEFT JOIN Usuarios u ON i.tecnicoId = u.id 
+					  LEFT JOIN Equipos eq ON i.equipoId = eq.id 
+					  LEFT JOIN Soluciones s ON i.incidenciaId = s.incidenciaId 
+					  LEFT JOIN Empresas emp ON i.empresaId = emp.empresaId 
+					 WHERE i.status IN ('Cerrada', 'Certificada') "
+					. self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO 
+					. " ORDER BY i.incidenciaId DESC 
+					LIMIT ? OFFSET ? ";
+					
 
 			$query = $connection -> prepare($sql);
 
@@ -630,26 +649,28 @@ class Incidencias {
 
 			$connection = Database::instance();
 
-			$sql = " SELECT i.incidenciaId, i.equipoId, i.fecha, 
-					 fg.nombre AS falla, 
-					 eq.codigoBarras AS codigoBarras, 
-					 i.observaciones, i.status, i.tecnicoId, 
-					 u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  
-					 i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, 
-					 i.respuestaEsperada, i.enEsperaPor, 
-					 s.variableEndogena, s.variableExogenaTecnica, s.variableExogenaHumana, s.incidenciaDuracionDias, 
-					 emp.nombre AS nombreEmpresa, 
-					 rp.nombre AS reportadaPorNombre, 
-					 rp.apellido AS reportadaPorApellido 
+			$sql = " 
+					 SELECT i.incidenciaId, i.equipoId, i.fecha, 
+					  fg.nombre AS falla, 
+					  eq.codigoBarras AS codigoBarras, 
+					  i.observaciones, i.status, i.tecnicoId, 
+					  u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  
+					  i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, 
+					  i.respuestaEsperada, i.enEsperaPor, 
+					  s.variableEndogena, s.variableExogenaTecnica, s.variableExogenaHumana, s.incidenciaDuracionDias, 
+					  emp.nombre AS nombreEmpresa, 
+					  rp.nombre AS reportadaPorNombre, 
+					  rp.apellido AS reportadaPorApellido 
 					 FROM Incidencias i  
-					 INNER JOIN FallasGenerales fg ON i.fallaId = fg.fallaId 
-					 LEFT JOIN Usuarios u ON i.tecnicoId = u.id 
-					 LEFT JOIN Equipos eq ON i.equipoId = eq.id 
-					 LEFT JOIN Usuarios rp ON i.usuarioId = rp.id 
-					 LEFT JOIN Soluciones s ON i.incidenciaId = s.incidenciaId 
-					 LEFT JOIN Empresas emp ON i.empresaId = emp.empresaId 
-					 WHERE i.status IN ('Cerrada', 'Certificada') 
-					 ORDER BY i.incidenciaId DESC 
+					  INNER JOIN FallasGenerales fg ON i.fallaId = fg.fallaId 
+					  LEFT JOIN Usuarios u ON i.tecnicoId = u.id 
+					  LEFT JOIN Equipos eq ON i.equipoId = eq.id 
+					  LEFT JOIN Usuarios rp ON i.usuarioId = rp.id 
+					  LEFT JOIN Soluciones s ON i.incidenciaId = s.incidenciaId 
+					  LEFT JOIN Empresas emp ON i.empresaId = emp.empresaId 
+					 WHERE i.status IN ('Cerrada', 'Certificada') "
+					 . self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO 
+					 . " ORDER BY i.incidenciaId DESC 
 					 LIMIT ? OFFSET ? ";
 
 			$query = $connection -> prepare($sql);
@@ -693,22 +714,25 @@ class Incidencias {
 
 			$connection = Database::instance();
 
-			$sql = "SELECT i.incidenciaId,i.equipoId,i.fecha, "
-					. "f.nombre AS falla, "
-					. "eq.codigoBarras AS codigoBarras, "
-					. "i.observaciones, i.status, i.tecnicoId, "
-					. "u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  "
-					. "i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, "
-					. "rp.nombre AS reportadaPorNombre, "
-					. "rp.apellido AS reportadaPorApellido, "
-					. "i.enEsperaPor AS enEsperaPor, "
-					. "i.respuestaEsperada "
-					. "FROM Incidencias i  "
-					. "INNER JOIN FallasGenerales f ON i.fallaId = f.fallaId  "
-					. "LEFT JOIN Usuarios u ON i.tecnicoId = u.id "
-					. "LEFT JOIN Equipos eq ON i.equipoId = eq.id "
-					. "LEFT JOIN Usuarios rp ON i.usuarioId = rp.id "
-					. "WHERE i.status <> 'Cerrada' AND i.status <> 'Certificada' AND ( i.tecnicoId IS NULL OR i.tecnicoId <> ? ) ";
+			$sql = "
+					SELECT i.incidenciaId,i.equipoId,i.fecha, 
+					 f.nombre AS falla, 
+					 eq.codigoBarras AS codigoBarras, 
+					 i.observaciones, i.status, i.tecnicoId, 
+					 u.nombre AS Tecnico_nombre, u.apellido  AS Tecnico_apellido,  
+					 i.fecha_enEspera, i.fecha_reply, i.fecha_enProgreso, i.resolucionId, 
+					 rp.nombre AS reportadaPorNombre, 
+					 rp.apellido AS reportadaPorApellido, 
+					 i.enEsperaPor AS enEsperaPor, 
+					 i.respuestaEsperada 
+					FROM Incidencias i  
+					 INNER JOIN FallasGenerales f ON i.fallaId = f.fallaId  
+					 LEFT JOIN Usuarios u ON i.tecnicoId = u.id 
+					 LEFT JOIN Equipos eq ON i.equipoId = eq.id 
+					 LEFT JOIN Usuarios rp ON i.usuarioId = rp.id 
+					WHERE i.status <> 'Cerrada' AND i.status <> 'Certificada' 
+					  AND ( i.tecnicoId IS NULL OR i.tecnicoId <> ? ) "
+					. self::$FILTRO_EQUIPOS_WHERE_NOSUSPENDIDO ;
 
 			$query = $connection -> prepare($sql);
 			
@@ -2038,7 +2062,7 @@ class Incidencias {
 				 * esto no deberìa ser lo usual, sino que la insercion 
 				 * viene en admin/user.nuevoUsuarioEstatus($userId)
 				 */
-				return true;				
+				return true;
 
 			} else {
 				/*
@@ -2139,7 +2163,7 @@ class Incidencias {
 					$bool = true;
 
 				} else {
-					/* 2.1- NO está dicha incidencia */
+					/* 2.3- NO está dicha incidencia */
 					$bool = false;
 				}
 
@@ -2203,6 +2227,47 @@ class Incidencias {
 				. $SEPARATOR . $incidenciaId . $SEPARATOR . "%' 
 				AND ue.userId IN 
 				( SELECT u.id FROM Usuarios u WHERE u.empresaId = ? ) ";
+
+		$query = $connection -> prepare($sql);
+		
+		$query -> bindParam(1, $empresaId, \PDO::PARAM_INT);
+
+		$query -> execute();
+
+		$result = $query -> fetch( \PDO::FETCH_OBJ );
+
+		if ( $result != NULL && $result != "" ){
+			/*
+			 * Si entra acà es porque encrontrò algùn Empleado de esta EMPRESA_ID
+			 * con dicha Incidencia; por eso se llama al metodo de eliminaciòn de INCIDENCIA_ID
+			 * con este usuario encontrado
+			 */
+			$userId = $result->userId;
+			return Incidencias::incidenciaOpinada( $userId, $incidenciaId );
+
+		} else {
+			/* Incidencia NO encontrada, hacer nada */
+			return true;
+		}
+
+	}
+
+	/**
+	 * ELIMINAR incidencia ID de la lista de la tabla UsuarioEstatus.incidenciasSinOpinar
+	 * SOLO para PARTNER's
+	 * @param $empresaId
+	 * @param $jsonString ej: [{"id":"1000"},{"id":"2000"}]
+	 */ 
+	public static function incidenciaOpinadaPartner2($empresaId, $jsonString){
+		/*
+		 * Al ser Partner, se debe buscar esta INCIDENCIA_ID entre todos los EMPLEADOS
+		 * de esta Empresa
+		 */
+		$connection = Database::instance();
+
+		$sql = ' SELECT * FROM UsuarioEstatus ue 
+					WHERE ue.incidenciasSinOpinar LIKE "'
+					. '%\"id\":\"' . $incidenciaId . '\"%"' ;
 
 		$query = $connection -> prepare($sql);
 		
@@ -2493,6 +2558,247 @@ class Incidencias {
 			$internalErrorCodigo  = "PDOException in models.Incidencias.getHistoricoIncidencias(userId):";
 			$internalErrorMessage = $e -> getMessage();
 			$internalErrorExtra   = "userId:". $userId;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",	 $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	/**
+	 * @param $incidenciaId 
+	 * @return Objeto de la BD con el userId y las IncidenciasSinOpinar
+	 */
+	public static function getIncidenciasSinOpinar($incidenciaId){
+
+		try {
+			$connection = Database::instance();
+
+			$sql = "SELECT ue.userId, ue.incidenciasSinOpinar 
+				FROM UsuarioEstatus ue 
+				WHERE ue.userId = (
+					SELECT i.usuarioId FROM Incidencias i WHERE i.incidenciaId = ?
+				)";
+
+			$query = $connection -> prepare($sql);
+			
+			$query -> bindParam(1, $incidenciaId, \PDO::PARAM_INT);
+
+			$query -> execute();
+
+			return $query -> fetch( \PDO::FETCH_OBJ );
+			
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Incidencias.getIncidenciasSinOpinar(incidenciaId):";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "incidenciaId:". $incidenciaId;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",	 $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	/**
+	 * @param $incidenciaId 
+	 * @param $json String para insertar/update 
+	 * @return 
+	 */
+	public static function agregarAFaltaPorOpinarJSON( $userId, $jsonString ){
+
+		try {
+			$connection = Database::instance();
+
+			$sql = " UPDATE UsuarioEstatus SET incidenciasSinOpinar = ? WHERE userId = ? ";
+
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $jsonString,  \PDO::PARAM_STR);
+			$query -> bindParam(2, $userId,      \PDO::PARAM_INT);
+
+			$count = $query -> execute();
+
+			return $count;
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Incidencias.agregarAFaltaPorOpinarJSON(userId, jsonString):";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "userId:". $userId . " - jsonString: $jsonString ";
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",	 $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+
+	/**
+	 * @param $incidenciaId 
+	 * @param $json String para insertar/update 
+	 * @return 
+	 */
+	public static function buscarIncidenciasSinOpinar( $incidenciaId ){
+		try {
+			$connection = Database::instance();
+			/*
+			 * Buscando Campo a ver què tiene
+			 */
+			$sql = ' SELECT * FROM UsuarioEstatus ue 
+					WHERE ue.incidenciasSinOpinar LIKE "'
+					. '%\"id\":\"' . $incidenciaId . '\"%"' ;
+
+			$query = $connection -> prepare($sql);
+
+			$query -> execute();
+
+			$result = $query -> fetch( \PDO::FETCH_OBJ );
+
+			return $result;
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Incidencias.buscarIncidenciasSinOpinar(incidenciaId):";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "incidenciaId:". $incidenciaId;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",	 $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	
+	/**
+	 *  JSON actualizando objeto
+	 */
+	public static function incidenciaOpinada2($userEstatusId, $json){
+		try {
+
+			$connection = Database::instance();
+
+			$sql = " UPDATE UsuarioEstatus ue SET ue.incidenciasSinOpinar = ? WHERE ue.userId = ? ";
+
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $json, \PDO::PARAM_STR);
+			$query -> bindParam(2, $userEstatusId, \PDO::PARAM_INT);
+
+			$count = $query -> execute();
+
+			if ( $count == 1 ){
+				
+				return true;
+			}
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Incidencias.incidenciaOpinada2(userEstatusId, json):";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "id:".$userEstatusId. " - JSON:".$json;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Incidencia_En_Progreso",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",	 $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+	/**
+	 *  Se sabe si es o no un REPORTE_VISITA
+	 * @return TRUE si lo es, FALSE si es una Incidencia
+	 */
+	public static function esReporteDeVisita( $incidenciaId ){
+		try {
+			$connection = Database::instance();
+			/*
+			 * Buscando Campo a ver què tiene
+			 */
+			$sql = "SELECT * 
+					FROM Incidencias i 
+					WHERE i.incidenciaId = ? 
+					AND i.observaciones LIKE '%REPORTE_VISITA |%'" ;
+
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $incidenciaId, \PDO::PARAM_INT);
+
+			$query -> execute();
+
+			$result = $query -> fetch( \PDO::FETCH_OBJ );
+
+			if ( $result == NULL || $result == "" ){
+				return false;
+			} else {
+				return true;
+			}
+			
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Incidencias.esReporteDeVisita(incidenciaId):";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "incidenciaId:". $incidenciaId;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",	 $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
+
+
+	/**
+	 * Obtener info de la tabla CambioSoftware, si existen
+	 */
+	public static function getIncidenciaById($incidenciaId){
+		try {
+
+			$connection = Database::instance();
+
+			$sql = "SELECT * FROM Incidencias WHERE incidenciaId = ? ";
+
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $incidenciaId, \PDO::PARAM_INT);
+
+			$query -> execute();
+
+			return $query -> fetch();
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Incidencias.getIncidenciaById():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = "incidenciaId:". $incidenciaId;
 			
 			/**/
 			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);

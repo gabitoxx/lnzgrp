@@ -517,31 +517,31 @@ table {
 
 		$('#myModal').modal('hide');
 
-			/* Get the snackbar DIV */
-			var x = document.getElementById("snackbar");
+		/* Get the snackbar DIV */
+		var x = document.getElementById("snackbar");
 
-			x.innerHTML = snackbarMessage;
+		x.innerHTML = snackbarMessage;
 
-			/* Add the "show" class to DIV */
-			x.className = "show";
+		/* Add the "show" class to DIV */
+		x.className = "show";
 
-			/* After 5 seconds, remove the show class from DIV */
-			setTimeout(function(){ x.className = x.className.replace("show", ""); }, (snackbarSegundos * 1000) );
+		/* After 5 seconds, remove the show class from DIV */
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, (snackbarSegundos * 1000) );
 
-			$.ajax({
-				type: "POST",
-				url: AJAX_URL,
-				data: $(formId).serialize(),
-				success: function(message){
-					/* alert("OK__"+message); */
-				},
-				error: function(){
-					alert("Error de Base de Datos\nPor favor, intente más tarde");
-				}
-			});
+		$.ajax({
+			type: "POST",
+			url: AJAX_URL,
+			data: $(formId).serialize(),
+			success: function(message){
+				/* alert("OK__"+message); */
+			},
+			error: function(){
+				alert("Error de Base de Datos\nPor favor, intente más tarde");
+			}
+		});
 
-			/* After 3 seconds, REFRESH THE PAGE */
-			setTimeout(function(){ location.href = currentMonthURL; }, (refreshSegundos * 1000) );
+		/* After 3 seconds, REFRESH THE PAGE */
+		setTimeout(function(){ location.href = currentMonthURL; }, (refreshSegundos * 1000) );
 	}
 
 	/**

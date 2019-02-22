@@ -109,9 +109,9 @@
 				 <?php 
 				 	echo 'onclick="javascript:verInventario(';
 				 	if ( $equipo["equipoInfoId"] != NULL ){
-				 		echo $equipo["equipoInfoId"] . ", '" . $equipo["TipoEquipo"] . "' , '" . $equipo["codigoBarras"] . "', '" . $equipo["linkImagen"] . "'";
+				 		echo $equipo["equipoInfoId"] . ", '" . $equipo["TipoEquipo"] . "' , '" . $equipo["codigoBarras"] . "', '" . $equipo["linkImagen"] . "' , " . $equipo["id"];
 				 	} else {
-				 		echo "0,0,0,0";
+				 		echo "0,0,0,0,0";
 				 	}
 				 	echo ');"';
 				 ?>
@@ -229,9 +229,9 @@
 				 <?php 
 				 	echo 'onclick="javascript:verInventario(';
 				 	if ( $equipo["equipoInfoId"] != NULL ){
-				 		echo $equipo["equipoInfoId"] . ", '" . $equipo["TipoEquipo"] . "' , '" . $equipo["codigoBarras"] . "', '" . $equipo["linkImagen"] . "'";
+				 		echo $equipo["equipoInfoId"] . ", '" . $equipo["TipoEquipo"] . "' , '" . $equipo["codigoBarras"] . "', '" . $equipo["linkImagen"] . "' , " . $equipo["id"];;
 				 	} else {
-				 		echo "0,0,0,0";
+				 		echo "0,0,0,0,0";
 				 	}
 				 	echo ');"';
 				 ?>
@@ -298,10 +298,11 @@
 	<input type="hidden" id="tipoEquipo" 	name="tipoEquipo" 	value="" />
 	<input type="hidden" id="codigoBarras"  name="codigoBarras" value="" />
 	<input type="hidden" id="linkImagen"  	name="linkImagen"   value="" />
+	<input type="hidden" id="equipoID"  	name="equipoID"     value="" />
 
 </form>
 <script>
-	function verInventario(equipoInfoId, tipoEquipo, codigoBarras, URL ){
+	function verInventario(equipoInfoId, tipoEquipo, codigoBarras, URL, equipoId ){
 
 		if ( equipoInfoId == 0 ){
 			alert("Este Equipo aún NO ha sido analizado e inventariado por nuestros Ingenieros de Soporte."
@@ -314,6 +315,7 @@
 			$('#tipoEquipo').val( tipoEquipo );
 			$('#codigoBarras').val( codigoBarras );
 			$('#linkImagen').val( URL );
+			$('#equipoID').val( equipoId );
 
 			$('#equipoInfoId_form').submit();
 		}

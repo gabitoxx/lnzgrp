@@ -26,12 +26,14 @@
 	<link rel="apple-touch-icon" sizes="72x72" href="<?= APPIMAGEPATH; ?>apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="<?= APPIMAGEPATH; ?>apple-touch-icon-114x114.png">
 
+	<meta name="theme-color" content="<?= $_SESSION['portal_color_rgb']; ?>" />
 	<meta name="google-site-verification" content="7MTL52H6Hqrg5Ps8VtI8Lc5XraA_mI9P570lCUClxe0" />
-
+	<link rel="manifest" href="https://lanuzasoft.com/app/views/portal_manager/partner-manifest.json" />
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<style>
@@ -585,21 +587,33 @@
 		</div>
   </div>
   <br/><br/>
-	<div class="row">
+
+
+<div class="hidden-xs">
+	<!-- Esconder en Celulares -->
+	<div id="gotoportal" class="row">
+		<br/><br/>
 		<div class="col-sm-3">
 			&nbsp;
 		</div>
 		<div class="col-sm-6 col-xs-12 text-center">
-			<!-- button type="button" class="btn btn-primary btn-block" href="< ? = PROJECTURLMENU; ? >portal/home" -->
 			<a href="<?= PROJECTURLMENU; ?>portal/home" class="btn btn-primary btn-block" role="button">
-			<span class="glyphicon glyphicon-hand-right logo-small" style="color: #000; font-size: 30px;"></span>
-				Acceder a nuestro <strong>Portal</strong>
+				<span class="glyphicon glyphicon-hand-right logo-small" style="color: #000; font-size: 30px;"></span>
+					Acceder a nuestro <strong>Portal</strong>
 			</a>
 		</div>
-		<div class="col-sm-3">
-			&nbsp;
-		</div>
 	</div>
+	<div class="col-sm-3">
+		&nbsp;
+	</div>
+</div>
+<div align="center" class="visible-xs-block">
+	<!-- Mostrar SOLO en Celulares -->
+	<a href="<?= PROJECTURLMENU; ?>portal/home" title="Ingresa al Portal">
+		<span class="glyphicon glyphicon-hand-right logo-small" style="color: #000; font-size: 30px;"></span>
+		Acceder a nuestro <strong>Portal</strong>
+	</a>
+</div>
 
 
 <footer class="container-fluid text-center">
@@ -607,7 +621,7 @@
 		<span class="glyphicon glyphicon-chevron-up"></span>
 	</a>
 	<!-- p>Bootstrap Theme Made By <a href="http://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p -->
-	<p>Sistema de Gesti&oacute;n de Soportes TI. Un Portal de <a href="http://lanuzagroup.com" title="P&aacute;gina Principal">Lanuza Group</a>.</p>
+	<p>Sistema de Gesti&oacute;n de Soportes TI. Un Portal de <a href="https://lanuzasoft.com" title="P&aacute;gina Principal">Lanuza Group</a>.</p>
 	<br/><br/>
 </footer>
 
@@ -672,7 +686,7 @@ $('a.back-to-top, a.simple-back-to-top').click(function() {
 });
 
 
-<!-- Botón de Bajar sección -->
+//<!-- Botón de Bajar sección -->
 $('body').prepend('<a href="#" id="showMeMore" data-toggle="tooltip" title="Ver M&aacute;s">M&aacute;s</a>');
 
 var iSectionClicked = 0;

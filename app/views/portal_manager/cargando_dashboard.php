@@ -46,7 +46,9 @@
 			}
 
 			if ( isset( $funcionAcargar) ){
-				echo "<script> var URL = '" . PROJECTURLMENU . "gerentes/" . $funcionAcargar . "'; </script>" ;
+				/* Año actual */
+				$year = date('Y', time());
+				echo "<script> var URL = '" . PROJECTURLMENU . "gerentes/" . $funcionAcargar . "/" . $year . "'; </script>" ;
 			}
 
 ?>			

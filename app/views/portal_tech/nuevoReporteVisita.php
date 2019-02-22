@@ -54,7 +54,9 @@
 					<br/><br/>
 					En este caso se crear&aacute;n <b>
 					<?php if ( isset($empresaCantidadEquipos) ){ echo $empresaCantidadEquipos; } ?> 
-					</b> Reportes, <u>cada uno asociado a UN Equipo en Particular</u>.
+					</b> Reportes, <u>cada uno asociado a UN Equipo en Particular (exceptuando los Equipos con estatus SUSPENDIDO)</u>.
+					<b>Para ver cu&aacute;ntos equipos est&aacute;n ACTIVOS</b> revise el campo de selecci&oacute;n creado abajo
+					 ("Indique el Equipo que presenta fallas") y ah&iacute; podr&aacute; ver los equipos habilitados.
 					<br/><br/>
 					<b>Ser&aacute; su Responsabilidad llenar cada uno de los Formularios</b>,
 					indicando su trabajo realizado en los mismos,

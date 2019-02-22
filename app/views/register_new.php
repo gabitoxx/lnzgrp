@@ -91,8 +91,7 @@
 		?>				
 
 	<form class="form-horizontal" data-toggle="validator" role="form" id="new_user_form"
-	 method="post" enctype="multipart/form-data" action="<?= PROJECTURLMENU; ?>userAuthentication/new_user_registration"
-	 onsubmit="javascript:return submitForm();">
+	 method="post" enctype="multipart/form-data" action="<?= PROJECTURLMENU; ?>userAuthentication/new_user_registration">
 		<h4 style="text-align:center; color:#E30513;">
 			<span class="glyphicon glyphicon-user logo slideanim"></span>
 			<i>Datos de la Persona</i>&nbsp;&nbsp;&nbsp;</h4>
@@ -167,11 +166,12 @@
 		<div class="col-sm-7">
 			<div class="input-group">
 				<label class="radio-inline">
-				  <input type="radio" name="gender" id="gender" value="Masculino">Masculino
+				  <input type="radio" name="gender" id="gender1" value="Masculino">Masculino
 				</label>
 				<label class="radio-inline">
-				  <input type="radio" name="gender" id="gender" value="Femenino">Femenino
+				  <input type="radio" name="gender" id="gender2" value="Femenino">Femenino
 				</label>
+				<span id="gender-span" class=""></span>
 			</div>
 		</div>
 		<div class="col-sm-2">
@@ -181,8 +181,78 @@
 		</div>
 	  </div>
 
-		<hr/>
-		<h4 style="text-align:center; color:#E30513;">
+	  <div id="birthday-div" class="form-group">
+		<label class="control-label col-sm-3" for="birthday" style="margin-top: 35px;">Cumplea&ntilde;os:</label>
+		<div class="col-sm-3">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-gift"></i></span>
+				
+				<select class="form-control" id="birth_day" name="birth_day" onblur="javascript:validar('birth_day');return false;">
+					<option value="none"> -- Seleccione día -- </option>
+<?php
+					
+					$aux = $user->cumpleanos;
+					$a = 0;
+					$b = "none";
+					$c = 0;
+
+					if ( $aux != NULL && $aux != "" ){
+						$c = substr( $aux , 8 , 2 );
+						$b = substr( $aux , 5 , 2 );
+						$a = substr( $aux , 0 , 4 );
+					}
+
+					for ( $i = 1; $i <= 31; $i++ ){
+						echo '<option value="'.$i.'"';
+						if ($c == $i) echo 'selected="selected"';
+						echo '>'.$i.'</option>';
+					}
+?>
+				</select>
+
+				<select class="form-control" id="birth_mes" name="birth_mes" onblur="javascript:validar('birth_mes');return false;">
+					<option value="none"> -- Seleccione mes -- </option>
+					<option value="Enero" 		<?php if($b==1)	echo 'selected="selected"'; ?> >Enero</option>
+					<option value="Febrero" 	<?php if($b==2)	echo 'selected="selected"'; ?> >Febrero</option>
+					<option value="Marzo" 		<?php if($b==3)	echo 'selected="selected"'; ?> >Marzo</option>
+					<option value="Abril" 		<?php if($b==4)	echo 'selected="selected"'; ?> >Abril</option>
+					<option value="Mayo" 		<?php if($b==5)	echo 'selected="selected"'; ?> >Mayo</option>
+					<option value="Junio" 		<?php if($b==6)	echo 'selected="selected"'; ?> >Junio</option>
+					<option value="Julio" 		<?php if($b==7)	echo 'selected="selected"'; ?> >Julio</option>
+					<option value="Agosto" 		<?php if($b==8)	echo 'selected="selected"'; ?> >Agosto</option>
+					<option value="Septiembre" 	<?php if($b==9)	echo 'selected="selected"'; ?> >Septiembre</option>
+					<option value="Octubre" 	<?php if($b==10)	echo 'selected="selected"'; ?> >Octubre</option>
+					<option value="Noviembre" 	<?php if($b==11)	echo 'selected="selected"'; ?> >Noviembre</option>
+					<option value="Diciembre" 	<?php if($b==12)	echo 'selected="selected"'; ?> >Diciembre</option>
+				</select>
+
+				<select class="form-control" id="birth_year" name="birth_year" onblur="javascript:validar('birth_year');return false;">
+					<option value="none"> -- Seleccione año (opcional) -- </option>
+<?php
+					$d = date('Y');
+					$e = 1912;
+
+					for ( $i = $d; $i >= $e; $i-- ){
+						echo '<option value="'.$i.'"';
+						if ($i == $a) echo 'selected="selected"';
+						echo '>'.$i.'</option>';
+					}
+?>
+				</select>
+				<span id="birthday-span" class=""></span>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div id="birthday-error" class="help-block">
+				&nbsp;
+			</div>
+		</div>
+	  </div>
+
+
+
+	  <hr/>
+	  <h4 style="text-align:center; color:#E30513;">
 			<span class="glyphicon glyphicon-thumbs-up logo slideanim"></span>
 			<i>Datos de la Cuenta</i>&nbsp;&nbsp;&nbsp;</h4>
 
@@ -279,6 +349,11 @@
 						$option = "";
 						$razon  = "";
 						foreach ($empresas as $empresa){
+
+							if ( $empresa["empresaId"] <= 11 ){
+								/* saltar Empresas de prueba */
+								continue;
+							}
 
 							$option = '<option value="' . $empresa["empresaId"] . '">' . $empresa["nombre"];
 							
@@ -467,22 +542,22 @@
 	  <div id="cargo-div" class="form-group" style="cursor:help;">
 		<label class="control-label col-sm-3" for="dependencia"
 		 data-toggle="tooltip" data-placement="bottom" title="Especifique si usted es Partner o Usuario"
-		 >Cargo en la Empresa:</label>
+		 ><u>Cargo</u> en la Empresa:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<label class="radio-inline"
 				  data-toggle="tooltip" data-placement="bottom" title="La Empresa es m&iacute;a &oacute; Soy el encargado de Contratar este servicio con Lanuza Group (Privilegios Empresariales)">
-				  <input type="radio" name="cargo" id="cargo" value="manager">
-					Partner
+				  <input type="radio" name="cargo" id="cargo1" value="manager">
+					<u>Partner</u>
 				</label>
 				<label class="radio-inline"
 				  data-toggle="tooltip" data-placement="bottom" title="Trabajo para la Empresa (que acabo de indicar ARRIBA) la cual ya contrat&oacute; los Servicios de Lanuza Group">
-				  <input type="radio" name="cargo" id="cargo" value="client">
-					Usuario
+				  <input type="radio" name="cargo" id="cargo2" value="client">
+					<u>Usuario</u>
 				</label>
 				<label class="radio-inline"
 				  data-toggle="tooltip" data-placement="bottom" title="Servicio planificado A FUTURO, a&uacute;n NO habilitado: Usuarios desde su casa">
-				  <input type="radio" name="cargo" id="cargo" disabled="disabled" value="homeUser">
+				  <input type="radio" name="cargo" id="cargo3" disabled="disabled" value="homeUser">
 					<span style="color:#ABABAB">Usuario independiente (hogar)</span>
 				</label>
 			</div>
@@ -590,6 +665,7 @@
 				</label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="antirobot" name="antirobot" placeholder="= Resultado de la suma">
+					<span id="antirobot-span" class=""></span>
 				</div>
 				<div class="col-sm-1">
 					<div id="antirobot-error" class="help-block">
@@ -604,7 +680,7 @@
 
 	  <div class="form-group"> 
 		<div class="col-sm-offset-3 col-sm-2">
-		  <button type="submit" class="btn btn-success btn-lg" id="createAccount" 
+		  <button type="submit" class="btn btn-success btn-lg" id="createAccount" onclick="javascript:return submitForm();"
 		   data-toggle="tooltip" data-placement="bottom" title="S&iacute;, deseo Crear mi cuenta con estos datos">
 			<span class="glyphicon glyphicon-user"></span> Crear Cuenta </button>
 		</div>
@@ -613,7 +689,7 @@
 		   data-toggle="tooltip" data-placement="bottom" title="Limpiar Formulario y comenzar otra vez">
 		</div>
 		<div class="col-sm-4">
-			<a href="<?= PROJECTURLMENU; ?>home" class="btn btn-link" role="button"
+			<a href="<?= PROJECTURLMENU; ?>" class="btn btn-link" role="button"
 				data-toggle="tooltip" data-placement="bottom" title="No quiero crear una cuenta en estos momentos">
 				Salir, No crear cuenta nueva </a>
 		</div>
@@ -852,9 +928,14 @@ function validar(elementId){
 		if ( !isNumber( valor ) ){
 			bError = true;
 			sErrorMessage = "El Celular debe ser solo Num&eacute;rico, sin guiones, espacios ni puntos";
-		} else if ( numero < 3000000000 || numero > 3999999999 ){
+		
+		} else if ( $('#cellphone_code').val() == "+57" && (numero < 3000000000 || numero > 3999999999) ){
 			bError = true;
-			sErrorMessage = "Parece NO estar correcto. Revise nuevamente";
+			sErrorMessage = "Parece NO estar correcto. Revise nuevamente (Colombia)";
+		
+		} else if ( $('#cellphone_code').val() == "+1" && (numero < 100000 ) ){
+			bError = true;
+			sErrorMessage = "Parece NO estar correcto. Revise nuevamente (Code +1)";
 		}
 	} else if (elementId == "phone_home" ){
 		if ( !isNumber( valor ) && valor != "" ){
@@ -873,6 +954,10 @@ function validar(elementId){
 		}
 	}
 
+	
+	if ( elementId.startsWith("birth_") ){
+		elementId = "birthday";
+	}
 
 	/**
 	 * Manejando los errores
@@ -899,18 +984,14 @@ function validar(elementId){
 		/* Mensaje de error */
 		document.getElementById(elementId + "-error").innerHTML = "";
 
-		return false;
+		return true;
 	}
-
-	
 
 	/*
 	// $("#" + elementId).closest('form-group').className += " has-error has-feedback";
 	//$("#" + elementId).closest('form-group').addClass += " has-error has-feedback";
 	/* .find('li').removeClass('selected');
 	*/
-	
-	
 }
 
 /**
@@ -938,7 +1019,7 @@ function limpiarEstilos(){
 		elementId = array[i];
 
 		/* al lado del input element */
-		if ( elementId != 'gender' && elementId != 'cargo' && elementId != 'antirobot' ){
+		if ( elementId != 'cargo' ){
 			document.getElementById(elementId + "-span").className = "";
 		}
 		/* en el elemento form-group*/
@@ -969,12 +1050,27 @@ function submitForm(){
 
 	/* Esconder el botón */
 	$("#createAccount").attr("disabled", "disabled");
-alert("xxx")	;
+	
 
 	var bool = true;
 	var scrollElement = "";
 	var scrolled = false;
 	
+	/* validar los campos que no se validan en este metodo */
+	var array = ['givenname', 'lastname'
+			, 'username', 'email', 'pwd', 'pwdrepited'
+			, 'dependencia'
+			, 'phone_cell', 'phone_home', 'phone_work', 'phone_work_ext'
+	];
+
+	/* Validando todos los campos */
+	for ( var i = 0; i < array.length ; i++ ) {
+
+		if ( validar( array[i] ) == false ){
+			bool = false;
+		}
+	}
+
 	/* Saludo */
 	if ( $("#greetings").val() == "none" ){
 		
@@ -1005,9 +1101,8 @@ alert("xxx")	;
 	}
 
 	/* validando CARGO */
-	if( $('input[type=radio][name=cargo]:checked').val() == "manager"
-			|| $('input[type=radio][name=cargo]:checked').val() == "client"
-			|| $('input[type=radio][name=cargo]:checked').val() == "homeUser" ) {
+	var sCargo = $('input[type=radio][name=cargo]:checked').val();
+	if( sCargo == "manager" || sCargo == "client" || sCargo == "homeUser" ) {
 		/* manager,client,homeUser */
 	} else {
 		bool = false;
@@ -1089,16 +1184,46 @@ alert("xxx")	;
 		document.getElementById("antirobot-error").innerHTML = "";
 	}
 
+	/* Validando Cumpleaños */
+	if ( !diaValido() ){
+		bool = false;
+		document.getElementById("birthday-div").className = "form-group has-error has-feedback";
+		document.getElementById("birthday-error").innerHTML = "Hay 30 días en Sept, Jul, Abr y Nov; 28 en Feb; los demás tienen 31";
+
+		if ( scrolled == false ){
+			scrollElement = "#birthday-div";
+			scrolled = true;
+		}
+	}
+
+	if ( $("#birth_day").val() == "none" || $("#birth_mes").val() == "none" ){
+		bool = false;
+		document.getElementById("birthday-div").className = "form-group has-error has-feedback";
+		document.getElementById("birthday-error").innerHTML = "Favor indique su Fecha de Cumpleaños (el Año es opcional)";
+
+		if ( scrolled == false ){
+			scrollElement = "#birthday-div";
+			scrolled = true;
+		}
+	}
+
 	if ( bool == true && ( campoRepetidoEmail == false && campoRepetidoUsername == false ) ){
 
 		/* habilitando ANTES del envio */
-		document.getElementById( "companyCombo" ).removeAttribute("disabled");
-
+		if ( $("#companyCombo").attr("disabled") != undefined ){
+			document.getElementById( "companyCombo" ).removeAttribute("disabled");
+		}
+		
 		/* submit POST enviando formulario */
 		document.getElementById("new_user_form").submit();
 		return true;
 
 	} else {
+
+		if ( scrollElement == "" || scrollElement == undefined ){
+			scrollElement = "#page1";
+		}
+
 		/* hacer scroll animando la pantalla hasta llegar a un DIV #id */
 		$('html, body').animate({
 			scrollTop: $( scrollElement ).offset().top
@@ -1195,6 +1320,20 @@ function validacionAJAX(emailValue, campo){
 			alert("Error al buscar info en nuestro Sistema\nPor favor, intente más tarde");
 		}
 	});
+}
+
+function diaValido(){
+	var dia = $("#birth_day").val();
+	var mes = $("#birth_mes").val();
+	
+	if ( dia > 30 && (mes == "Septiembre" || mes == "Junio" || mes == "Abril" || mes == "Noviembre") ){
+		return false;
+	}
+	if ( dia > 29 && mes == "Febrero"){
+		return false;
+	}
+	
+	return true;
 }
 
 </script>

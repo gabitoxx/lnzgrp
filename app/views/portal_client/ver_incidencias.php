@@ -4,7 +4,15 @@
 	 */
 	$porlomenosunEnEspera = false;
 
+	$incidenciasSinOpinarJSON = "[]";
+	if ( isset($jsonIncidenciasSinOpinar) ){
+		$incidenciasSinOpinarJSON = $jsonIncidenciasSinOpinar;
+	}
+	echo "<script>";
+	echo "   var jsonString = '" . $incidenciasSinOpinarJSON . "'" ;
+	echo "</script>";
 ?>
+
 <style>
 	#tableId tr td:nth-child(3){
 		width:210px !important;
@@ -86,7 +94,7 @@
 						<button type="button"
 						 <?php 
 							if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
-								echo 'class="btn btn-primary disabled"';
+								echo 'class="btn btn-primary disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-primary"';
 							}
@@ -99,7 +107,7 @@
 						<button type="button"
 						 <?php 
 							if ($incidencia["tecnicoId"]==null || $incidencia["tecnicoId"]==""){
-								echo 'class="btn btn-info disabled"';
+								echo 'class="btn btn-info disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-info"';
 							}
@@ -127,7 +135,7 @@
 						<button type="button"
 						 <?php 
 							if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
-								echo 'class="btn btn-success disabled"';
+								echo 'class="btn btn-success disabled" disabled="disabled" ';
 							}else{
 								echo 'class="btn btn-success"';
 							}
@@ -660,7 +668,7 @@
 </script>
 
 <?php
-	echo "<script>";
+	echo "<script> $(document).ready(function () { ";
 	if ( isset( $certificar_opinar_incidenciaID ) ){
 		echo " $('#myModalOpinar').modal({
 			backdrop: 'static',
@@ -668,6 +676,6 @@
 			show: true
 		}); ";
 	}
-	echo "</script>";
+	echo " });  </script>";
 
 ?>

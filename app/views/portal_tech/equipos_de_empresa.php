@@ -119,7 +119,21 @@
 
 					<?php
 				}
-			?>
+			?>			
+			<br/>
+			<hr/>
+			Estatus actual: <b id="b-equipo-id-<?= $equipo["equipoId"] ?>"><?= $equipo["estatus"]; ?></b>
+			<br/>
+			<button type="button" class="btn btn-info"
+			<?php 
+			 	echo 'onclick="javascript:cambiarEstatus(';
+			 	echo $equipo["equipoId"];
+			 	echo ", '" . $equipo["estatus"] . "'";
+			 	echo ');"';
+			 ?>
+			 data-toggle="tooltip" data-placement="bottom" title="Cambiar el Estatus actual de ESTE Equipo: activo, suspendido, etc.">
+				<span class="glyphicon glyphicon-off"></span> Cambiar Estatus 
+			</button>
 		</div>
 
 <?php
@@ -187,8 +201,8 @@
 							<span class="glyphicon glyphicon-log-in"></span> Asignar Equipo a Usuario...</button>
 						</td>
 						<td>
-							Cuando un Equipo NO tiene una asociación en el Sistema 
-							(es decir, no se posee información de quién lo está usando) 
+							Cuando un Equipo NO tiene una asociaci&oacute;n en el Sistema 
+							(es decir, no se posee informaci&oacute;n de qui&eacute;n lo est&aacute; usando) 
 							a trav&eacute;s de esta opci&oacute;n usted podr&aacute; 
 							establecer dicha asociaci&oacute;n; 
 							<b>
@@ -197,6 +211,34 @@
 								est&aacute; usando dicho 
 								<span class="glyphicon glyphicon-blackboard"></span> Equipo
 							</b>.
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row control-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<table class="table table-hover table-striped">
+					<tr>
+						<td style="width: 234px;">
+							<button type="button" class="btn btn-info">
+							<span class="glyphicon glyphicon-off"></span> Cambiar Estatus</button>
+						</td>
+						<td>
+							Para cambiar el status de un Equipo, entre los cuales tenemos:
+							<br/>
+							<b>Activo:</b> Por defecto. Todos los Equipos registrados en el Portal. 
+							Este es el principal estatus que se tomar&aacute; en cuenta para los Reportes y Dashboard.
+							<br/>
+							<b>Inactivo:</b> Se puede a&ntilde;adir este estatus cuando un Equipo sea comprado 
+							por un cliente, registrado, pero a&uacute;n no est&aacute; en uso.
+							<br/>
+							<b>Suspendido:</b> Se puede a&ntilde;adir este estatus cuando se desea retirar un Equipo
+							de los Reportes generados por el Portal 
+							<strong>(Un Equipo con este Estatus NO se tomar&aacute; en cuenta en el Dashboard ni en el men&uacute; Reportes)</strong>.
+							<br/>
+							<b>En Reparaci&oacute;n:</b> Cuando un Equipo est&aacute; pendiente por alguna 
+							reparaci&oacute;n y en estos momentos NO se encuentra operativo.
 						</td>
 					</tr>
 				</table>
@@ -273,6 +315,65 @@
 		}
 	}
 
+	/**
+	 * Valores necesarios para el AJAX
+	 */
+	equipoIdAActualizarEstatus = -1;
+	statusAActualizar = "";
+	
+	function cambiarEstatus(equipoId, statusActual){
+
+		equipoIdAActualizarEstatus = equipoId;
+		statusAActualizar          = statusActual;
+
+		$("#modalStatus-title").text( "Estatus actual: " + statusActual );
+
+		/*
+		 * Cambiar la opcion a la del Equipo seleccionado e inhabilitar boton
+		 */
+		$('#newStatus option[value="'+statusActual+'"]').attr("selected", "selected");
+
+		$('#btnCambiarStatus').attr("disabled", "disabled");
+
+		$('#modalStatus').modal({
+			backdrop: 'static',
+			keyboard: false,
+			show: true
+		});
+
+	}
+
+	function enabledModalStatus(){
+		$('#btnCambiarStatus').removeAttr("disabled");
+	}
+	function deseleccionarEstatusses(){
+		$('#newStatus option[value!="xxx"]').removeAttr("selected");
+	}
+
+	function saveStatus(){
+
+		statusAActualizar = $("#newStatus").val();
+
+		$.ajax({
+			type: "POST",
+			url: "<?= PROJECTURLMENU . 'tecnicos/ajax_cambiar_status_equipo' ; ?>",
+			data: {
+				equipoId: equipoIdAActualizarEstatus, accion: "Cambiar Estatus", status: statusAActualizar
+			}
+		})
+		.done(function(msg) {
+			alert( msg );
+			$("#b-equipo-id-"+equipoIdAActualizarEstatus).text( "CAMBIADO a " + statusAActualizar );
+		})
+		.fail(function(html) {
+			alert("Error al intentar Actualizar Estatus del Equipo en nuestro Sistema\nPor favor, intente más tarde");
+		})
+		.always(function(msg) {
+			/* alert( "complete" ); */
+			$('#modalStatus').modal('hide');
+		});
+	}
+
 </script>
 <!-- ========================================================================================================= -->
 <div class="modal fade" id="myModal" role="dialog">
@@ -342,6 +443,52 @@
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar SIN asignar</button>
 		</div>
+	  </div>
+	</div>
+</div>
+
+<!-- ========================= MODAL para cambiar el Status de un Equipo  ==================== -->
+<div class="modal fade" id="modalStatus" role="dialog">
+	<!-- tamaño del modal: modal-sm PEQUEÑO | modal-lg GRANDE -->
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal">&times;</button>
+		  <h4 class="modal-title" align="center">
+			<span class="glyphicon glyphicon-cog"></span> 
+			<span id="modalStatus-title"></span> 
+		  </h4>
+		</div>
+
+		<div class="modal-body">
+		  <p>
+		  	Para cambiar el Estatus actual, seleccione primero uno nuevo y pulse 'Cambiar Estatus'
+		  	<div id="modalStatus-feedback" style="text-align:center;">
+		  		
+		  		<select class="form-control" id="newStatus" name="newStatus" onchange="javascript:enabledModalStatus();">
+				
+					<option value="0">  --  Seleccione nuevo Estatus --  </option>
+					
+					<?php
+						foreach ($status_de_equipos as $status){
+							echo '<option value="' . $status[1] . '">' . $status[1] . " (" . $status[2] . ')</option>';
+						}
+					?>
+
+				</select>
+				<br/>
+				<button id="btnCambiarStatus" type="button" class="btn btn-primary btn-lg"
+				 onclick="javascript:saveStatus();" disabled="disabled" 
+				 data-toggle="tooltip" data-placement="bottom" title="PRIMERO Seleccionar un nuevo ESTATUS y luego pulsar ESTE BOTÓN">
+				   <span class="glyphicon glyphicon-off"></span> Cambiar Estatus</button>
+		  	</div>
+		  </p>
+		</div>
+
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:deseleccionarEstatusses();">Cerrar</button>
+		</div>
+
 	  </div>
 	</div>
 </div>

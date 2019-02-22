@@ -988,5 +988,43 @@ class Transaccion {
 			die;
 		}
 	}
+
+	/**
+	 * Obtener QUIEN fue el CREADOR de una INCIDENCIA
+	 */
+	public static function getUsuarioCreadorIncidencia( $incidenciaId ){
+		try {
+			$connection = Database::instance();
+
+			$sql =" SELECT * 
+					FROM Transaccion t 
+					WHERE t.tipo_transaccion = 'Incidencia_Crear' AND t.status = 'Ok' 
+					  AND t.incidenciaId = ?
+					";
+
+			$query = $connection -> prepare($sql);
+
+			$query -> bindParam(1, $incidenciaId, \PDO::PARAM_INT);
+
+			$query -> execute();
+
+			return $query -> fetch( \PDO::FETCH_OBJ );
+
+		} catch(\PDOException $e) {
+			$internalErrorCodigo  = "PDOException in models.Transaccion.getUsuarioCreadorIncidencia():";
+			$internalErrorMessage = $e -> getMessage();
+			$internalErrorExtra   = $incidenciaId;
+			
+			/**/
+			Transaccion::insertTransaccionPDOException("Consultar_Incidencias",$internalErrorCodigo, $internalErrorMessage, $internalErrorExtra);
+			
+			View::set("internalErrorCodigo", $internalErrorCodigo);
+			View::set("internalErrorMessage",$internalErrorMessage);
+			View::set("internalErrorExtra",  $internalErrorExtra);
+
+			View::render("internalError");
+			die;
+		}
+	}
 	
 }

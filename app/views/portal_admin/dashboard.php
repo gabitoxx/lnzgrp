@@ -60,25 +60,88 @@
 		border-style: inset;
 		border-width: 3px;
 	}
+
+	a.back-to-top {
+		display: block;
+		width: 60px;
+		height: 60px;
+		text-indent: -9999px;
+		position: fixed;
+		z-index: 999;
+		right: 500px;
+		bottom: 20px;
+		background: #F9B233 url("<?= APPIMAGEPATH; ?>up-arrow.png") no-repeat center 43%;
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		border-radius: 30px;
+	}
+	a:hover.back-to-top {
+		background-color: #E30513;
+	}
+
+	#div_year{
+		display: block;
+		position: fixed;
+		right: 650px;
+		bottom: 0px;
+		font-size: 20px;
+		z-index: 999;
+		background-color: <?= RGB_MANAGER; ?>;
+	}
 </style>
+
+<form class="form-horizontal" data-toggle="validator" role="form" id="searched_info_company" method="post"
+ enctype="multipart/form-data" action="">
+
+	<input type="hidden" id="seleccionarEmpresaID" 		 	name="seleccionarEmpresaID" 			value="" />
+	<input type="hidden" id="seleccionarEmpresaNombre"   	name="seleccionarEmpresaNombre" 		value="" />
+	<input type="hidden" id="seleccionarEmpresaRazonsocial" name="seleccionarEmpresaRazonsocial"  	value="" />
+	<input type="hidden" id="seleccionarEmpresaNIT"  		name="seleccionarEmpresaNIT" 			value="" />
+	<input type="hidden" id="seleccionarEmpresaDireccion"   name="seleccionarEmpresaDireccion" 		value="" />
+	<input type="hidden" id="seleccionarEmpresaCantEquipos" name="seleccionarEmpresaCantEquipos" 	value="" />
+</form>
 
 <div id="container">
 <div id="HTMLtoPDF" class="page-body">
 
 
+	<div id="div_year" class=" well well-lg">
+		<b>Reporte de <?= $reporteYear; ?></b>
+	</div>
+
 	<div class="row">
-		<div class="col-sm-6">
+		<div class="col-sm-4">
+			<br/>
 			<h4 style="text-align:center; color:#E30513;">
 				<span class="glyphicon glyphicon-dashboard"></span>
 				<i>Dashboard</i> .:. <?= $empresa->nombre; ?>
 			</h4>
 		</div>
-		<div class="col-sm-6" align="center">
-			<h4><i>
-				Res&uacute;men de Reportes para el a&ntilde;o <u><?= date('Y', time());  ?></u>
+		<div class="col-sm-5" align="center">
+			<br/>
+			<h4 style="background-color:yellow;"><i>
+				Res&uacute;men de Reportes para el a&ntilde;o <u><?= $reporteYear; ?></u>
 			</i></h4>
 		</div>
+		<div class="col-sm-3" align="center">
+			<h5>
+				Solicitar Reporte de otro a&ntilde;o:
+				<select class="form-control" id="anyo_dashboard" name="anyo_dashboard"
+				 onchange="javascript:goToYearReport();" style="width:30%;">
+<?php
+				for ( $i = date("Y",time()); $i >= 2017; $i-- ){
+					echo '<option value="' . $i . '"';
+					if ( $i == $reporteYear ) echo 'selected="selected"';
+					echo '>' . $i . '</option>';
+				}
+?>
+				</select>
+			</h5>
+		</div>
 	</div>
+<?php 
+	echo "<script> var URL = '" . PROJECTURLMENU . "admin/reporte_dashboard/'; </script>" ;
+?>
 
 	<!-- =================================================================================================== -->
 	<hr/>
@@ -342,6 +405,17 @@
 	<div class="row">
 		<div class="col-sm-2">&nbsp;</div>
 		<div class="col-sm-4" align="center" style="text-align:center;">
+<?php
+	$Windows_conLic = 0;
+	$Windows_sinLic = 0;
+	$OtrosSO_conLic = 0;
+	$OtrosSO_sinLic = 0;
+
+	if ( isset($licencias["win_contSi"]) ){ 	$Windows_conLic = $licencias["win_contSi"]; }
+	if ( isset($licencias["win_contNo"]) ){ 	$Windows_sinLic = $licencias["win_contNo"]; }
+	if ( isset($licencias["win_otrosSO_Si"]) ){ $OtrosSO_conLic = $licencias["win_otrosSO_Si"]; }
+	if ( isset($licencias["win_otrosSO_No"]) ){ $OtrosSO_sinLic = $licencias["win_otrosSO_No"]; }
+?>
 			<script type="text/javascript">
 
 				google.charts.setOnLoadCallback(drawChart3);
@@ -353,9 +427,11 @@
 					data.addColumn('string', '¿Es Licenciado?');
 					data.addColumn('number', 'Cantidad de Equipos');
 					data.addRows([
-					  ['Sí', 			<?= $licencias["win_contSi"]; ?> ],
-					  ['No', 			<?= $licencias["win_contNo"]; ?> ],
-					  ['Desconocido', 	<?= $licencias["win_contUnknown"]; ?> ]
+						['Windows con Licencia',		<?= $Windows_conLic; ?> ],
+						['Windows sin Licencia',		<?= $Windows_sinLic; ?> ],
+						['Desconocido', 				<?= $licencias["win_contUnknown"]; ?> ],
+						['Otros S.O. con Licencia', 	<?= $OtrosSO_conLic; ?> ],
+						['Otros S.O. sin Licencia', 	<?= $OtrosSO_sinLic; ?> ]
 					]);
 
 					/* Set chart options */
@@ -372,7 +448,9 @@
 						slices: {
 							0: { color: '#E30513' },
 							1: { color: '#0D181C' },
-							2: { color: '#94A6B0' }
+							2: { color: '#94A6B0' },
+							3: { color: '#39A8D9' },
+							4: { color: '#AFCA0A' }
 						},
 						width: 450,
 						height: 300
@@ -385,6 +463,17 @@
 			<div id="chart_div_pie1" align="center" style="text-align:center;"></div>
 		</div>
 		<div class="col-sm-6" align="center" style="text-align:center;">
+<?php
+	$Office_conLic = 0;
+	$Office_sinLic = 0;
+	$OtroOff_conLic = 0;
+	$OtroOff_sinLic = 0;
+
+	if ( isset($licencias["off_contSi"]) ){ 	$Office_conLic  = $licencias["off_contSi"]; }
+	if ( isset($licencias["off_contNo"]) ){ 	$Office_sinLic  = $licencias["off_contNo"]; }
+	if ( isset($licencias["off_otros_Si"]) ){ 	$OtroOff_conLic = $licencias["off_otros_Si"]; }
+	if ( isset($licencias["off_otros_No"]) ){ 	$OtroOff_sinLic = $licencias["off_otros_No"]; }
+?>
 			<script type="text/javascript">
 
 			  google.charts.setOnLoadCallback(drawChart4);
@@ -396,9 +485,11 @@
 				data.addColumn('string', '¿Es Licenciado?');
 				data.addColumn('number', 'Cantidad de Equipos');
 				data.addRows([
-				  ['Sí', 			<?= $licencias["off_contSi"]; ?> ],
-				  ['No', 			<?= $licencias["off_contNo"]; ?> ],
-				  ['Desconocido', 	<?= $licencias["off_contUnknown"]; ?> ]
+					['Microsoft Office con Licencia', 			<?= $Office_conLic; ?> ],
+					['Microsoft Office sin Licencia', 			<?= $Office_sinLic; ?> ],
+					['Desconocido', 							<?= $licencias["off_contUnknown"]; ?> ],
+					['Otro software Ofimático con Licencia', 	<?= $OtroOff_conLic; ?> ],
+					['Otro software Ofimático sin Licencia', 	<?= $OtroOff_sinLic; ?> ]
 				]);
 
 				/* Set chart options */
@@ -415,7 +506,9 @@
 					slices: {
 						0: { color: '#E30513' },
 						1: { color: '#0D181C' },
-						2: { color: '#94A6B0' }
+						2: { color: '#94A6B0' },
+						3: { color: '#39A8D9' },
+						4: { color: '#AFCA0A' }
 					},
 					width: 500,
 					height: 300
@@ -1241,7 +1334,7 @@
 							<table id="agendaFutura" class="table-hover table-striped cf" style="font-size: 14px;">
 								<thead class="cf">
 									<tr>
-										<th class="active" width="100px">Fecha</th>
+										<th class="active" width="100px">Fecha<br/>(a&ntilde;o-mes-d&iacute;a)</th>
 										<th class="active" width="200px">Horario de Visita</th>
 										<th class="active" width="300px">Trabajo a Realizar</th>
 										<th class="active" width="200px">Ing. de Soporte asignado</th>
@@ -1253,7 +1346,7 @@
 
 									<tr>
 										<td>
-											<?= substr( $cita["fecha_cita"], 0, 9 ); ?>
+											<?= substr( $cita["fecha_cita"], 0, 10 ); ?>
 										</td>
 										<td>
 											<?php 
@@ -1334,7 +1427,7 @@
 							<table id="agendaPasada" class="table-hover table-striped cf" style="font-size: 14px;">
 								<thead class="cf">
 									<tr>
-										<th class="active" width="100px">Fecha</th>
+										<th class="active" width="100px">Fecha<br/>(a&ntilde;o-mes-d&iacute;a)</th>
 										<th class="active" width="200px">Horario de Visita</th>
 										<th class="active" width="300px">Trabajo a Realizar</th>
 										<th class="active" width="200px">Ing. de Soporte asignado</th>
@@ -1350,7 +1443,7 @@
 
 									<tr>
 										<td>
-											<?= substr( $cita["fecha_cita"], 0, 9 ); ?>
+											<?= substr( $cita["fecha_cita"], 0, 10 ); ?>
 										</td>
 										<td>
 											<?php 
@@ -1467,7 +1560,7 @@
 										<button type="button"
 										 <?php 
 											if ($informe["resolucionId"]==null || $informe["resolucionId"]==""){
-												echo 'class="btn btn-primary disabled"';
+												echo 'class="btn btn-primary disabled" disabled="disabled" ';
 											}else{
 												echo 'class="btn btn-primary"';
 											}
@@ -1480,7 +1573,7 @@
 										<button type="button"
 										 <?php 
 											if ($informe["tecnicoId"]==null || $informe["tecnicoId"]==""){
-												echo 'class="btn btn-info disabled"';
+												echo 'class="btn btn-info disabled" disabled="disabled" ';
 											}else{
 												echo 'class="btn btn-info"';
 											}
@@ -1750,6 +1843,8 @@
 		</div>
 	</div>
 
+	<a href="javascript:goArriba();" class="back-to-top" data-toggle="tooltip" title="Volver Arriba">Volver Arriba</a>
+
 	<br/><br/><br/><br/>
 
 </div><!-- HTMLtoPDF -->
@@ -1794,20 +1889,6 @@
 	});
 
 
-	function collapseDiv( collapseID ){
-		$('#' + collapseID ).collapse('toggle');
-	}
-
-	/**
-	 * Formulario como el del Tecnico pero sin poder editar
-	 */
-	function verDetalleSolucion(resolucionId){
-
-		document.getElementById("resolucionIncidenciaId").value = resolucionId;
-
-		document.getElementById("resolucionIncidenciaForm").submit();
-	}
-
 	function printThisPage(){
 
 		HTMLtoPDF();
@@ -1838,6 +1919,34 @@
 		var result_style = document.getElementById( trId ).style;
 		result_style.display = 'none';
 	}
+
+
+	function goArriba(){
+		location.href = "#container";
+	}
+
+	function goToYearReport(){
+
+		$("#container").css('cursor', 'wait');
+
+		URL += $("#anyo_dashboard").val();
+		
+		// redireccion por GET		
+		//location.href = URL;
+
+		/* redireccion por POST de un formulario */
+		$("#seleccionarEmpresaID").val('<?= $seleccionarEmpresaID; ?>');
+		$("#seleccionarEmpresaNombre").val('<?= $seleccionarEmpresaNombre; ?>');
+		$("#seleccionarEmpresaRazonsocial").val('<?= $seleccionarEmpresaRazonsocial; ?>');
+		$("#seleccionarEmpresaNIT").val('<?= $seleccionarEmpresaNIT; ?>');
+		$("#seleccionarEmpresaDireccion").val('<?= $seleccionarEmpresaDireccion; ?>');
+		$("#seleccionarEmpresaCantEquipos").val('<?= $seleccionarEmpresaCantEquipos; ?>');
+
+		document.getElementById("searched_info_company").action = URL;
+		document.getElementById("searched_info_company").submit();
+		
+	}
+	
 
 </script>
 

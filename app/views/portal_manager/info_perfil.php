@@ -295,6 +295,7 @@
 						<?php } ?>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-sm-2" align="right">
 					<label for="c5"class="">Usuario creado el:</label>
@@ -309,6 +310,24 @@
 					<input type="text" class="" id="c6" style="border: 0px solid;" disabled="disabled" value="<?= $profile["fechaCreacion"]; ?>" />
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-sm-2" align="right">
+					<label for="c5"class="">Fecha Nacimiento:</label>
+				</div>
+				<div class="col-sm-4" align="left">
+					<input type="text" class="" id="c5" style="border: 0px solid;" disabled="disabled" value="<?php
+					 	if($profile["cumpleanos"] != NULL && $profile["cumpleanos"] != "") echo substr($profile["cumpleanos"], 0 , 10); else echo "No actualizada"; 
+					?>" />
+				</div>
+				<div class="col-sm-2" align="right">
+					<label for="c6" class="">&nbsp;</label>
+				</div>
+				<div class="col-sm-4" align="left">
+					<input type="text" class="" id="c6" style="border: 0px solid;" disabled="disabled" value="" />
+				</div>
+			</div>
+			
 		</form>
 	</div>
 

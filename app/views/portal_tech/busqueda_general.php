@@ -127,6 +127,10 @@
 					<br/>
 					&nbsp;&nbsp;&nbsp;
 					- <b>Empresa due&ntilde;a del Equipo</b> (Nombre, Raz&oacute;n social o NIT).
+					<br/><br/>
+					4.- Buscar por el ID del Equipo en el Sistema, para ello debe escribir 
+					<b>id:&lt;el n&uacute;mero del ID que desea buscar&gt;</b>, ejemplo:
+					<span style="background-color:#F9B233;">id:123</span>
 				</div>
 			</div>
 			<br/>
@@ -188,7 +192,7 @@
 					<i>
 						variables End&oacute;genas, variable Ex&oacute;genas T&eacute;cnicas,
 						variables Ex&oacute;genas Humanas,
-						mantenimientos de Hardware, mantenimientos de Software y/o acompa&oacute;amientos Junior.
+						mantenimientos de Hardware, mantenimientos de Software y/o acompa&ntilde;amientos Junior.
 					</i>
 					<br/><br/>
 					<span style="background-color:#F9B233;">
@@ -698,7 +702,7 @@
 
 	 						} else {  ?>
 								<button type="button"class="btn btn-success"
-								 onclick="javascript:verInventario('<?= $equipo["equipoInfoId"] ?>' , '<?= $equipo["TipoEquipo"] ?>');"
+								 onclick="javascript:verInventario('<?= $equipo["equipoInfoId"] ?>' , '<?= $equipo["TipoEquipo"] ?>' , <?= $equipo["id"] ?> );"
 								 data-toggle="tooltip" data-placement="bottom" title="Ver +Detalles técnicos"
 								>
 									<span class="glyphicon glyphicon-tasks"></span>
@@ -769,10 +773,11 @@
 		<script>
 			$("#equipmentFound").css({'visibility':'visible', 'position':'absolute', 'top': '740px'});
 
-			function verInventario(equipoInfoId, tipoEquipo){
+			function verInventario(equipoInfoId, tipoEquipo, equipoID ){
 
 				$("#equipoInfoId").val( equipoInfoId );
 				$("#tipoEquipo").val(   tipoEquipo );
+				$("#equipoID").val(  	equipoID );
 
 				$("#inventario_form").submit();
 			}
@@ -781,6 +786,7 @@
 	 	 enctype="multipart/form-data" action="<?= PROJECTURLMENU ?>tecnicos/ver_inventario_equipo">
 	 	 	<input type="hidden" id="equipoInfoId" name="equipoInfoId" value="" />
 	 	 	<input type="hidden" id="tipoEquipo"   name="tipoEquipo"   value="" />
+	 	 	<input type="hidden" id="equipoID"     name="equipoID"     value="" />
 	 	</form>
 	</div>
 <?php
@@ -844,7 +850,7 @@
 							<button type="button"
 							 <?php 
 								if ($incidencia["resolucionId"]==null || $incidencia["resolucionId"]==""){
-									echo 'class="btn btn-primary disabled"';
+									echo 'class="btn btn-primary disabled" disabled="disabled" ';
 								}else{
 									echo 'class="btn btn-primary"';
 								}
@@ -857,7 +863,7 @@
 							<button type="button"
 							 <?php 
 								if ($incidencia["tecnicoId"]==null || $incidencia["tecnicoId"]==""){
-									echo 'class="btn btn-info disabled"';
+									echo 'class="btn btn-info disabled" disabled="disabled" ';
 								}else{
 									echo 'class="btn btn-info"';
 								}

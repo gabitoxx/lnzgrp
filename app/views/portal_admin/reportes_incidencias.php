@@ -50,6 +50,25 @@
 		font-weight:bold;
 		height:50px;
 	}
+
+	a.back-to-top {
+		display: block;
+		width: 60px;
+		height: 60px;
+		text-indent: -9999px;
+		position: fixed;
+		z-index: 999;
+		right: 500px;
+		bottom: 20px;
+		background: #F9B233 url("<?= APPIMAGEPATH; ?>up-arrow.png") no-repeat center 43%;
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		border-radius: 30px;
+	}
+	a:hover.back-to-top {
+		background-color: #E30513;
+	}
+
 </style>
 
 <div id="container">
@@ -689,6 +708,8 @@
 		</div>
 	</div>
 
+	<a href="javascript:goArriba();" class="back-to-top" data-toggle="tooltip" title="Volver Arriba">Volver Arriba</a>
+
 	<br/><br/><br/><br/>
 
 </div><!-- HTMLtoPDF -->
@@ -721,21 +742,6 @@
 	});
 
 
-	function collapseDiv( collapseID ){
-		$('#' + collapseID ).collapse('toggle');
-	}
-
-	/**
-	 * Formulario como el del Tecnico pero sin poder editar
-	 */
-	function verDetalleSolucion(resolucionId){
-
-		document.getElementById("resolucionIncidenciaId").value = resolucionId;
-
-		document.getElementById("resolucionIncidenciaForm").submit();
-	}
-
-
 	function printThisPage(){
 
 		HTMLtoPDF();
@@ -757,4 +763,5 @@
 
 		/*document.body.innerHTML = originalContents;*/
 	}
+	
 </script>
