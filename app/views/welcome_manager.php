@@ -315,6 +315,30 @@
 	</div>
 </div>
 
+<!-- div id="mantenimiento" class="container-fluid">
+  <div class="row" style="margin-top: -60px;">
+    <div class="col-sm-12 text-center">
+      <h2>MANTENIMIENTO PROGRAMADO</h2>
+      <img src="<?= APPIMAGEPATH; ?>construccion.jpg" class="img-rounded" alt="Compu" style="height: 150px; width: 200px;">
+      <br/>
+      <h4>
+        <?php
+            if( $genderMale == true) {
+              echo "Estimado usuario";
+            } else {
+              echo "Estimada usuaria";
+            }
+          ?>,
+        por tareas de mantenimiento y en aras de actualizar nuestro software, el portal <b>permanerecerá inactivo</b>
+        los días <b>sábado 4 y domingo 5 de septiembre de 2021</b>. Rogamos disculpe las molestias.
+        <br/>
+        Si necesita hablar con nuestro equipo de Lanuza Group de forma urgente, puede contactarnos, durante el periodo de cierre, 
+        directamente al correo <b>soporte@lanuzagroup.com</b>.
+      </h4>
+    </div>      
+  </div>
+</div -->
+
 <!-- Container (About Section) -->
 <div id="welcome" class="container-fluid">
 	<br/>
@@ -508,7 +532,7 @@
 					<p>navegadores desde <strong>celulares inteligentes o tablets</strong>.</p>
 				</div>
 				<div class="panel-footer text-center">
-					<img src="<?= APPIMAGEPATH; ?>celular.png" class="img-rounded" alt="Compu" width="95%" height="200">
+					<img src="<?= APPIMAGEPATH; ?>celular.png" class="img-rounded" alt="Compu" style="width: 150px; height: 200px;">
 				</div>
 			</div>
 		</div>

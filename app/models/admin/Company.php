@@ -2,7 +2,8 @@
 namespace app\models\admin;
 defined("APPPATH") OR die("Access denied");
 
-use \core\Database;
+use \core\Database,
+    \app\models\Utils;
 
 class Company {
 
@@ -37,6 +38,10 @@ class Company {
 		}
 	}
 
+
+  /**
+   * Insercion de nueva empresa en tabla Empresas
+   */
 	public static function insert($nombreEmpresa, $razonSocial, $NIT,
 			$pais, $estado, $ciudad, $company_direccion){
 
@@ -48,6 +53,17 @@ class Company {
 				. "VALUES(?, ?, ?, ?, ?, ?, ? )";
 
 			$query = $connection -> prepare($sql);
+
+      /**
+       * Sanitization
+       */
+      $nombreEmpresa       = Utils::sanitize( $nombreEmpresa, 255 );
+      $razonSocial         = Utils::sanitize( $razonSocial, 512 );
+      $NIT                 = Utils::sanitize( $NIT, 50 );
+      $pais                = Utils::sanitize( $pais, 50 );
+      $estado              = Utils::sanitize( $estado, 100 );
+      $ciudad              = Utils::sanitize( $ciudad, 100 );
+      $company_direccion   = Utils::sanitize( $company_direccion, 500 );
 
 			$query -> bindParam(1, $nombreEmpresa, \PDO::PARAM_STR);
 			$query -> bindParam(2, $razonSocial, \PDO::PARAM_STR);

@@ -41,7 +41,7 @@
             <hr>
             <div class='_1'>Página</div>
             <div class='_2'>No encontrada</div>
-            <a class='btn' href='https://www.lanuzagroup.com/'>Regresar</a>
+            <a class='btn' href='https://www.lanuzasoft.com/'>Regresar</a>
         </div>
 
 	

@@ -674,3 +674,900 @@ Stack trace:
 [07-Feb-2019 16:00:01 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
 [12-Feb-2019 16:00:01 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
 [13-Feb-2019 16:00:01 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Mar-2019 16:00:01 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Mar-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[06-Mar-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Mar-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Mar-2019 16:00:01 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[12-Mar-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Mar-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-Mar-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[21-Mar-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[25-Mar-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[27-Mar-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[02-Apr-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Apr-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Apr-2019 17:30:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[05-Apr-2019 17:45:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[05-Apr-2019 18:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[05-Apr-2019 18:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoIncidenciasSinTecnicoAsignado.php on line 51
+[07-Apr-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-Apr-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Apr-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[11-Apr-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[21-Apr-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[23-Apr-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-May-2019 00:30:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[01-May-2019 00:45:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[01-May-2019 01:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoIncidenciasSinTecnicoAsignado.php on line 51
+[01-May-2019 01:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[01-May-2019 01:15:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[01-May-2019 01:30:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[01-May-2019 02:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[01-May-2019 02:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoIncidenciasSinTecnicoAsignado.php on line 51
+[02-May-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-May-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[06-May-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-May-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-May-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-May-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[12-May-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-May-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[28-May-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Jun-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Jun-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Jun-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[06-Jun-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Jun-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Jun-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[11-Jun-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[14-Jun-2019 23:45:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/1040): Too many connections in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[16-Jun-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Jun-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Jun-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[22-Jun-2019 04:15:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[22-Jun-2019 04:30:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[22-Jun-2019 04:45:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[22-Jun-2019 05:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[22-Jun-2019 05:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoIncidenciasSinTecnicoAsignado.php on line 51
+[22-Jun-2019 05:15:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[22-Jun-2019 06:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[22-Jun-2019 06:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoIncidenciasSinTecnicoAsignado.php on line 51
+[25-Jun-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[26-Jun-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Jul-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Jul-2019 15:15:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[04-Jul-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Jul-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-Jul-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Jul-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Jul-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Jul-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[21-Jul-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[22-Jul-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[26-Jul-2019 03:30:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 04:00:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 04:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoIncidenciasSinTecnicoAsignado.php on line 51
+[26-Jul-2019 04:15:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 04:30:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 04:45:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 05:15:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 05:30:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 05:45:01 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 06:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 06:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoIncidenciasSinTecnicoAsignado.php on line 51
+[26-Jul-2019 06:45:02 America/Bogota] PHP Warning:  mysqli_connect(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 07:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'lanuzaso_dbUser'@'localhost' (using password: YES) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 07:00:02 America/Bogota] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'lanuzaso_dbUser'@'localhost' (using password: YES) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoIncidenciasSinTecnicoAsignado.php on line 51
+[26-Jul-2019 07:15:02 America/Bogota] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'lanuzaso_dbUser'@'localhost' (using password: YES) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[26-Jul-2019 07:30:01 America/Bogota] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'lanuzaso_dbUser'@'localhost' (using password: YES) in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[28-Jul-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Aug-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Aug-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Aug-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-Aug-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[11-Aug-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[12-Aug-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[13-Aug-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-Aug-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[22-Aug-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Sep-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[02-Sep-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Sep-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Sep-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Sep-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-Sep-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Sep-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Sep-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[11-Sep-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[15-Sep-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Sep-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Sep-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[23-Sep-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[25-Sep-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Oct-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[02-Oct-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[06-Oct-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Oct-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-Oct-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Oct-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[15-Oct-2019 16:00:01 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Oct-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Oct-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-Oct-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[21-Oct-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[22-Oct-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[28-Oct-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Nov-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Nov-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[06-Nov-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Nov-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[12-Nov-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[13-Nov-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Nov-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Nov-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[19-Nov-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[24-Nov-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Dec-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[02-Dec-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Dec-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Dec-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Dec-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-Dec-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Dec-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Dec-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[11-Dec-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[15-Dec-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Dec-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Dec-2019 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Dec-2019 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[19-Dec-2019 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Jan-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[12-Jan-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[13-Jan-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[15-Jan-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[19-Jan-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[21-Jan-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[23-Jan-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[26-Jan-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Feb-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Feb-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Feb-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Feb-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[19-Feb-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-Feb-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[23-Feb-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[24-Feb-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[25-Feb-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[26-Feb-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[02-Mar-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Mar-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Mar-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-Mar-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Mar-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[11-Mar-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[12-Mar-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Mar-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Mar-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[24-Mar-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[26-Mar-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Apr-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[02-Apr-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[12-Apr-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[13-Apr-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[14-Apr-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[15-Apr-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[19-Apr-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-Apr-2020 16:00:02 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[21-Apr-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[22-Apr-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-May-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[06-May-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-May-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[11-May-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[13-May-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-May-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-May-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[27-May-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Jun-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[02-Jun-2020 16:00:05 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Jun-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Jun-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Jun-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Jun-2020 16:00:05 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Jun-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Jun-2020 16:00:06 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Jun-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[22-Jun-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[23-Jun-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[25-Jun-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Jul-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Jul-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[11-Jul-2020 16:15:02 America/Bogota] PHP Warning:  mysqli_connect(): (08004/1040): Too many connections in /home1/lanuzasoft/public_html/app/models/cronJobs/buscandoNuevasIncidencias.php on line 44
+[12-Jul-2020 16:00:03 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[13-Jul-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Jul-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-Jul-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[23-Jul-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Aug-2020 16:00:05 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Aug-2020 16:00:04 America/Bogota] PHP Fatal error:  Class 'core\Database' not found in /home1/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Aug-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('33')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('33', 'GIGAPALMAR SAS', 'GIGAPALMAR SAS', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-08-06', '33', 'GIGAPALMAR SAS', 'GIGAPALMAR SAS')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Aug-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('19')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('19', 'Col Controles', 'Col Controles &...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-08-10', '19', 'Col Controles', 'Col Controles &...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Aug-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('14')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-08-11', '14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[12-Aug-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('31')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('31', 'PENTA AGENCIA B...', 'PENTA AGENCIA B...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-08-13', '31', 'PENTA AGENCIA B...', 'PENTA AGENCIA B...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Aug-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('34')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('34', 'Enlace Comunica...', 'Enlace Comunica...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-08-18', '34', 'Enlace Comunica...', 'Enlace Comunica...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Aug-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('32')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('32', 'Andina de Trans...', 'Andina de Trans...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-08-19', '32', 'Andina de Trans...', 'Andina de Trans...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[19-Aug-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('25')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('25', 'AM ASESORIA Y M...', 'AM LTDA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-08-20', '25', 'AM ASESORIA Y M...', 'AM LTDA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-Aug-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('18')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('18', 'Milenium Asesor...', 'Milenium Bogota...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-08-21', '18', 'Milenium Asesor...', 'Milenium Bogota...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[24-Aug-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('29')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-08-25', '29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Sep-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('25')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('25', 'AM ASESORIA Y M...', 'AM LTDA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-09-02', '25', 'AM ASESORIA Y M...', 'AM LTDA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Sep-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('15')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('15', 'MY Electricos', 'MY Electricos S...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-09-08', '15', 'MY Electricos', 'MY Electricos S...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Sep-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('31')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('31', 'PENTA AGENCIA B...', 'PENTA AGENCIA B...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-09-10', '31', 'PENTA AGENCIA B...', 'PENTA AGENCIA B...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Sep-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('34')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('34', 'Enlace Comunica...', 'Enlace Comunica...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-09-11', '34', 'Enlace Comunica...', 'Enlace Comunica...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[13-Sep-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('19')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('19', 'Col Controles', 'Col Controles &...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-09-14', '19', 'Col Controles', 'Col Controles &...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[14-Sep-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('14')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-09-15', '14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Sep-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('29')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-09-17', '29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Sep-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('18')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('18', 'Milenium Asesor...', 'Milenium Bogota...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-09-18', '18', 'Milenium Asesor...', 'Milenium Bogota...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[21-Sep-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('23')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('23', 'BlueCaribu', 'BlueCaribu SAS', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-09-22', '23', 'BlueCaribu', 'BlueCaribu SAS')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[23-Sep-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('12')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('12', 'Marlon Becerra', 'Consempro S.A.S...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-09-24', '12', 'Marlon Becerra', 'Consempro S.A.S...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Oct-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('36')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('36', 'DISIN SA ', 'DISIN SA ', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-02', '36', 'DISIN SA ', 'DISIN SA ')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Oct-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('15')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('15', 'MY Electricos', 'MY Electricos S...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-06', '15', 'MY Electricos', 'MY Electricos S...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[06-Oct-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('34')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('34', 'Enlace Comunica...', 'Enlace Comunica...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-07', '34', 'Enlace Comunica...', 'Enlace Comunica...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Oct-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('25')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('25', 'AM ASESORIA Y M...', 'AM LTDA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-08', '25', 'AM ASESORIA Y M...', 'AM LTDA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[12-Oct-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('31')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('31', 'PENTA AGENCIA B...', 'PENTA AGENCIA B...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-13', '31', 'PENTA AGENCIA B...', 'PENTA AGENCIA B...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[13-Oct-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('29')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-14', '29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Oct-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('19')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('19', 'Col Controles', 'Col Controles &...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-19', '19', 'Col Controles', 'Col Controles &...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-Oct-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('32')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('32', 'Andina de Trans...', 'Andina de Trans...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-21', '32', 'Andina de Trans...', 'Andina de Trans...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[22-Oct-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('18')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('18', 'Milenium Asesor...', 'Milenium Bogota...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-23', '18', 'Milenium Asesor...', 'Milenium Bogota...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[26-Oct-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('14')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-27', '14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[28-Oct-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('33')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('33', 'GIGAPALMAR SAS', 'GIGAPALMAR SAS', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-10-29', '33', 'GIGAPALMAR SAS', 'GIGAPALMAR SAS')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Nov-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('25')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('25', 'AM ASESORIA Y M...', 'AM LTDA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-11-04', '25', 'AM ASESORIA Y M...', 'AM LTDA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Nov-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('31')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('31', 'PENTA AGENCIA B...', 'PENTA AGENCIA B...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-11-05', '31', 'PENTA AGENCIA B...', 'PENTA AGENCIA B...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-Nov-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('19')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('19', 'Col Controles', 'Col Controles &...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-11-09', '19', 'Col Controles', 'Col Controles &...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Nov-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('15')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('15', 'MY Electricos', 'MY Electricos S...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-11-11', '15', 'MY Electricos', 'MY Electricos S...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Nov-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('29')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-11-18', '29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[19-Nov-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('18')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('18', 'Milenium Asesor...', 'Milenium Bogota...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-11-20', '18', 'Milenium Asesor...', 'Milenium Bogota...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[23-Nov-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('14')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-11-24', '14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[25-Nov-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('1')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('1', 'xPruebas Soft', 'Pruebas QA de L...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-11-26', '1', 'xPruebas Soft', 'Pruebas QA de L...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[30-Nov-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('15')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('15', 'MY Electricos', 'MY Electricos S...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-01', '15', 'MY Electricos', 'MY Electricos S...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Dec-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('31')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('31', 'PENTA AGENCIA B...', 'PENTA AGENCIA B...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-02', '31', 'PENTA AGENCIA B...', 'PENTA AGENCIA B...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[02-Dec-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('25')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('25', 'AM ASESORIA Y M...', 'AM LTDA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-03', '25', 'AM ASESORIA Y M...', 'AM LTDA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[06-Dec-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('19')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('19', 'Col Controles', 'Col Controles &...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-07', '19', 'Col Controles', 'Col Controles &...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Dec-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('34')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('34', 'Enlace Comunica...', 'Enlace Comunica...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-08', '34', 'Enlace Comunica...', 'Enlace Comunica...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-Dec-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('32')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('32', 'Andina de Trans...', 'Andina de Trans...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-09', '32', 'Andina de Trans...', 'Andina de Trans...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Dec-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('29')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-10', '29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Dec-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('18')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('18', 'Milenium Asesor...', 'Milenium Bogota...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-11', '18', 'Milenium Asesor...', 'Milenium Bogota...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[13-Dec-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('14')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-14', '14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[15-Dec-2020 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('23')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('23', 'BlueCaribu', 'BlueCaribu SAS', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-16', '23', 'BlueCaribu', 'BlueCaribu SAS')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Dec-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('33')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('33', 'GIGAPALMAR SAS', 'GIGAPALMAR SAS', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-17', '33', 'GIGAPALMAR SAS', 'GIGAPALMAR SAS')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Dec-2020 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('12')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('12', 'Marlon Becerra', 'Consempro S.A.S...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2020-12-18', '12', 'Marlon Becerra', 'Consempro S.A.S...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[21-Jan-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('1')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('1', 'xPruebas Soft', 'Pruebas QA de L...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-01-22', '1', 'xPruebas Soft', 'Pruebas QA de L...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[22-Feb-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('34')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('34', 'Enlace Comunica...', 'Enlace Comunica...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-02-23', '34', 'Enlace Comunica...', 'Enlace Comunica...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[24-Feb-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('41')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('41', 'Easy Logistica ...', 'Easy Logistica ...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-02-25', '41', 'Easy Logistica ...', 'Easy Logistica ...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[25-Feb-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('25')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('25', 'AM ASESORIA Y M...', 'AM LTDA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-02-26', '25', 'AM ASESORIA Y M...', 'AM LTDA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[02-Mar-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('32')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('32', 'Andina de Trans...', 'Andina de Trans...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-03-03', '32', 'Andina de Trans...', 'Andina de Trans...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Mar-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('36')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('36', 'DISIN SA ', 'DISIN SA ', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-03-05', '36', 'DISIN SA ', 'DISIN SA ')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Mar-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('32')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('32', 'Andina de Trans...', 'Andina de Trans...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-03-06', '32', 'Andina de Trans...', 'Andina de Trans...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[11-Mar-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('30')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('30', 'Epidermique SA ', 'Epidermique SA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-03-12', '30', 'Epidermique SA ', 'Epidermique SA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[13-Apr-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('42')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('42', 'Arsa BI', 'SAs', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-04-14', '42', 'Arsa BI', 'SAs')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Apr-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('34')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('34', 'Enlace Comunica...', 'Enlace Comunica...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-04-19', '34', 'Enlace Comunica...', 'Enlace Comunica...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[19-Apr-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('15')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('15', 'MY Electricos', 'MY Electricos S...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-04-20', '15', 'MY Electricos', 'MY Electricos S...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[20-Apr-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('29')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-04-21', '29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[21-Apr-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('25')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('25', 'AM ASESORIA Y M...', 'AM LTDA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-04-22', '25', 'AM ASESORIA Y M...', 'AM LTDA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[22-Apr-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('36')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('36', 'DISIN SA ', 'DISIN SA ', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-04-23', '36', 'DISIN SA ', 'DISIN SA ')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[26-Apr-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('14')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-04-27', '14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[25-May-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('29')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-05-26', '29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[31-May-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('25')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('25', 'AM ASESORIA Y M...', 'AM LTDA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-06-01', '25', 'AM ASESORIA Y M...', 'AM LTDA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Jun-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('41')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('41', 'Easy Logistica ...', 'Easy Logistica ...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-06-02', '41', 'Easy Logistica ...', 'Easy Logistica ...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[02-Jun-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('32')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('32', 'Andina de Trans...', 'Andina de Trans...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-06-03', '32', 'Andina de Trans...', 'Andina de Trans...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[03-Jun-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('19')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('19', 'Col Controles', 'Col Controles &...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-06-04', '19', 'Col Controles', 'Col Controles &...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[07-Jun-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('32')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('32', 'Andina de Trans...', 'Andina de Trans...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-06-08', '32', 'Andina de Trans...', 'Andina de Trans...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[27-Jun-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('29')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-06-28', '29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[28-Jun-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('14')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-06-29', '14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Jul-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('33')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('33', 'GIGAPALMAR SAS', 'GIGAPALMAR SAS', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-07-02', '33', 'GIGAPALMAR SAS', 'GIGAPALMAR SAS')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[05-Jul-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('25')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('25', 'AM ASESORIA Y M...', 'AM LTDA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-07-06', '25', 'AM ASESORIA Y M...', 'AM LTDA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[28-Jul-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('42')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('42', 'Arsa BI', 'SAs', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-07-29', '42', 'Arsa BI', 'SAs')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[01-Aug-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('34')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('34', 'Enlace Comunica...', 'Enlace Comunica...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-08-02', '34', 'Enlace Comunica...', 'Enlace Comunica...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[04-Aug-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('32')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('32', 'Andina de Trans...', 'Andina de Trans...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-08-05', '32', 'Andina de Trans...', 'Andina de Trans...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[08-Aug-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('15')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('15', 'MY Electricos', 'MY Electricos S...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-08-09', '15', 'MY Electricos', 'MY Electricos S...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[09-Aug-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('36')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('36', 'DISIN SA ', 'DISIN SA ', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-08-10', '36', 'DISIN SA ', 'DISIN SA ')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[10-Aug-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('14')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-08-11', '14', 'Apoyo Log\xC3\xADstic...', 'Log&Ser')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[11-Aug-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('41')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('41', 'Easy Logistica ...', 'Easy Logistica ...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-08-12', '41', 'Easy Logistica ...', 'Easy Logistica ...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[16-Aug-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('25')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('25', 'AM ASESORIA Y M...', 'AM LTDA', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-08-17', '25', 'AM ASESORIA Y M...', 'AM LTDA')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[17-Aug-2021 21:00:01 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('42')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('42', 'Arsa BI', 'SAs', 2, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-08-18', '42', 'Arsa BI', 'SAs')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193
+[18-Aug-2021 21:00:02 UTC] PHP Fatal error:  Uncaught Error: Class 'core\Database' not found in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php:193
+Stack trace:
+#0 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(170): app\models\cronJobs\notificarEmailCitasDeManana::getEmailsDeManagersDeEmpresa('29')
+#1 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(135): app\models\cronJobs\notificarEmailCitasDeManana::sendEmailToCompany('29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...', 1, Array)
+#2 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(70): app\models\cronJobs\notificarEmailCitasDeManana::condensarCitasYEnviarCorreoAEmpresa('2021-08-19', '29', 'SAFT DE COLOMBI...', 'SAFT DE COLOMBI...')
+#3 /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php(241): app\models\cronJobs\notificarEmailCitasDeManana::notificarEmailCitas()
+#4 {main}
+  thrown in /home/lanuzasoft/public_html/app/models/cronJobs/notificarEmailCitasDeManana.php on line 193

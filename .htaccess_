@@ -1,0 +1,21 @@
+# De esta forma tan sencilla, en la variable $_GET[‘url’] tendremos la url segmentada a partir de public,
+# por ejemplo, la url http://localhost:8080/php/mvc/public/home/admin/1 nos devolverá home/admin/1
+# así podremos saber el controlador, método y parámetros que debemos procesar para lanzar nuestra aplicación
+AddHandler application/x-httpd-php56 .php
+Options -Multiviews
+ 
+RewriteEngine On
+ 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+ 
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^(.+)$ index.php?url=$1 [QSA]
+# Use PHP70 as default
+RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

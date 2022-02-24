@@ -78,8 +78,8 @@ define("PROJECTURL", getSimpleUrl( url() ) );
 
 //-------------------------------------------------------------------------------------------------------
 // DEBE APUNTAR A LA CARPETA 'APP'
-define("APPURL", 'mvc2/app/');						//CONFIGURATION-MVC Este corre en localhost
-//define("APPURL", 'app/');							//CONFIGURATION-MVC Este corre en lanuzagroup.com
+//define("APPURL", 'mvc2/app/');						//CONFIGURATION-MVC Este corre en localhost
+define("APPURL", 'app/');							//CONFIGURATION-MVC Este corre en lanuzagroup.com
 
 //@deprecated: directorio del proyecto
 define("PROJECTPATH", dirname(__DIR__));
@@ -87,23 +87,23 @@ define("PROJECTPATH", dirname(__DIR__));
 //-------------------------------------------------------------------------------------------------------
 //directorio app
 //define("APPPATH", PROJECTPATH . 'mvc2/app/');				//CONFIGURATION-MVC Este corre en localhost (sistema de archivos)
-define("APPPATH", PROJECTURL . APPURL);						//CONFIGURATION-MVC Este corre en localhost (URL)
-//define("APPPATH", 'app');									//CONFIGURATION-MVC Este corre en lanuzagroup.com
+//define("APPPATH", PROJECTURL . APPURL);						//CONFIGURATION-MVC Este corre en localhost (URL)
+define("APPPATH", 'app');									//CONFIGURATION-MVC Este corre en lanuzagroup.com
 
 /**-------------------------------------------------------------------------------------------------------
  * Directorios para las Vistas
  */
-define("APPIMAGEPATH" , PROJECTURL . APPURL . 'views/images/' );			//CONFIGURATION-MVC Este corre en localhost
-//define("APPIMAGEPATH" , PROJECTURL . '/../app/views/images/' );		//CONFIGURATION-MVC Este corre en lanuzagroup.com
+//define("APPIMAGEPATH" , PROJECTURL . APPURL . 'views/images/' );		//CONFIGURATION-MVC Este corre en localhost
+define("APPIMAGEPATH" , PROJECTURL . '/../app/views/images/' );				//CONFIGURATION-MVC Este corre en lanuzagroup.com
 
-define("APPCSSPATH" , PROJECTURL . APPURL . 'views/css/' );				//CONFIGURATION-MVC Este corre en localhost
-//define("APPCSSPATH" , PROJECTURL . '/../app/views/css/' );				//CONFIGURATION-MVC Este corre en lanuzagroup.com
+//define("APPCSSPATH" , PROJECTURL . APPURL . 'views/css/' );			//CONFIGURATION-MVC Este corre en localhost
+define("APPCSSPATH" , PROJECTURL . '/../app/views/css/' );				//CONFIGURATION-MVC Este corre en lanuzagroup.com
 
-define("APPJSPATH" , PROJECTURL . APPURL . 'views/js/' );					//CONFIGURATION-MVC Este corre en localhost
-//define("APPJSPATH" , PROJECTURL . '/../app/views/js/' );				//CONFIGURATION-MVC Este corre en lanuzagroup.com
+//define("APPJSPATH" , PROJECTURL . APPURL . 'views/js/' );			//CONFIGURATION-MVC Este corre en localhost
+define("APPJSPATH" , PROJECTURL . '/../app/views/js/' );				//CONFIGURATION-MVC Este corre en lanuzagroup.com
 
-define("BOOTSTRAPPATH" , PROJECTURL . APPURL . 'views/assets/' );			//CONFIGURATION-MVC Este corre en localhost
-//define("BOOTSTRAPPATH" , PROJECTURL . '/../app/views/assets/' );		//CONFIGURATION-MVC Este corre en lanuzagroup.com
+//define("BOOTSTRAPPATH" , PROJECTURL . APPURL . 'views/assets/' );			//CONFIGURATION-MVC Este corre en localhost
+define("BOOTSTRAPPATH" , PROJECTURL . '/../app/views/assets/' );		//CONFIGURATION-MVC Este corre en lanuzagroup.com
 
 /**-------------------------------------------------------------------------------------------------------
  * Email de Contacto
@@ -116,8 +116,8 @@ define("CONTACT_EMAIL_3", "lanuzagroup@gmail.com");
 /**------------------------------------------------------------------------------------------------------
  * USADO PARA EL MENU
  */
-define("PROJECTURLMENU", PROJECTURL . "mvc2/");			//CONFIGURATION-MVC Este corre en localhost (URL)
-//define("PROJECTURLMENU", PROJECTURL);					//CONFIGURATION-MVC Este corre en lanuzagroup.com
+//define("PROJECTURLMENU", PROJECTURL . "mvc2/");			//CONFIGURATION-MVC Este corre en localhost (URL)
+define("PROJECTURLMENU", PROJECTURL);					//CONFIGURATION-MVC Este corre en lanuzagroup.com
 
 
 /**------------------------------------------------------------------------------------------------------

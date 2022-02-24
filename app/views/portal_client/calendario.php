@@ -409,7 +409,6 @@ table {
 			url: modalAjaxURL2,
 			data: $('#buscar_soportes_form').serialize(),
 			success: function(message){
-				/*alert("xxx:"+message);*/
 				crearFilasCitas(message, bDiaYaPasado);
 			},
 			error: function(){

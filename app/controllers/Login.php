@@ -20,4 +20,5 @@ class Login{
 		 */
 		View::render("index3");
 	}
+  
 }

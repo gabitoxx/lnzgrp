@@ -4,7 +4,8 @@ defined("APPPATH") OR die("Access denied");
 
 use \core\View,
 	\core\Database,
-	\app\models\admin\Transaccion;
+	\app\models\admin\Transaccion,
+  \app\models\Utils;
 
 class Soportes {
 
@@ -50,6 +51,9 @@ class Soportes {
 	 */
 	public static function insert($userId, $empresaId, $fechaCita, $dia, $hora, $amPM, 
 			$trabajoArealizar, $inventarioInfo, $createdBy, $aceptadaSoN, $horaHasta, $AmPmHasta ){
+
+    $trabajoArealizar = Utils::sanitize( $trabajoArealizar, 250 );
+    $inventarioInfo   = Utils::sanitize( $inventarioInfo, 250 );
 
 		try {
 			$connection = Database::instance();

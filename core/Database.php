@@ -18,7 +18,7 @@ use \core\App;
  *database = mvc
  *
  *
- * Las funciones mysql_* están obsoletas! Leer este artivulo para ver sus equivalentes modernos:
+ * Las funciones mysql_* están obsoletas! Leer este articulo para ver sus equivalentes modernos:
  * http://wiki.hashphp.org/PDO_Tutorial_for_MySQL_Developers
  */
 class Database
@@ -78,13 +78,13 @@ class Database
 			* llamando al App.php
 			*/
 			$config = App::getConfig();
-
+			
 			// Datos de Conexion
 			$this->_dbHost = $config["host"];
 			$this->_dbUser = $config["user"];
 			$this->_dbPassword = $config["password"];
 			$this->_dbName = $config["database"];
- 			
+			
  			// Conexion a la BD
 			$this->_connection = new \PDO(
 				'mysql:host='.$this->_dbHost.'; dbname='.$this->_dbName,
@@ -119,12 +119,12 @@ class Database
 	public static function instance() {
 
 		if ( !isset( self::$_instance)) {
-
+		        
 			$class = __CLASS__;
-
+		        
 			self::$_instance = new $class;
 		}
-
+		
 		return self::$_instance;
     }
  	

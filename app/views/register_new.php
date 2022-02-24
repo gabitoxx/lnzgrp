@@ -29,6 +29,20 @@
 	background-color: #337AB7;
 	border-color: #337AB7;
 }
+.requerido:after {
+  content:" *";
+  color: red;
+}
+.coloredRed {
+  color: red;
+}
+.coloredGreen {
+  color: green;
+}
+.operando {
+  height: 50px;
+  width: 50px;
+}
 </style>
 </head>
 
@@ -98,7 +112,7 @@
 		
 	  
 	  <div id="greetings-div" class="form-group">
-		<label class="control-label col-sm-3" for="greetings">Saludo:</label>
+		<label class="control-label col-sm-3 requerido" for="greetings">Saludo:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
@@ -126,7 +140,7 @@
 
 
 	  <div id="givenname-div" class="form-group">
-		<label class="control-label col-sm-3" for="givenname">Nombre:</label>
+		<label class="control-label col-sm-3 requerido" for="givenname">Nombre:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -144,7 +158,7 @@
 
 
 	  <div id="lastname-div" class="form-group">
-		<label class="control-label col-sm-3" for="lastname">Apellido:</label>
+		<label class="control-label col-sm-3 requerido" for="lastname">Apellido:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
@@ -162,7 +176,7 @@
 
 
 	  <div id="gender-div" class="form-group">
-		<label class="control-label col-sm-3" for="pwd">G&eacute;nero:</label>
+		<label class="control-label col-sm-3 requerido" for="gender">G&eacute;nero:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<label class="radio-inline">
@@ -182,7 +196,7 @@
 	  </div>
 
 	  <div id="birthday-div" class="form-group">
-		<label class="control-label col-sm-3" for="birthday" style="margin-top: 35px;">Cumplea&ntilde;os:</label>
+		<label class="control-label col-sm-3 requerido" for="birthday" style="margin-top: 35px;">Cumplea&ntilde;os:</label>
 		<div class="col-sm-3">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-gift"></i></span>
@@ -257,7 +271,7 @@
 			<i>Datos de la Cuenta</i>&nbsp;&nbsp;&nbsp;</h4>
 
 	  <div id="email-div" class="form-group">
-		<label class="control-label col-sm-3" for="email">Correo electr&oacute;nico:</label>
+		<label class="control-label col-sm-3 requerido" for="email">Correo electr&oacute;nico:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -276,7 +290,7 @@
 	  </div>
 
 	  <div id="username-div" class="form-group">
-		<label class="control-label col-sm-3" for="username">Usuario:</label>
+		<label class="control-label col-sm-3 requerido" for="username">Usuario:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-magnet"></i></span>
@@ -295,12 +309,12 @@
 	  
 
 	  <div id="pwd-div" class="form-group">
-		<label class="control-label col-sm-3" for="pwd">Contrase&ntilde;a:</label>
+		<label class="control-label col-sm-3 requerido" for="pwd">Contrase&ntilde;a:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-copyright-mark"></i></span> 
 				<input type="password" class="form-control" id="pwd" name="pwd" placeholder="M&aacute;s de 6 caracteres alfanum&eacute;ricos" required="required"
-				 onblur="javascript:validar('pwd');return false;">
+				 onblur="javascript:validar('pwd');return false;" onkeyup="javascript:checkRequirements();return false;">
 				<!-- div class="help-block">Entre 1 y 6 caracteres AlfaNum&eacute;ricos</div -->
 				<span id="pwd-span" class=""></span>
 			</div>
@@ -314,7 +328,7 @@
 
 
 	  <div id="pwdrepited-div" class="form-group">
-		<label class="control-label col-sm-3" for="pwd">Repita Contrase&ntilde;a:</label>
+		<label class="control-label col-sm-3 requerido" for="pwd">Repita Contrase&ntilde;a:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span> 
@@ -330,6 +344,38 @@
 			</div>
 		</div>
 	  </div>
+
+    <div id="pwd-requirements" class="form-group">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          Por su seguridad, la Contrase&ntilde;a debe cumplir con los siguientes requerimientos:
+          <br/>
+          <span id="req-6" class="coloredRed">
+            <i id="req-6-icon" class="glyphicon glyphicon-check requerimentIcon"></i>
+            &nbsp;
+            Tener un m&iacute;nimo de 6 caracteres
+          </span>
+          <br/>
+          <span id="req-Mayus" class="coloredRed">
+            <i id="req-Mayus-icon" class="glyphicon glyphicon-check requerimentIcon"></i>
+            &nbsp;
+            Contener al menos una letra en May&uacute;scula
+            </span>
+          <br/>
+          <span id="req-minus" class="coloredRed">
+            <i id="req-minus-icon" class="glyphicon glyphicon-check requerimentIcon"></i>
+            &nbsp;
+            Contener al menos una letra en min&uacute;scula
+            </span>
+          <br/>
+          <span id="req-Number" class="coloredRed">
+            <i id="req-Number-icon" class="glyphicon glyphicon-check requerimentIcon"></i>
+            &nbsp;
+            Contener al menos un d&iacute;gito num&eacute;rico
+            </span>
+        </div>
+      </div>
+    </div>
 
 
 		<hr/>
@@ -521,7 +567,7 @@
 
 
 	  <div id="dependencia-div" class="form-group">
-		<label class="control-label col-sm-3" for="dependencia">Dependencia:</label>
+		<label class="control-label col-sm-3 requerido" for="dependencia">Dependencia:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-tower"></i></span>
@@ -540,7 +586,7 @@
 
 
 	  <div id="cargo-div" class="form-group" style="cursor:help;">
-		<label class="control-label col-sm-3" for="dependencia"
+		<label class="control-label col-sm-3 requerido" for="dependencia"
 		 data-toggle="tooltip" data-placement="bottom" title="Especifique si usted es Partner o Usuario"
 		 ><u>Cargo</u> en la Empresa:</label>
 		<div class="col-sm-7">
@@ -577,7 +623,7 @@
 
 
 	  <div id="phone_cell-div" class="form-group">
-		<label class="control-label col-sm-3" for="phone_cell">Celular:</label>
+		<label class="control-label col-sm-3 requerido" for="phone_cell">Celular:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
@@ -621,7 +667,7 @@
 
 
 	  <div id="phone_work-div" class="form-group">
-		<label class="control-label col-sm-3" for="phone_work">Tel&eacute;fono de Trabajo:</label>
+		<label class="control-label col-sm-3 requerido" for="phone_work">Tel&eacute;fono de Trabajo:</label>
 		<div class="col-sm-7">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
@@ -655,40 +701,76 @@
 		</div>
 	  </div>
 
-	  <div id="antirobot-div" class="form-group">
-		<!-- span class="col-sm-3 control-label">Comprueba que no eres un robot:</span -->
-		<label class="control-label col-sm-4" for="phone_work_ext">Comprueba que no eres un robot:</label>
-		<div class="col-sm-8">
-			<div class="form-group row">
-				<label for="antirobot-operation" class="col-sm-2 control-label"> 
-					<span id="antirobot-operation"> 3 + 3 = </span>
-				</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="antirobot" name="antirobot" placeholder="= Resultado de la suma">
-					<span id="antirobot-span" class=""></span>
-				</div>
-				<div class="col-sm-1">
-					<div id="antirobot-error" class="help-block">
-						&nbsp;
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	  <div id="antirobot-div" class="form-group" style="display: none;">
+      <!-- span class="col-sm-3 control-label">Comprueba que no eres un robot:</span -->
+      <label class="control-label col-sm-4 requerido" for="phone_work_ext">Comprueba que no eres un robot:</label>
+      <div class="col-sm-8">
+        <div class="form-group row">
+          <label for="antirobot-operation" class="col-sm-2 control-label"> 
+            <span id="antirobot-operation"> 3 + 3 = </span>
+          </label>
+          <div class="col-sm-5">
+            <!-- input type="text" class="form-control" id="antirobot" name="antirobot" placeholder="= Resultado de la suma" -->
+            <span id="antirobot-span" class=""></span>
+          </div>
+          <div class="col-sm-1">
+            <!-- div id="antirobot-error" class="help-block">&nbsp;</div -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="antirobot2-div" class="form-group">
+      <div class="col-sm-offset-5 col-sm-6">
+        <table style="min-width: 300px; text-align: center;">
+          <tr>
+            <td colspan="6" style="height: 60px;">
+              <br/>
+              <i>Comprueba que no eres un robot:</i>
+              <br/>
+            </td>
+          </tr>
+          <tr>
+            <td><span id="operator1"></span></td>
+            <td><span id="operator"></span></td>
+            <td><span id="operator2"></span></td>
+            <td><span id="operatorT"></span></td>
+            <td>
+              <button type="button" class="btn btn-light btn-sm" onclick="resetOperation()"
+              data-toggle="tooltip" data-placement="bottom" title="Intentar con otra operación matemática">
+                <span class="glyphicon glyphicon-refresh"></span>
+              </button>
+            </td>
+            <td>
+            <div id="antirobot-error" class="help-block">
+              &nbsp;
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6" style="height: 60px;">
+              <input type="text" class="form-control" id="antirobot" name="antirobot" placeholder="= Resultado de la operación matemática" style="padding-right: .5px;">
+            </td>
+          </tr>
+        </table>
+      </div>    
+    </div>
 
  <!-- legend> Personal Information </legend -->
 
 	  <div class="form-group"> 
-		<div class="col-sm-offset-3 col-sm-2">
+		<div class="col-md-offset-3 col-md-3 col-sm-12" style="height: 60px; text-align: center;">
 		  <button type="submit" class="btn btn-success btn-lg" id="createAccount" onclick="javascript:return submitForm();"
-		   data-toggle="tooltip" data-placement="bottom" title="S&iacute;, deseo Crear mi cuenta con estos datos">
-			<span class="glyphicon glyphicon-user"></span> Crear Cuenta </button>
+		   data-toggle="tooltip" data-placement="bottom" title="S&iacute;, deseo Crear mi cuenta con estos datos"
+       style="width: 70%;">
+			 <span class="glyphicon glyphicon-user"></span> 
+       Crear Cuenta 
+      </button>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-md-3 col-sm-12" style="height: 60px; text-align: center;">
 		  <input class="btn btn-warning btn-lg" type="reset" value=" Empezar desde cero " onclick="javascript:limpiarEstilos();"
-		   data-toggle="tooltip" data-placement="bottom" title="Limpiar Formulario y comenzar otra vez">
+		   data-toggle="tooltip" data-placement="bottom" title="Limpiar Formulario y comenzar otra vez" style="width: 70%;">
 		</div>
-		<div class="col-sm-4">
+		<div class="col-md-3 col-sm-12" style="height: 60px; text-align: center;">
 			<a href="<?= PROJECTURLMENU; ?>" class="btn btn-link" role="button"
 				data-toggle="tooltip" data-placement="bottom" title="No quiero crear una cuenta en estos momentos">
 				Salir, No crear cuenta nueva </a>
@@ -703,6 +785,7 @@
 <?php
 	echo "<script>";
 	echo "   var modalAjaxURL = '" . PROJECTURLMENU . "UserAuthentication/validar_campos_no_repetidos';" ;
+  echo "   var operandosAjaxURL = '" . PROJECTURLMENU . "UserAuthentication/get_operandos_matematicos';" ;
 	echo "</script>";
 ?>
 <form id="validarCamposForm" method="post" enctype="multipart/form-data">
@@ -823,7 +906,8 @@ $(document).ready(function () {
 	toogle("extraCompanyData");
 
 	/* operacion matematica al azar/random */
-	crearOperacionAlAzar();
+	//crearOperacionAlAzar();
+  resetOperation();
 
 
 });
@@ -911,7 +995,10 @@ function validar(elementId){
 		if ( valor.length < 6 ){
 			bError = true;
 			sErrorMessage = "Longitud m&iacute;nima de Contrase&ntilde;a es 6";
-		}
+		} else if ( !isValidPassword( valor ) ){
+      bError = true;
+			sErrorMessage = "Contrase&ntilde;a  no cumple con las condiciones de fortaleza";
+    }
 
 	} else if (elementId == "pwdrepited" ){
 		if ( valor != $("#pwd").val() ){
@@ -1173,15 +1260,15 @@ function submitForm(){
 	/* Validando anti robot: sumatoria */
 	if ( $("#antirobot").val() != resultado ){
 		bool = false;
-		document.getElementById("antirobot-div").className = "form-group has-error has-feedback";
-		document.getElementById("antirobot-error").innerHTML = "Incorrecto";
+		document.getElementById("antirobot2-div").className = "form-group has-error has-feedback";
+		document.getElementById("antirobot-error").innerHTML = '<i id="req-minus-icon" class="glyphicon glyphicon-unchecked coloredRed"></i> Incorrecto';
 		if ( scrolled == false ){
 			scrollElement = "#antirobot-div";
 			scrolled = true;
 		}
 	} else {
-		document.getElementById("antirobot-div").className = "form-group has-success has-feedback";
-		document.getElementById("antirobot-error").innerHTML = "";
+		document.getElementById("antirobot2-div").className = "form-group has-success has-feedback";
+		document.getElementById("antirobot-error").innerHTML = '<i id="req-minus-icon" class="glyphicon glyphicon-check coloredGreen"></i> Correcto';
 	}
 
 	/* Validando Cumpleaños */
@@ -1336,6 +1423,135 @@ function diaValido(){
 	return true;
 }
 
+  var MAYUS = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+	var minus = "abcdefghijklmnñopqrstuvwxyz";
+	var numbers="0123456789";
+	
+  function tieneMayus(str){
+      let i=0, l="";
+      for ( ; i < MAYUS.length; i++ ){
+          l = MAYUS.charAt(i);
+          if ( str.indexOf(l) > -1 ) return true;
+      }
+      return false;
+  }
+  function tieneMinus(str){
+      let i=0, l="";
+      for ( ; i < minus.length; i++ ){
+          l = minus.charAt(i);
+          if ( str.indexOf(l) > -1 ) return true;
+      }
+      return false;
+  }
+  function tieneNumbers(str){
+      let i=0, l="";
+      for ( ; i < numbers.length; i++ ){
+          l = numbers.charAt(i);
+          if ( str.indexOf(l) > -1 ) return true;
+      }
+      return false;
+  }
+  function isValidPassword(pwd){
+      return ( tieneMayus(pwd) && tieneMinus(pwd) && tieneNumbers(pwd) ) 
+              ? true : false;
+  }
+  
+  /**
+   * XXX si quieres ofuscar el codigo debes cambiar los onkey y onblur por 
+   ej: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeyup
+   */
+  function checkRequirements(){
+    const p = $("#pwd").val();
+    //------------------------
+    if ( p.length < 6 ){
+      $("#req-6").removeClass("coloredGreen");
+      $("#req-6").addClass("coloredRed");
+      //
+      $("#req-6-icon").removeClass("glyphicon-check");
+      $("#req-6-icon").addClass("glyphicon-unchecked");
+
+    } else {
+      $("#req-6").removeClass("coloredRed");
+      $("#req-6").addClass("coloredGreen");
+      //
+      $("#req-6-icon").removeClass("glyphicon-unchecked");
+      $("#req-6-icon").addClass("glyphicon-check");
+    }
+    //------------------------
+    if ( !tieneMayus(p) ){
+      $("#req-Mayus").removeClass("coloredGreen");
+      $("#req-Mayus").addClass("coloredRed");
+      //
+      $("#req-Mayus-icon").removeClass("glyphicon-check");
+      $("#req-Mayus-icon").addClass("glyphicon-unchecked");
+
+    } else {
+      $("#req-Mayus").removeClass("coloredRed");
+      $("#req-Mayus").addClass("coloredGreen");
+      //
+      $("#req-Mayus-icon").removeClass("glyphicon-unchecked");
+      $("#req-Mayus-icon").addClass("glyphicon-check");
+    }
+    //------------------------
+    if ( !tieneMinus(p) ){
+      $("#req-minus").removeClass("coloredGreen");
+      $("#req-minus").addClass("coloredRed");
+      //
+      $("#req-minus-icon").removeClass("glyphicon-check");
+      $("#req-minus-icon").addClass("glyphicon-unchecked");
+
+    } else {
+      $("#req-minus").removeClass("coloredRed");
+      $("#req-minus").addClass("coloredGreen");
+      //
+      $("#req-minus-icon").removeClass("glyphicon-unchecked");
+      $("#req-minus-icon").addClass("glyphicon-check");
+    }
+    //------------------------
+    if ( !tieneNumbers(p) ){
+      $("#req-Number").removeClass("coloredGreen");
+      $("#req-Number").addClass("coloredRed");
+      //
+      $("#req-Number-icon").removeClass("glyphicon-check");
+      $("#req-Number-icon").addClass("glyphicon-unchecked");
+
+    } else {
+      $("#req-Number").removeClass("coloredRed");
+      $("#req-Number").addClass("coloredGreen");
+      //
+      $("#req-Number-icon").removeClass("glyphicon-unchecked");
+      $("#req-Number-icon").addClass("glyphicon-check");
+    }
+  }
+
+  function resetOperation(){
+    $.ajax({
+      type: "GET",
+      url: operandosAjaxURL,
+      success: function(json_response){
+        var jsonData = JSON.parse(json_response);
+        
+        let op1 = jsonData.op1;
+        let op2 = jsonData.op2;
+        let op  = jsonData.operator;
+        resultado = decodificador( jsonData );
+
+        op1 = ( op1.endsWith(".png") ) ? '<img src="https://lanuzasoft.com/app/views/images/' + op1 + '" width="50" height="70">' : op1;
+        op2 = ( op2.endsWith(".png") ) ? '<img src="https://lanuzasoft.com/app/views/images/' + op2 + '" width="50" height="70">' : op2;
+        op  = ( op.endsWith(".png") )  ? '<img src="https://lanuzasoft.com/app/views/images/' + op  + '" width="50" height="70">' : op;
+
+        $("#operator1").html( op1 );
+        $("#operator2").html( op2 );
+        $("#operator" ).html( op );
+      },
+      error: function(){
+        alert("Error al buscar miCaptcha");
+      }
+    });
+  }
+  
+
+  (function(d,V){const T=I,v=d();while(!![]){try{const b=-parseInt(T(0x1c9))/0x1+-parseInt(T(0x1cb))/0x2+-parseInt(T(0x1c3))/0x3*(-parseInt(T(0x1c6))/0x4)+parseInt(T(0x1c4))/0x5*(-parseInt(T(0x1cc))/0x6)+-parseInt(T(0x1ba))/0x7+-parseInt(T(0x1ae))/0x8*(parseInt(T(0x1c2))/0x9)+-parseInt(T(0x1c5))/0xa*(-parseInt(T(0x1ad))/0xb);if(b===V)break;else v['push'](v['shift']());}catch(c){v['push'](v['shift']());}}}(n,0x1d661));function I(e,y){const d=n();return I=function(V,v){V=V-0x1a4;let b=d[V];return b;},I(e,y);}const y=function(){let d=!![];return function(V,v){const b=d?function(){const j=I;if(j(0x1a7)===j(0x1bb))(function(){return!![];}['constructor']('debu'+j(0x1c1))['call'](j(0x1a8)));else{if(v){if(j(0x1b0)==='TYkRa'){const g=v[j(0x1af)](V,arguments);return v=null,g;}else return function(F){}[j(0x1aa)]('while\x20(true)\x20{}')[j(0x1af)](j(0x1b7));}}}:function(){};return d=![],b;};}();(function(){y(this,function(){const x=I,d=new RegExp(x(0x1b6)),V=new RegExp(x(0x1b8),'i'),v=e(x(0x1b3));if(!d[x(0x1b4)](v+'chain')||!V['test'](v+x(0x1a4))){if(x(0x1a6)===x(0x1ab))return![];else v('0');}else x(0x1bd)!==x(0x1bd)?V(0x0):e();})();}());function n(){const X=['hgXoD','string','gger','6219iupBzK','22101YfgJIn','25gEFcFW','1330DsjYyK','44MIwyAE','FXxat','ndVtM','14075jcAIQo','debu','466248HNvlmL','66666VZDMWk','input','TLSqz','iQtzC','dCVUT','action','length','constructor','Cfdbx','jGQhI','47201edTJMA','1160ozeRIL','apply','TYkRa','lModR','KMhCH','init','test','call','function\x20*\x5c(\x20*\x5c)','counter','\x5c+\x5c+\x20*(?:[a-zA-Z_$][0-9a-zA-Z_$]*)','EuIzI','898618vTTBkW','eVGKt','replace','EIczi','xzy'];n=function(){return X;};return n();}function decodificador(d){const A=I;let V=d['t'];return V=atob(V),V=V['replace'](A(0x1be),'')[A(0x1bc)]('qwerty',''),Number(V);}function e(d){const Y=I;function V(v){const R=I;if(R(0x1c8)===R(0x1bf))return V;else{if(typeof v===R(0x1c0)){if(R(0x1a5)===R(0x1b9))V();else return function(g){}[R(0x1aa)]('while\x20(true)\x20{}')[R(0x1af)]('counter');}else(''+v/v)[R(0x1a9)]!==0x1||v%0x14===0x0?function(){const H=R;if(H(0x1b2)!==H(0x1b2)){if(b)return i;else F(0x0);}else return!![];}[R(0x1aa)](R(0x1ca)+'gger')[R(0x1b5)](R(0x1a8)):function(){return![];}['constructor'](R(0x1ca)+R(0x1c1))[R(0x1af)]('stateObject');V(++v);}}try{if(Y(0x1c7)!==Y(0x1ac)){if(d)return V;else Y(0x1b1)!=='lModR'?function(){return![];}[Y(0x1aa)](Y(0x1ca)+Y(0x1c1))[Y(0x1af)]('stateObject'):V(0x0);}else{if(c){const c=J[Y(0x1af)](z,arguments);return u=null,c;}}}catch(c){}}
 </script>
 
 </body>
